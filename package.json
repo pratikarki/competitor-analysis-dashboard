@@ -1,0 +1,17 @@
+{
+  "name": "competitor-analysis-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ApiSearch.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Pratik Karki",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cheerio": "^1.0.0-rc.3",
+    "mocha": "^8.2.1",
+    "mongoose": "^5.11.8"
+  }
+}
