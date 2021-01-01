@@ -1,0 +1,14 @@
+body {
+	background: rgb(221, 221, 221);
+	color: #333;
+}
+
+/* .navbar {
+	border-bottom: red 1.5px solid;
+	height: 4rem;
+	opacity: 0.2;
+} */
+
+.pad {
+	padding-top: 9rem;
+}
