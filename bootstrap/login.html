@@ -58,39 +58,19 @@
         <div class="col-lg-5 px-3">
           <div class="card bg-secondary card-form p-4">
             <div class="card-body">
-              <h3><strong>Create an Account</strong></h3>
-              <small>Enter your details below.</small>
+              <h3><strong>Login</strong></h3>
+              <small>Enter your credentials to login.</small>
 
               <form action="">
-                <div class="form-group my-4">
-                  <label for="fullname">Full Name *</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                        <i class="input-group-text far fa-user"></i>
-                    </div>
-                    <input type="text" class="form-control" id="fullname" placeholder="Full Name">
-                  </div>
-                </div>
 
-                <div class="form-group mb-4">
-                  <label for="username">Username</label>
+                <div class="form-group my-4">
+                  <label for="username">Username/ Email *</label>
                   <div class="input-group">
                       <div class="input-group-prepend">
                         <i class="input-group-text fas fa-at"></i>
                       </div>
-                      <input type="text" class="form-control" id="username" placeholder="Username">
+                      <input type="text" class="form-control" id="username" placeholder="Username/ Email">
                   </div>
-                </div>
-
-                <div class="form-group mb-4">
-                  <label for="email">Email Address *</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                        <i class="input-group-text far fa-envelope"></i>
-                    </div>
-                    <input class="form-control" type="email" id="email" placeholder="Email">
-                  </div>
-                  <small class="form-text text-dark">Your email will not be shared with anyone.</small>
                 </div>
 
                 <div class="form-group mb-4">
@@ -100,42 +80,20 @@
                       <i class="input-group-text fas fa-key"></i>
                     </div>
                     <input class="form-control" type="password" id="password" placeholder="Password">
-                    <button class="input-group-text"><i class="far fa-eye-slash"></i></button>
+                    <button class="input-group-text"><i class=" far fa-eye-slash"></i></button>
                   </div>
-                </div>
-                
-                <div class="form-group mb-4">
-                  <label for="confirmpassword"> Confirm Password *</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <i class="input-group-text fas fa-key"></i>
-                    </div>
-                    <input class="form-control" type="password" id="confirmpassword" placeholder="Confirm Password">
-                    <button class="input-group-text"><i class="far fa-eye-slash"></i></button>
-                  </div>
-                </div>
-                
-                <div class="form-group mb-4">
-                  <label for="email">Domain Name *</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">https://www.</span>
-                    </div>
-                    <input class="form-control" type="text" id="domainname" placeholder="Domain Name">
-                  </div>
+                  <p class="pt-2">
+                    <a href="#" class="text-dark"><small class="form-text text-dark">Forgot Your Password?</small></a>
+                  </p>
+                  
                 </div>
 
-                <div class="d-flex flex-row justify-content-around pt-4">
-                  <div class="flex-column my-auto">
-                    <button class="btn btn-dark"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
-                  </div>
-                  <div class="flex-column my-auto">OR</div>
-                  <div class="flex-column my-auto">
-                    <button class="btn btn-sm btn-dark text-left">
-                      <div class="d-flex align-items-center">
-                        <i class="fab fa-google fa-2x me-2"></i>Sign Up<br>with Google
-                      </div>
-                    </button>
+                <div class="d-flex justify-content-between py-2">
+                  <button class="btn btn-dark"><i class="far fa-sign-in-alt me-2"></i>Login</button>
+                  <div class="flex-column align-self-center">
+                    <small class="text-dark">Don't Have an Account?
+                      <a class="text-dark" href="register.html"><strong>Sign Up</strong></a>
+                    </small>
                   </div>
                 </div>
 
@@ -147,7 +105,7 @@
     </div>
   </section>
 
-  <footer class="bg-dark text-light">
+  <footer class="bg-dark text-light fixed-bottom">
     <div class="container">
       <div class="d-flex flex-row justify-content-between">
 
@@ -167,7 +125,7 @@
             </div>
           </blockquote>
         </div>
-
+        
       </div>
     </div>
   </footer>
