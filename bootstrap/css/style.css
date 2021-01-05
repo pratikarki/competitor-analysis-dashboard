@@ -17,7 +17,7 @@ body {
 	padding-right: 0;
 }
 
-.footer {
+.footer-pad {
 	margin-top: 5rem;
 }
 
@@ -33,6 +33,10 @@ body {
 
 .bottom-border {
 	border-bottom: 1px groove #eee;
+}
+
+.top-border {
+	border-top: 1px groove #eee;
 }
 
 .sidebar-link {
