@@ -5,24 +5,26 @@ body {
 	color: #333;
 }
 
-/* .navbar {
-	border-bottom: red 1.5px solid;
-	height: 4rem;
-	opacity: 0.2;
-} */
-
 .pad {
-	padding-top: 5.8rem;
+	padding-top: 9rem;
+	padding-left: 0;
+	padding-right: 0;
 }
 
-footer {
+.overview-pad {
+	padding-top: 5.8rem;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.footer {
 	margin-top: 5rem;
 }
 
 /* navbar */
 .sidebar {
 	height: 100vh; /* 100vh means 100% of viewport */
-	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(../images/navBackground.jpeg);
+	background: linear-gradient(rgba(11, 13, 14, 0.7), rgba(12, 14, 15, 0.9)), url(../images/navBackground.jpeg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -70,16 +72,30 @@ footer {
 /* end of navbar */
 
 /* cards */
+.card-bg {
+	background: #f4f6f9;
+}
+
+.card-no-bg {
+	background: #fff;
+}
 .card-common {
 	box-shadow: 1px 2px 5px #999;
 	transition: all 0.3s;
 	cursor: default;
 }
-
 .card-common:hover {
 	box-shadow: 2px 3px 10px #999;
 	/* transform: translateY(-1px); */
 	/* icons flickering bug */
+}
+
+.card-common-sm {
+	transition: all 0.3s;
+	cursor: default;
+}
+.card-common-sm:hover {
+	box-shadow: 2px 3px 5px #999;
 }
 
 .cross:hover {
@@ -88,3 +104,15 @@ footer {
 }
 
 /* end of cards */
+
+/* table */
+.align-lt {
+	text-align: left;
+	/* padding-left: 3rem; */
+}
+
+.td-pad {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+/* end of table */
