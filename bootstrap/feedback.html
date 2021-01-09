@@ -57,6 +57,11 @@
 
             <div class="text-center bottom-border">
               <div class="pb-3">
+                <button class="btn btn-sm btn-outline-light" onclick="window.location.href='profile.html'">
+                  <i class="text-danger fal fa-user pe-1"></i>View Profile
+                </button>
+              </div>
+              <div class="pb-3">
                 <button class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#logout_modal">
                   <i class="text-danger fal fa-sign-out-alt pe-1"></i>Logout
                 </button>
@@ -77,7 +82,7 @@
                 <a href="#" class="nav-link sidebar-link text-light p-3 mb-1">Notes</a>
               </li>
               <li class="nav-item text-center">
-                <a href="feedback.html" class="nav-link sidebar-link text-light p-3 mb-1">Feedback</a>
+                <a href="feedback.html" class="nav-link text-light current p-3 mb-1">Feedback</a>
               </li>
             </ul>
           </div>
@@ -87,7 +92,7 @@
           <div class="col-xl-10 col-md-9 ms-auto bg-white fixed-top top-navbar border-bottom py-4"><!-- py-4 -->
             <div class="row align-items-center">
               <div class="col text-center">
-                <h4 class="text-dark text-uppercase mb-0">Profile</h4>
+                <h4 class="text-dark text-uppercase mb-0">Feedback</h4>
               </div>
             </div>
           </div>
@@ -103,65 +108,37 @@
   <section class="overview-pad container-fluid">
     <div class="col-xl-10 col-md-9 ms-auto">
       <div class="m-5">
-        <div class="card card-form card-bg p-5">
-          <div class="card-body p-4">
-            <div class="col">
-              <!-- first row -->
-              <div class="row mx-2 mb-5 justify-content-around card-no-bg" style="border: 1px solid #c5c5c5;">
-                <h4 class="text-uppercase mt-3 mb-2">Edit Information</h4>
-                <div class="row my-5 p-0">
-                  <div class="col-5 text-center">
-                    <img src="/bootstrap/images/dummyUser.jpg" class="rounded-circle" height="230px" width="230px" alt="User Image">
-                  </div>
-                  <div class="col-7 align-self-center">
-                    <label class="mb-2" for="file">Upload an Image</label>
-                    <input class="form-control mb-2" type="file" id="file">
-                    <small class="form-text text-muted" id="fileHelp">Acceptable format jpeg and png only.<br>Max file size 500kb.</small>
-                  </div>
-                </div>
+        <div class="card card-form card-b1 p-5">
+          <div class="card-body p-4 text-center">
+            <p class="lead">We would appreciate your feedback to improve our website.</p>
+            <p class="pt-3 m-0">How would your rate this application?</p>
+            <div class="stars pt-4">
+              <div class="star-widget">
+                <input type="radio" name="rate" id="rate-5">
+                <label for="rate-5" class="fas fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-4">
+                <label for="rate-4" class="fas fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-3">
+                <label for="rate-3" class="fas fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-2">
+                <label for="rate-2" class="fas fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-1">
+                <label for="rate-1" class="fas fa-star fa-2x"></label>
               </div>
-              <!-- end of first row -->
-
-              <!-- second row -->
-              <div class="row mx-2 mb-5 justify-content-around card-no-bg" style="border: 1px solid #c5c5c5;">
-                <h4 class="text-uppercase mt-3 mb-2">Account Information</h4>
-                <div class="row my-5 p-0">
-                  <div class="col-4 offset-1">
-                    <p class="mb-4 pt-2 pb-2">Full Name:</p>
-                    <p class="mb-4 pt-1 pb-2">Username:</p>
-                    <p class="mb-4 pt-2 pb-2">Email:</p>
-                    <p class="pt-2">Domain:</p>
-                  </div>
-                  <div class="col-7 align-self-around pe-5">
-                    <input type="text" class="form-control mb-4" id="fullname" value="Full Name">
-                    <input type="text" class="form-control mb-4" id="username" value="Username">
-                    <input type="text" class="form-control mb-4 text-muted" id="email" value="user@email.com" readonly>
-                    <input type="text" class="form-control mb-4 text-muted" id="domain" value="user-domain.com" readonly>
-                  </div>
-                </div>
-              </div>
-              <!-- end of second row -->
-
-              <!-- third row -->
-              <div class="row mx-2 justify-content-around card-no-bg" style="border: 1px solid #c5c5c5;">
-                <h4 class="text-uppercase mt-3 mb-2">Change Password</h4>
-                <div class="row mt-5 mb-4 p-0">
-                  <div class="col-4 offset-1">
-                    <p class="mb-4 pt-2 pb-2">Current Password:</p>
-                    <p class="mb-4 pt-1 pb-2">New Password:</p>
-                    <p class="pt-2 pb-2">Confirm Password:</p>
-                  </div>
-                  <div class="col-7 align-self-around pe-5">
-                    <input type="text" class="form-control mb-4" id="currentpassword" value="*****************">
-                    <input type="text" class="form-control mb-4" id="newpassword" value="*****************">
-                    <input type="text" class="form-control mb-4 text-muted" id="confirmpassword" value="*****************">
-                    <button class="btn btn-outline-secondary mt-3">Save</button>
-                  </div>
-                </div>
-              </div>
-              <!-- end of third row -->
-
             </div>
+            <hr class="bottom-border mx-4 my-5">
+            <p>Please select your feedback category below:</p>
+            <div class=" py-4">
+              <button class="btn btn-outline-secondary my-xl-0 my-3">Suggestion</button>
+              <button class="btn btn-outline-secondary mx-5">Something isn't<br>quite right</button>
+              <button class="btn btn-outline-secondary my-xl-0 my-3">Compliment</button>
+            </div>
+            <hr class="bottom-border mx-4 my-3">
+            <div class="m-5">
+              <p class="pb-3">Please leave your feedback below:</p>
+              <textarea class="form-control" name="feedbackMessage" id="feedbackMessage" cols="0" rows="13" placeholder="Write a message.."></textarea>
+            </div>
+            <button class="btn btn-outline-secondary"><i class="fal fa-paper-plane pe-2"></i>Send</button>
           </div>
           <!-- end of card body -->
         </div>

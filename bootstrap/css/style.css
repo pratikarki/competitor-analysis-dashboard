@@ -120,3 +120,29 @@ body {
 	padding-bottom: 3rem;
 }
 /* end of table */
+
+/* feedback */
+
+.stars {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+.star-widget input {
+	display: none;
+}
+.star-widget label {
+	color: rgb(189, 189, 189);
+	padding: 7px;
+	transition: all 0.2s ease;
+	float: right;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+	color: #ffdd44;
+	cursor: pointer;
+}
+input:checked ~ label {
+	color: #ffdd44;
+}
+/* end of feedback */
