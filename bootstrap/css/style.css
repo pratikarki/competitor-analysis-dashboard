@@ -39,6 +39,14 @@ body {
 	border-top: 1px groove #eee;
 }
 
+.vertical-border {
+	border-right: 1px solid #dee2e6;
+}
+
+.vertical-border-dark {
+	border-right: 1px solid #6c757d;
+}
+
 .sidebar-link {
 	transition: all 0.3s;
 }
@@ -74,6 +82,25 @@ body {
 }
 
 /* end of navbar */
+
+/* graph */
+.graph-box-1 {
+	border-left: 5px solid rgba(255, 99, 132, 1);
+}
+.graph-box-2 {
+	border-left: 5px solid rgba(54, 162, 235, 1);
+}
+.graph-box-3 {
+	border-left: 5px solid rgba(255, 206, 86, 1);
+}
+.graph-box-4 {
+	border-left: 5px solid rgba(153, 102, 255, 1);
+}
+.graph-box-5 {
+	border-left: 5px solid rgba(75, 192, 192, 1);
+}
+
+/* end of graph */
 
 /* cards */
 .card-bg {
@@ -119,6 +146,21 @@ body {
 	padding-top: 3rem;
 	padding-bottom: 3rem;
 }
+
+.thead-pad {
+	padding-top: 41px;
+}
+
+@media (max-width: 1066px) {
+	.thead-pad {
+		padding-top: 65px;
+	}
+}
+
+/* .tr-pad {
+	line-height: 50px;
+} */
+
 /* end of table */
 
 /* feedback */

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- fontawesome CDN -->
+  <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!-- bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- google font CDN -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>Competitor Analysis Dashboard | Overview</title>
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif;">
+
+  <!-- modals -->
+  <div class="modal fade" id="logout_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><small>Are your sure you want to logout?</small></h4>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-outline-danger" type="button" onclick="window.location.href='login.html'">Yes, logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of modal -->
+
+  <!-- navbar -->
+  <nav class="nav navbar-expand-md navbar-light">
+    <button class="navbar-toggler ms-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#dash_nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="dash_nav">
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- sidebar -->
+          <div class="col-xl-2 col-md-3 sidebar fixed-top">
+            <a href="overview.html" class="navbar-brand text-light text-center d-block mx-auto py-3 mb-4 bottom-border">Competitor's<br>Analysis</a>
+
+            <div class="text-center">
+              <img src="/bootstrap/images/dummyUser.jpg" class="rounded-circle" height="80px" width="80px" alt="User Image">
+              <p href="#" class="text-light pt-2">@UserName</p>
+            </div>
+
+            <div class="text-center bottom-border">
+              <div class="pb-3">
+                <button class="btn btn-sm btn-outline-light" onclick="window.location.href='profile.html'">
+                  <i class="text-danger fal fa-user pe-1"></i>View Profile
+                </button>
+              </div>
+              <div class="pb-3">
+                <button class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#logout_modal">
+                  <i class="text-danger fal fa-sign-out-alt pe-1"></i>Logout
+                </button>
+              </div>
+            </div>
+            
+            <ul class="navbar-nav flex-column mt-3"><!-- <i class="fas fa-home fa-lg pe-2 text-light"></i> -->
+              <li class="nav-item text-center">
+                <a href="overview.html" class="nav-link sidebar-link text-light p-3 mb-1">Overview</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="compare_metrics.html" class="nav-link current sidebar-link text-light p-3 mb-1">Compare Metrics</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="compare_keywords.html" class="nav-link sidebar-link text-light p-3 mb-1">Compare Keyword</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="#" class="nav-link sidebar-link text-light p-3 mb-1">Notes</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="feedback.html" class="nav-link sidebar-link text-light p-3 mb-1">Feedback</a>
+              </li>
+            </ul>
+          </div>
+          <!-- end of sidebar -->
+
+          <!-- top-nav -->
+          <div class="col-xl-10 col-md-9 ms-auto bg-white fixed-top top-navbar border-bottom py-4"><!-- py-4 -->
+            <div class="row align-items-center">
+              <div class="col text-center">
+                <h4 class="text-dark text-uppercase mb-0">Metrics Comparison</h4>
+              </div>
+            </div>
+          </div>
+          <!-- end of top-nav -->
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+
+  <!-- main card -->
+  <section class="overview-pad container-fluid">
+    <div class="col-xl-10 col-md-9 ms-auto">
+      <div class="card card-form card-bg m-5">
+        <div class="card-body mx-3 p-0">
+          <!-- first row -->
+          <div class="row mb-5 justify-content-around">
+            <table class="table table-striped table-hover bg-light text-center mb-5">
+              <thead>
+                <tr class="text-muted">
+                  <th class="col-4 ps-5 align-lt vertical-border">#</th>
+                  <th class="vertical-border">Site 1</th>
+                  <th class="vertical-border">Site 2</th>
+                  <th >Site 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Rank</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Bounce Rate</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Search Traffic</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Visit Duration</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    First Recorded</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Search Keywords</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Est Monthly Seo Clicks</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Est Monthly Seo Value</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="align-lt"><i class="ms-1 me-4 text-muted fal fa-times cross" onclick=""></i>
+                    Organic to Paid Clicks Ratio</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- end of first row -->
+            
+          <!-- second row -->
+          <h4 class="text-uppercase px-2 py-3">Organic and Paid Clicks Graph</h4>
+          <div class="row mx-2 mb-5 justify-content-around card-common card-no-bg">
+            <div class="row px-3 py-4 border-bottom">
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Add Site
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Site 1</a>
+                    <a class="dropdown-item" href="#">Site 2</a>
+                    <a class="dropdown-item" href="#">Site 3</a>
+                    <a class="dropdown-item" href="#">Site 4</a>
+                    <a class="dropdown-item" href="#">Site 5</a>
+                </div>
+                <button class="ms-3 btn btn-outline-dark" onclick="">Add</button>
+              </div>
+            </div>
+
+            <div class="row p-0 justify-content-around">
+              <div class="col-lg-3 col-23 vertical-border">
+                <div class="row border-bottom graph-box-1">
+                  <p class="m-0 p-3">Site 1
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-2">
+                  <p class="m-0 p-3">Site 2
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-3">
+                  <p class="m-0 p-3">Site 3
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-4">
+                  <p class="m-0 p-3">Site 4
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-5">
+                  <p class="m-0 p-3">Site 5
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+              </div>
+              <div class="col-lg-9 col-23">
+                <canvas id="organicComparison"style="width: 350px; height: 210px;"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- end of second row -->
+
+          <!-- third row -->
+          <div class="row mx-2 mb-5 justify-content-around card-common card-no-bg">
+            <div class="row px-3 py-4 border-bottom">
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Add Site
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Site 1</a>
+                    <a class="dropdown-item" href="#">Site 2</a>
+                    <a class="dropdown-item" href="#">Site 3</a>
+                    <a class="dropdown-item" href="#">Site 4</a>
+                    <a class="dropdown-item" href="#">Site 5</a>
+                </div>
+                <button class="ms-3 btn btn-outline-dark" onclick="">Add</button>
+              </div>
+            </div>
+
+            <div class="row p-0 justify-content-around">
+              <div class="col-lg-3 col-23 vertical-border">
+                <div class="row border-bottom graph-box-1">
+                  <p class="m-0 p-3">Site 1
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-2">
+                  <p class="m-0 p-3">Site 2
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-3">
+                  <p class="m-0 p-3">Site 3
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-4">
+                  <p class="m-0 p-3">Site 4
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom graph-box-5">
+                  <p class="m-0 p-3">Site 5
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+              </div>
+              <div class="col-lg-9 col-23">
+                <canvas id="paidComparison"style="width: 350px; height: 210px;"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- end of third row -->
+
+          <!-- fourth row -->
+          <h4 class="text-uppercase px-2 py-3">Search Traffic</h4>
+          <div class="row mx-2 mb-5 justify-content-around card-common card-no-bg">
+            <div class="row px-3 py-4 border-bottom">
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Add Site
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Site 1</a>
+                    <a class="dropdown-item" href="#">Site 2</a>
+                    <a class="dropdown-item" href="#">Site 3</a>
+                    <a class="dropdown-item" href="#">Site 4</a>
+                    <a class="dropdown-item" href="#">Site 5</a>
+                </div>
+                <button class="ms-3 btn btn-outline-dark" onclick="">Add</button>
+              </div>
+            </div>
+
+            <div class="row p-0 justify-content-around">
+              <div class="col-lg-3 col-23 vertical-border">
+                <div class="row border-bottom">
+                  <p class="m-0 p-3">Site 1
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom">
+                  <p class="m-0 p-3">Site 2
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom">
+                  <p class="m-0 p-3">Site 3
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom">
+                  <p class="m-0 p-3">Site 4
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+                <div class="row border-bottom">
+                  <p class="m-0 p-3">Site 5
+                    <span style="float: right;"><i class="text-muted fal fa-times cross" onclick=""></i></span></p>
+                </div>
+              </div>
+
+              <div class="col-lg-9 col-23">
+                <div class="row px-4">
+                  <div class="col-sm-2 pe-0">
+                    <p class="m-0 py-3">67.5%</p>
+                  </div>
+                  <div class="col-sm-10 ps-0 align-self-center">
+                    <div class="progress">
+                      <div class="progress-bar bg-primary" style="width: 67.5%;">67.5%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row px-4">
+                  <div class="col-sm-2 pe-0">
+                    <p class="m-0 py-3">41.4%</p>
+                  </div>
+                  <div class="col-sm-10 ps-0 align-self-center">
+                    <div class="progress">
+                      <div class="progress-bar bg-warning" style="width: 41.4%;">41.4%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row px-4">
+                  <div class="col-sm-2 pe-0">
+                    <p class="m-0 py-3">26.3%</p>
+                  </div>
+                  <div class="col-sm-10 ps-0 align-self-center">
+                    <div class="progress">
+                      <div class="progress-bar bg-danger" style="width: 26.3%;">26.3%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row px-4">
+                  <div class="col-sm-2 pe-0">
+                    <p class="m-0 py-3">17.0%</p>
+                  </div>
+                  <div class="col-sm-10 ps-0 align-self-center">
+                    <div class="progress">
+                      <div class="progress-bar bg-info" style="width: 17.0%;">17.0%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row px-4">
+                  <div class="col-sm-2 pe-0">
+                    <p class="m-0 py-3">No Data</p>
+                  </div>
+                  <div class="col-sm-10 ps-0 align-self-center">
+                    <div class="progress">
+                      <div class="progress-bar bg-secondary" style="width: 100%;">No Data</div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- end of fourth row -->
+        </div>
+        <!-- end of card body -->
+      </div>
+      <!-- end of card -->
+      
+      <!-- footer -->
+      <footer class="py-0 px-sm-0 px-2">
+        <div class="row border-top align-items-center py-2 card-no-bg">
+          <div class="col-md-5 col-4 offset-1">
+            <p class="text-monospace m-0"><i class="far fa-copyright"></i>
+              <span id="year"></span> By Pratik Karki</p> 
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6 ms-auto">
+            <blockquote class="blockquote m-0">
+              <p class="text-secondary ps-4"><small>Powered By:</small></p>
+              <div class="blockquote-footer">
+                <cite title="Source Title"><small>Spyfu, Inc.</small></cite>
+              </div>
+              <div class="blockquote-footer">
+                <cite title="Source Title"><small>Alexa Internet, Inc.</small></cite>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </footer>
+      <!-- end of footer -->
+    </div> 
+    <!-- end of col-xl-10 col-md-9 ms-auto -->
+  </section>
+  <!-- end of main card -->
+
+  <!-- chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+  <!-- jquery CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!-- popper.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+  <!-- bootstrap JS CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  
+  <script>
+    // Get current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
+
+  <script src="../bootstrap/js/charts.js"></script>
+
+</body>
+
+</html>
