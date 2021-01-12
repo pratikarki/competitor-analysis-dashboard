@@ -34,6 +34,24 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="thanks_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><small>Thank you for your feedback!</small></h3>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-body">
+          <p>It'll help us improve your experience :)</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Close</button>
+          <button class="btn btn-outline-danger" type="button" data-dismiss="modal">You're Welcome</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- end of modal -->
 
   <!-- navbar -->
@@ -138,7 +156,7 @@
               <p class="pb-3">Please leave your feedback below:</p>
               <textarea class="form-control" name="feedbackMessage" id="feedbackMessage" cols="0" rows="13" placeholder="Write a message.."></textarea>
             </div>
-            <button class="btn btn-outline-secondary"><i class="fal fa-paper-plane pe-2"></i>Send</button>
+            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#thanks_modal"><i class="fal fa-paper-plane pe-2"></i>Send</button>
           </div>
           <!-- end of card body -->
         </div>

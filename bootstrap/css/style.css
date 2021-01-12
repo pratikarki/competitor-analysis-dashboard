@@ -1,3 +1,9 @@
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
 body {
 	/* font-family: 'Montserrat', sans-serif; */
 	/* background: rgb(221, 221, 221); */
@@ -176,13 +182,14 @@ body {
 .star-widget label {
 	color: rgb(189, 189, 189);
 	padding: 7px;
-	transition: all 0.2s ease;
+	transition: all 0.3s ease;
 	float: right;
 }
 input:not(:checked) ~ label:hover,
 input:not(:checked) ~ label:hover ~ label {
 	color: #ffdd44;
 	cursor: pointer;
+	transform: scale(1.08);
 }
 input:checked ~ label {
 	color: #ffdd44;
