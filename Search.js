@@ -1,11 +1,45 @@
 //API calls to Spyfu
 const axios = require('axios');
-const fs = require('fs');
 
 const website = 'sastodeal.com'; //okdam.com thulo.com
 let domainID;
 
-const writeStream = fs.createWriteStream(`spyfuAPI_${website}.csv`);
+let overviewData = {
+  searchKeywordsCount: 0,
+  estMonthlySeoClick: 0,
+  estMonthlySeoClicksValue: 0,
+  firstRecorded: 0
+}
+let organicVsPaidData = {
+  allCategories: [],
+  allOrganicClicks: [],
+  allPaidClicks: []
+}
+let keywordsData = {
+  allTypes: [],
+  allKeywords: [],
+  allUrls: [],
+  allSeoClicks: [],
+  allSearchVolumes: [],
+  allRanks: [],
+  allMonthlyClicks: []
+}
+let topPagesData = {
+  allTitles: [],
+  allTopKeywords: [],
+  allUrls: [],
+  allKeywordCounts: [],
+  allEstMonthlySeoClicks: []
+}
+let backlinksData = {
+  allBacklinkDomains: [],
+  allBacklinks: [],
+  allDomainMonthlyOrganicClicks: [],
+  allPageMonthlyOrganicClicks: [],
+  allDomainStrengths: [],
+  allRankedKeywords: [],
+  allOutboundLinks: []
+}
 
 async function getDomainID() {
   const URL = `https://www.spyfu.com/Endpoints/Search/JsonSearch?query=${website}&tryAsTermFirst=false&isSiteQuery=true`;
@@ -21,17 +55,18 @@ async function getDomainID() {
         console.log(res.status, res.statusText);
         const result = res.data;
 
-        let organicSearchKeywordsCount, estMonthlySeoClicks, estMonthlySeoClicksValue;
-        //write header to csv
-        writeStream.write(`\n \n domainID, organicSearchKeywordsCount, estMonthlySeoClicks, estMonthlySeoClicksValue`);
+        let searchKeywordsCount, estMonthlySeoClick, estMonthlySeoClicksValue;
 
-        organicSearchKeywordsCount = result.CurrentTotalCount;
-        estMonthlySeoClicks = result.CurrentMonthlyClicks;
+        searchKeywordsCount = result.CurrentTotalCount;
+        overviewData.searchKeywordsCount = searchKeywordsCount;
+
+        estMonthlySeoClick = result.CurrentMonthlyClicks;
+        overviewData.estMonthlySeoClick = estMonthlySeoClick;
+
         estMonthlySeoClicksValue = result.CurrentMonthlyValue;
+        overviewData.estMonthlySeoClicksValue = estMonthlySeoClicksValue;
 
-        //write each row to csv
-        writeStream.write(`\n ${domainID}, ${organicSearchKeywordsCount}, ${estMonthlySeoClicks}, ${estMonthlySeoClicksValue}`);
-
+        console.log(overviewData);
       } catch(error) {
         console.log(error);
       }
@@ -39,21 +74,17 @@ async function getDomainID() {
 
     async function getHistoryDate() {
       const URL = `https://www.spyfu.com/NsaApi/Domain/HistoryStartDates?domainId=${domainID}`;
-      
       try {
         const res = await axios.get(URL);
         console.log(res.status, res.statusText);
         const result = res.data;
 
-        let activeSince;
-        //write header to csv
-        writeStream.write(`\n \nactiveSince`);
+        let firstRecorded;
 
-        activeSince = result.OrganicFirstRecordDate;
+        firstRecorded = result.OrganicFirstRecordDate;
+        overviewData.firstRecorded = firstRecorded;
 
-        //write each row to csv
-        writeStream.write(`\n ${activeSince}`);
-
+        console.log(overviewData);
       } catch(error) {
         console.log(error);
       }
@@ -67,34 +98,33 @@ async function getDomainID() {
         console.log(res.status, res.statusText);
         const result = res.data;
     
-        let categories, organicClicks, paidClicks;
-        //write header to csv
-        writeStream.write(`\n \n Organic vs Paid Clicks Graph\n categories, organicClicks, paidClicks`);
+        let category, organicClick, paidClick;
     
         for(let i=0; i < result.Categories.length; i++) {
-          categories = result.Categories[i];
-          organicClicks = result.Organic_Clicks[i];
-          paidClicks = result.Paid_Clicks[i];
-    
-          //write each row to csv
-          writeStream.write(`\n ${categories}, ${organicClicks}, ${paidClicks}`);
+          category = result.Categories[i];
+          organicVsPaidData.allCategories.push(category);
+
+          organicClick = result.Organic_Clicks[i];
+          organicVsPaidData.allOrganicClicks.push(organicClick);
+
+          paidClick = result.Paid_Clicks[i];
+          organicVsPaidData.allPaidClicks.push(paidClick);
         }
-    
+
+        console.log(organicVsPaidData);
       } catch (error) {
         console.error(error);
       }
     }
 
-    getOverview();
-    getHistoryDate();
-    getOrganicVsPaidData();
+    // getOverview();
+    // getHistoryDate();
+    // getOrganicVsPaidData();
 
   } catch (error) {
     console.error(error);
   }
-
-};
-
+}
 
 async function getKeywordsData() {
   const URL = `https://www.spyfu.com/NsaApi/Serp/GetAllOrganicKeywordLists?query=${website}`;
@@ -103,30 +133,181 @@ async function getKeywordsData() {
     console.log(res.status, res.statusText);
     const result = res.data;
 
-    let type, keyword, url, seoClicks, searchVolume, rank, clicks;
-    //write header to csv
-    writeStream.write(`\n \n keywordType, keyword, url, seoClicks, searchVolume, rank, clicks`);
+    let keyword, url, seoClick, searchVolume, rank, monthlyClick;
+    let temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
 
     result.forEach(el => {
-      type = el.searchType;
+      if (el.searchType == 'MostValuable') {
+        keywordsData.allTypes.push('TopKeywords');
 
-      el.keywords.forEach(ele => {
-        keyword = ele.term;
-        url = ele.topRankedUrl;
-        seoClicks = ele.seoClicks;
-        searchVolume = ele.searchVolume;
-        rank = ele.rank;
-        clicks = ele.clicks;
+        el.keywords.forEach(ele => {
+          keyword = ele.keyword;
+          temp_keywords.push(keyword);
 
-        //write each row to csv
-        writeStream.write(`\n ${type}, ${keyword}, ${url}, ${seoClicks}, ${searchVolume}, ${rank}, ${clicks}`);
-      })
-    });
-  } catch (error) {
+          url = ele.topRankedUrl;
+          temp_urls.push(url);
+
+          seoClick = ele.seoClicks;
+          temp_seoClicks.push(seoClick);
+
+          searchVolume = ele.searchVolume;
+          temp_searchVolumes.push(searchVolume);
+
+          rank = ele.rank;
+          temp_ranks.push(rank);
+
+          monthlyClick = ele.totalMonthlyClicks;
+          temp_monthlyClicks.push(monthlyClick);
+        })
+
+        keywordsData.allKeywords.push(temp_keywords);
+        keywordsData.allUrls.push(temp_urls);
+        keywordsData.allSeoClicks.push(temp_seoClicks);
+        keywordsData.allSearchVolumes.push(temp_searchVolumes);
+        keywordsData.allRanks.push(temp_ranks);
+        keywordsData.allClicks.push(temp_monthlyClicks);
+
+        temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
+      }
+
+      if (el.searchType == 'NewlyRanked') {
+        keywordsData.allTypes.push('NewKeywords');
+
+        el.keywords.forEach(ele => {
+          keyword = ele.keyword;
+          temp_keywords.push(keyword);
+
+          url = ele.topRankedUrl;
+          temp_urls.push(url);
+
+          seoClick = ele.seoClicks;
+          temp_seoClicks.push(seoClick);
+
+          searchVolume = ele.searchVolume;
+          temp_searchVolumes.push(searchVolume);
+
+          rank = ele.rank;
+          temp_ranks.push(rank);
+
+          monthlyClick = ele.totalMonthlyClicks;
+          temp_monthlyClicks.push(monthlyClick);
+        })
+
+        keywordsData.allKeywords.push(temp_keywords);
+        keywordsData.allUrls.push(temp_urls);
+        keywordsData.allSeoClicks.push(temp_seoClicks);
+        keywordsData.allSearchVolumes.push(temp_searchVolumes);
+        keywordsData.allRanks.push(temp_ranks);
+        keywordsData.allClicks.push(temp_monthlyClicks);
+
+        temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
+      }
+
+      if (el.searchType == 'GainedClicks') {
+        keywordsData.allTypes.push('ClicksGainingKeywords');
+
+        el.keywords.forEach(ele => {
+          keyword = ele.keyword;
+          temp_keywords.push(keyword);
+
+          url = ele.topRankedUrl;
+          temp_urls.push(url);
+
+          seoClick = ele.seoClicks;
+          temp_seoClicks.push(seoClick);
+
+          searchVolume = ele.searchVolume;
+          temp_searchVolumes.push(searchVolume);
+
+          rank = ele.rank;
+          temp_ranks.push(rank);
+
+          monthlyClick = ele.totalMonthlyClicks;
+          temp_monthlyClicks.push(monthlyClick);
+        })
+
+        keywordsData.allKeywords.push(temp_keywords);
+        keywordsData.allUrls.push(temp_urls);
+        keywordsData.allSeoClicks.push(temp_seoClicks);
+        keywordsData.allSearchVolumes.push(temp_searchVolumes);
+        keywordsData.allRanks.push(temp_ranks);
+        keywordsData.allClicks.push(temp_monthlyClicks);
+
+        temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
+      }
+
+      if (el.searchType == 'LostClicks') {
+        keywordsData.allTypes.push('ClicksLosingKeywords');
+
+        el.keywords.forEach(ele => {
+          keyword = ele.keyword;
+          temp_keywords.push(keyword);
+
+          url = ele.topRankedUrl;
+          temp_urls.push(url);
+
+          seoClick = ele.seoClicks;
+          temp_seoClicks.push(seoClick);
+
+          searchVolume = ele.searchVolume;
+          temp_searchVolumes.push(searchVolume);
+
+          rank = ele.rank;
+          temp_ranks.push(rank);
+
+          monthlyClick = ele.totalMonthlyClicks;
+          temp_monthlyClicks.push(monthlyClick);
+        })
+
+        keywordsData.allKeywords.push(temp_keywords);
+        keywordsData.allUrls.push(temp_urls);
+        keywordsData.allSeoClicks.push(temp_seoClicks);
+        keywordsData.allSearchVolumes.push(temp_searchVolumes);
+        keywordsData.allRanks.push(temp_ranks);
+        keywordsData.allClicks.push(temp_monthlyClicks);
+
+        temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
+      }
+
+      if (el.searchType == 'PageOne') {
+        keywordsData.allTypes.push('FirstPageKeywords');
+
+        el.keywords.forEach(ele => {
+          keyword = ele.keyword;
+          temp_keywords.push(keyword);
+
+          url = ele.topRankedUrl;
+          temp_urls.push(url);
+
+          seoClick = ele.seoClicks;
+          temp_seoClicks.push(seoClick);
+
+          searchVolume = ele.searchVolume;
+          temp_searchVolumes.push(searchVolume);
+
+          rank = ele.rank;
+          temp_ranks.push(rank);
+
+          monthlyClick = ele.totalMonthlyClicks;
+          temp_monthlyClicks.push(monthlyClick);
+        })
+
+        keywordsData.allKeywords.push(temp_keywords);
+        keywordsData.allUrls.push(temp_urls);
+        keywordsData.allSeoClicks.push(temp_seoClicks);
+        keywordsData.allSearchVolumes.push(temp_searchVolumes);
+        keywordsData.allRanks.push(temp_ranks);
+        keywordsData.allClicks.push(temp_monthlyClicks);
+        
+        temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
+      }
+    })
+    console.log(keywordsData);
+  } 
+  catch (error) {
     console.error(error);
   }
 }
-
 
 async function getTopPagesData() {
   const URL = `https://www.spyfu.com/NsaApi/Serp/GetTopPages?domain=${website}&pageSize=5&sortOrder=descending&sortBy=estMonthlySeoClicks&filter=&startingRow=1&isOverview=true`;
@@ -136,28 +317,32 @@ async function getTopPagesData() {
     console.log(res.status, res.statusText);
     const result = res.data;
 
-    let topPages, topKeyword, url, keywordCount, estMonthlySeoClicks;
-    //write header to csv
-    writeStream.write(`\n \n topPages, topKeyword, url, keywordCount, estMonthlySeoClicks`);
+    let title, topKeyword, url, keywordCount, estMonthlySeoClick;
 
     result.topPages.forEach(el => {
-      topPages = el.title;
-      topKeyword = el.topKeyword;
-      url = el.url;
-      keywordCount = el.keywordCount;
-      estMonthlySeoClicks = el.estMonthlySeoClicks;
+      title = el.title;
+      topPagesData.allTitles.push(title);
 
-      //write each row to csv
-      writeStream.write(`\n ${topPages}, ${topKeyword}, ${url}, ${keywordCount}, ${estMonthlySeoClicks}`);
+      topKeyword = el.topKeyword;
+      topPagesData.allTopKeywords.push(topKeyword);
+
+      url = el.url;
+      topPagesData.allUrls.push(url);
+
+      keywordCount = el.keywordCount;
+      topPagesData.allKeywordCounts.push(keywordCount);
+
+      estMonthlySeoClick = el.estMonthlySeoClicks;
+      topPagesData.allEstMonthlySeoClicks.push(estMonthlySeoClick);
     });
 
+    console.log(topPagesData);
   } catch (error) {
     console.error(error);
   }
 }
 
-
-async function getBacklinkData() {
+async function getBacklinksData() {
   const URL = `https://www.spyfu.com/NsaApi/Backlink/GetUrlSearch?filteredBacklinkDomainsCsv=&filteredKeywordsCsv=&filteredUrlDomainsCsv=&linkTypesCsv=&requiredUrlDomainsCsv=&query=${website}&rowsPerPage=5&startingRow=1`;
 
   try {
@@ -165,65 +350,38 @@ async function getBacklinkData() {
     console.log(res.status, res.statusText);
     const result = res.data;
 
-    let backlinkDomain, backlink, domainMonthlyOrganicClicks, pageMonthlyOrganicClicks, domainStrength, rankedKeywords, outboundLinks;
-    //write header to csv
-    writeStream.write(`\n \n backlinkDomain, backlink, domainMonthlyOrganicClicks, pageMonthlyOrganicClicks, domainStrength, rankedKeywords, outboundLinks`);
+    let backlinkDomain, backlink, domainMonthlyOrganicClick, pageMonthlyOrganicClick, domainStrength, rankedKeyword, outboundLink;
 
     result.results.forEach(el => {
       backlinkDomain = el.backlinkDomain;
-      backlink = el.backlink;
-      domainMonthlyOrganicClicks = el.domainMonthlyOrganicClicks;
-      pageMonthlyOrganicClicks = el.pageMonthlyOrganicClicks;
-      domainStrength = el.domainStrength;
-      rankedKeywords = el.rankedKeywords;
-      outboundLinks = el.numOutboundLinks;
+      backlinksData.allBacklinkDomains.push(backlinkDomain);
 
-      //write each row to csv
-      writeStream.write(`\n ${backlinkDomain}, ${backlink}, ${domainMonthlyOrganicClicks}, ${pageMonthlyOrganicClicks}, ${domainStrength}, ${rankedKeywords}, ${outboundLinks}`);
+      backlink = el.backlink;
+      backlinksData.allBacklinks.push(backlink);
+
+      domainMonthlyOrganicClick = el.domainMonthlyOrganicClicks;
+      backlinksData.allDomainMonthlyOrganicClicks.push(domainMonthlyOrganicClick);
+
+      pageMonthlyOrganicClick = el.pageMonthlyOrganicClicks;
+      backlinksData.allPageMonthlyOrganicClicks.push(pageMonthlyOrganicClick);
+
+      domainStrength = el.domainStrength;
+      backlinksData.allDomainStrengths.push(domainStrength);
+
+      rankedKeyword = el.rankedKeywords;
+      backlinksData.allRankedKeywords.push(rankedKeyword);
+
+      outboundLink = el.numOutboundLinks;
+      backlinksData.allOutboundLinks.push(outboundLink);
     });
 
+    console.log(backlinksData);
   } catch (error) {
     console.error(error);
   }
 }
 
-getDomainID();
-getKeywordsData();
-getTopPagesData();
-getBacklinkData();
-
-
-// data: [
-//     { searchType: 'JustFellOff', keywords: [], total: 0 },
-//     { searchType: 'JustMadeIt', keywords: [Array], total: 3 },
-//     { searchType: 'NewlyRanked', keywords: [Array], total: 488 },
-//     { searchType: 'GainedRanks', keywords: [Array], total: 120 },
-//     { searchType: 'LostRanks', keywords: [Array], total: 108 },
-//     { searchType: 'MostValuable', keywords: [Array], total: 727 },
-//     { searchType: 'AlmostThere', keywords: [Array], total: 3 },
-//     { searchType: 'PageOne', keywords: [Array], total: 7 },
-//     { searchType: 'PastPageOne', keywords: [Array], total: 720 },
-//     { searchType: 'GainedClicks', keywords: [Array], total: 6 },
-//     { searchType: 'LostClicks', keywords: [Array], total: 7 }
-//   ]
-
-
-// const options = {
-//     url: `https://www.spyfu.com/NsaApi/Serp/GetAllOrganicKeywordLists?query=sastodeal.com`,
-//     json: true
-// }
-
-// ax.get(options)
-//     .then((data) => {
-//         // let keywordArray = []
-//         // for (let eachObj of data ) {
-//         //     keywordArray.push({type: eachObj.searchType, name: eachObj.keywords[0].keyword});
-//         // }
-//         console.log('loading');
-//         process.stdout.write(data);
-
-//         // getChallengesCompletedAndPushToKeywordArray(keywordArray)
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
+// getDomainID();
+// getKeywordsData();
+// getTopPagesData();
+// getBacklinksData();

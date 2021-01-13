@@ -9,6 +9,7 @@ body {
 	/* background: rgb(221, 221, 221); */
 	background: #eee;
 	color: #333;
+	padding-right: 0px !important;
 }
 
 .pad {
@@ -28,6 +29,14 @@ body {
 }
 
 /* navbar */
+.fixed-to-top {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
+
 .sidebar {
 	height: 100vh; /* 100vh means 100% of viewport */
 	background: linear-gradient(rgba(11, 13, 14, 0.7), rgba(12, 14, 15, 0.9)), url(../images/navBackground.jpeg);
@@ -189,7 +198,7 @@ input:not(:checked) ~ label:hover,
 input:not(:checked) ~ label:hover ~ label {
 	color: #ffdd44;
 	cursor: pointer;
-	transform: scale(1.08);
+	transform: scale(1.06);
 }
 input:checked ~ label {
 	color: #ffdd44;
