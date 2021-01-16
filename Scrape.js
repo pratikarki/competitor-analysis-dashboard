@@ -1,113 +1,109 @@
-//Scraping few information from alexa
+//Scraping information from alexa
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs');
+const lookup = require('country-code-lookup');
 
 const website = 'sastodeal.com';
-const writeStream = fs.createWriteStream(`alexaScrape_${website}.csv`);
 
-const url = `https://www.alexa.com/siteinfo/${website}`;
+//all data are stored in these objects
+let metricsData = {
+    overallRank: '',
+    bounceRate: '',
+    searchTrafficPercent: '',
+    avgTimeOnSite: '',
+    avgPageView: ''
+}
+let similarSitesData = {
+    allSimilarSites: [],
+    allOverlapScores: [],
+    allRanks: []
+}
+let countriesData = {
+    allCountryCodes: [],
+    allCountryNames: [],
+    allVisitorPercents: [],
+    allSiteCountryRanks: []
+}
+let url = `https://www.alexa.com/siteinfo/${website}`;
 
 (async function () {
     try {
-        const res = await axios.get(url);
+        let res = await axios.get(url);
         console.log(res.status, res.statusText);
         let $ = cheerio.load(res.data);
 
+        //function to get data of site's metrics
+        function getMetricsData() {
+            //select Average Page View
+            metricsData.avgPageView = $('#card_metrics > section.engagement > div.flex > div:nth-child(1) > p.small.data').text().replace(/\s\s+/g, '').split(' ')[0];
+
+            //select Average Time On Site
+            metricsData.avgTimeOnSite = $('#card_metrics > section.engagement > div.flex > div:nth-child(2) > p.small.data').text().replace(/\s\s+/g, '').split(' ')[0];
+
+            //select Bounce Rate
+            metricsData.bounceRate = $('#card_metrics > section.engagement > div.flex > div:nth-child(3) > p.small.data').text().replace(/\s\s+/g, '').split(' ')[0];
+
+            //select Search Traffic Percent
+            metricsData.searchTrafficPercent = $('#card_mini_competitors > section.group > div:nth-child(2) > div.ThirdFull.ProgressNumberBar > span').text();
+
+            //select Overall Rank
+            metricsData.overallRank = $('#card_rank > section.rank > div.rank-global > div:nth-child(1) > div:nth-child(2) > p.big.data').text().replace(/\s+/g, ''); //.replace(/,/g, '');
+
+            console.log(metricsData);
+        }
+
         //function to get data of similar sites
         function getSimilarSitesData() {
-            let title, similarSitesText, similarSitesOverlapText;
-            let site = [];
-            let score = [];
+            let similarSite, overlapScore, rank;
 
-            //selecting title
-            title = $('.smalltitle > h1').text();
-            console.log(`${title}\n`);
+            //select site, score and rank of each site
+            $('#card_overlap > div > div.padding20 > section > div.ThirdFull.Right > section > div.Body > div.Row').each((i, el) => {
+                similarSite = $(el).find('.site ').text().replace(/\s\s+/g, '');
+                similarSitesData.allSimilarSites.push(similarSite);
 
-            //selecting heading text
-            similarSitesText = $('div[id="card_mini_audience"] > section[class="Header"] > div > h3 > span[class="Desktop"] > div[class="Catch "] > h3').text();
-            similarSitesOverlapText = $('div[id="card_mini_audience"] > section > section[class="table "] > div[class="header"] > div[class="overlap"] > span > div[class="Catch "] > h3').text();    
-            
-            //writing headers to csv
-            writeStream.write(`${similarSitesText}, ${similarSitesOverlapText}`);
+                overlapScore = $(el).find('.overlap ').text().replace(/\s\s+/g, '');
+                similarSitesData.allOverlapScores.push(overlapScore);
 
-            //selecting site and score
-            $('div[id="card_mini_audience"] > section > section[class="table "] > div[class="Body"] > div[class="Row"]').each((i, el) => {
-                site[i] = $(el).find('.site ').text().replace(/\s\s+/g, ''); // > div[class="Row"] > div[class="site "] > a[class="truncation"]
-                score[i] = $(el).find('.overlap ').text().replace(/\s\s+/g, '');
-                // const link = $(el).find('a').attr('href'); //console.log(`${site[i]}\n${score[i]}`);
-                
-                //writing each row to csv
-                writeStream.write(`\n ${site[i]}, ${score[i]}`);
+                rank = $(el).find('.metric_two ').text().replace(/\s\s+/g, ''); //.replace(/,/g, '');
+                similarSitesData.allRanks.push('#'+rank);
             });
-
-            console.log(`Similar Sites: ${site}`);
-            console.log(`Overlap Scores: ${score}`);
+            console.log(similarSitesData);
         }
 
-        //function to get data of Site Metrics
-        function getSiteMetricsData() {
-            let headingText, subHeadingText, searchTrafficTitle, searchTrafficValue;
-            let title = [];
-            let value = [];
-
-            //selecting heading texts
-            headingText = $('div[id="card_metrics"] > section[class="Header"] > div > h3').text().split('\n')[0].replace(/\s\s+/g, '');
-            subHeadingText = $('div[id="card_metrics"] > section[class="Header"] > div > p').text();
-
-            //writing Headers to csv
-            writeStream.write(`\n \n${headingText}`);
-
-            //selecting title and value
-            $('div[id="card_metrics"] > section[class="engagement"] > div[class="flex"] > div[class="Third sectional"]').each((i, el) => {
-
-                //adding to array
-                title[i] = $(el).find('.title').text().split('  \n')[0].replace(/\s\s+/g, '');
-                value[i] = $(el).find('.small ').text().replace(/\s\s+/g, '').split(' ')[0];
-
-                //writing each row to csv
-                writeStream.write(`\n${title[i]},${value[i]}`);
+        //function to get data of countries
+        function getCountriesData() {
+            let countryCode, countryName, visitorPercent, siteCountryRank;
+            
+            //select siteCountryRank of each country
+            $('#countrydropdown > ul > li').each((i, el) => {
+                siteCountryRank = $(el).find('.pull-right').text();
+                if(siteCountryRank != '') {
+                    countriesData.allSiteCountryRanks.push(siteCountryRank);
+                }
             });
 
-            //selecting Search Traffic title and value
-            searchTrafficTitle =  $('div[id="card_mini_competitors"] > section[class="group"] > h5[class="title"]').text().split('\n')[0].replace(/\s\s+/g, '');
-            searchTrafficValue =  $('#card_mini_competitors > section.group > div:nth-child(2) > div.ThirdFull.ProgressNumberBar > span').text();
-            
-            //adding to array
-            title[title.length] = searchTrafficTitle;
-            value[value.length] = searchTrafficValue;
+            //select CountryName, CountryCode and VisitorPercent of each country
+            $('#card_geography > div > section:nth-child(3) > section > div.visitorList > ul > li').each((i, el) => {
+                countryName = $(el).find('#countryName').text().substring(5);
+                countriesData.allCountryNames.push(countryName);
 
-            //writing search traffic to csv
-            writeStream.write(`\n${searchTrafficTitle},${searchTrafficValue}`);
+                let info = lookup.byCountry(countryName);
+                countryCode = info.fips;
+                countriesData.allCountryCodes.push(countryCode);
 
-            console.log();
-            console.log(`Site Metrics: ${title}`);
-            console.log(`Value: ${value}`);
+                visitorPercent = $(el).find('#countryPercent').text();
+                countriesData.allVisitorPercents.push(visitorPercent);
+            })
+            console.log(countriesData);
         }
+        
     }
     catch(error) {
         console.log(error);
     }
 
+    getMetricsData();
     getSimilarSitesData();
-    getSiteMetricsData();
+    getCountriesData();
 
 }) ();
-
-
-
-
-//APPENDIX
-
-// $('div[id="card_mini_audience"] > section > section[class="table "] > div[class="Body"]').each((i, el) => {
-//      //'> div[class="Row"] > div[class="overlap "] > span[class="truncation"]'
-//     console.log(score);
-// })
-
-// let competitors = $('div[class="site "]').text(); $('div[id="card_mini_audience"] > section > ')
-
-// let competitors = $('div[id="competitorsList"] > a').text();
-//
-// let globalRankValue = $('').text(); 
-
-    //, similarSites

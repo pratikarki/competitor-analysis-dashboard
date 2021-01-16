@@ -12,7 +12,7 @@ describe('Saving data', function(){
         const newDomain = new DomainModel({
             Name: "sastodeal.com",
             Url: "https://www.sastodeal.com",
-            Rank: "96,185",
+            OverallRank: "96,185",
             BounceRate: "28.00%",
             SearchTrafficPercent: "17%",
             AvgTimeOnSite: "5:07",

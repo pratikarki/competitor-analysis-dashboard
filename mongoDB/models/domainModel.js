@@ -63,7 +63,7 @@ const similarSiteSchema = new Schema({
 const domainSchema = new Schema({
     Name: { type: String, required: true },
     Url: { type: String, required: true },
-    Rank: { type: String },
+    OverallRank: { type: String },
     BounceRate: { type: String, required: true },
     SearchTrafficPercent: { type: String },
     AvgTimeOnSite: { type: String },

@@ -4,6 +4,7 @@ const axios = require('axios');
 const website = 'sastodeal.com'; //okdam.com thulo.com
 let domainID;
 
+//all data are stored in these objects
 let overviewData = {
   searchKeywordsCount: 0,
   estMonthlySeoClick: 0,
