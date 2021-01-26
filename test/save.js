@@ -84,13 +84,13 @@ describe('Saving data', function(){
         })
 
         const newUser = new UserModel({
-            FullName: 'Pratik Karki',
-            UserName: 'PK',
-            EmailAddress: 'pratik.karki@gmail.com',
-            Password: 'pw123',
-            Country: 'Nepal',
-            RegisteredDate: '12/11/2020',
-            Domain_id: (newDomain._id)
+            fullName: 'Pratik Karki',
+            userName: 'PK',
+            email: 'pratik.karki@gmail.com',
+            password: 'pw123',
+            country: 'Nepal',
+            registeredDate: '12/11/2020',
+            domain_id: (newDomain._id)
         })
         
         newUser.save().then(function(){ //save() is asynchronous so we wait for it to complete
