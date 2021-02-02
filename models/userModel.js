@@ -5,19 +5,25 @@ const userSchema = mongoose.Schema({
     fullName: {
         type: String,
         required: [true, 'A user must have a name'],
-        trim: true
+        trim: true,
+        maxlength: [35, 'Fullname must be less than 35 characters'],
+        minlength: [5, 'Fullname must be more than 5 characters']
     },
     userName: { 
         type: String,
         required: [true, 'A user must have a username'],
         unique: [true, 'Username cannot be duplicate'],
-        trim: true
+        trim: true,
+        maxlength: [15, 'Username must have less than 15 characters'],
+        minlength: [5, 'Username must have more than 5 characters']
     },
     email: {
         type: String,
         required: [true, 'A user must have an email'],
         unique: [true, 'Email cannot be duplicate'],
-        trim: true
+        trim: true,
+        maxlength: [50, 'An email must have less than 50 characters'],
+        minlength: [10, 'An email must have more than 10 characters']
     },
     password: {
         type: String,
@@ -40,6 +46,6 @@ const userSchema = mongoose.Schema({
 }); //, { timestamps: true }
 
 //defining model for user collection
-const User = mongoose.model('User', userSchema);
+const UserModel = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = UserModel;

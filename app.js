@@ -2,6 +2,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const domainRouter = require('./routes/domainRoutes');
 
@@ -15,20 +17,26 @@ if(process.env.NODE_ENV === 'development') { //only if environment is developmen
 }
 
 app.use((req, res, next) => {
-  console.log('Hello from middleware.');
-  next();
-})
-
-app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 })
 
 //2. ROUTES
 //mounting routers on the specific routes.
-//app.use('/api/v1/domains', domainRouter); //these are subrouters, implementing the middlwares
+app.use('/api/v1/domains', domainRouter); //these are subrouters, implementing the middlewares
 app.use('/api/v1/users', userRouter); 
 //when request is 'api/v1/users/:id', it'll enter middleware stack. And when it hits this middleware, request is matched and userRouter is run
+
+//if none of the routes match, following middlewares are run to handle 404 error
+
+app.all('*', (req, res, next) => {
+  const err = new AppError(`Can not find ${req.originalUrl} on this server!`, 404);
+  next(err);
+})
+
+//Global Error Handling Middleware
+app.use(globalErrorHandler);
+
 
 module.exports = app;
 
