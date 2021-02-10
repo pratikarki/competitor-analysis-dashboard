@@ -1,4 +1,6 @@
 const Domain = require('../models/domainModel');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.getAllDomains = async (req, res) => {
   try {
@@ -21,80 +23,61 @@ exports.getAllDomains = async (req, res) => {
 
 }
 
-exports.createNewDomain =  (req, res) => {
-  Domain.init().then(async function() {
-    try {
-    // const newDomain = new Domain({})
-    // newDomain.save();
-      const newDomain = await Domain.create(req.body);
+exports.createNewDomain = catchAsync(async (req, res, next) => {
+  // const newDomain = new Domain({})
+  // newDomain.save();
+  const newDomain = await Domain.create(req.body);
 
-      res.status(201).json({
-        status: 'success',
-        data: { domain: newDomain }
-      })
-    }
-    catch (err) {
-      res.status(400).json({
-        status: 'Fail',
-        message: err
-      })
-    }
-  });
-}
+  res.status(201).json({
+    status: 'success',
+    data: { domain: newDomain }
+  })
+})
 
-exports.getDomain = async (req, res) => {
+exports.getDomain = catchAsync(async (req, res, next) => {
   // console.log(req.params);
-  try {
-    const domain = await Domain.findById(req.params.id)
-    //Domain.findOne({ _id: req.params.id })
+  const domain = await Domain.findById(req.params.id)
+  //Domain.findOne({ _id: req.params.id })
 
-    res.status(200).json({
-      status: 'success',
-      data: { domain }
-    })    
-  }
-  catch (err) {
-    res.status(404).json({
-      status: 'Fail',
-      message: err
-    })
-  }
-}
-
-exports.updateDomain = async (req, res) => {
-  try {
-    const updatedDomain = await Domain.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-    })
-    res.status(200).json({
-      status: 'success',
-      data: { updatedDomain }
-    })
-  }
-  catch (err) {
-    res.status(404).json({
-      status: 'Fail',
-      message: err
-    })
+  if (!domain) {
+    const err = new AppError('No domain found with that ID', 404);
+    return next(err);
   }
 
-}
+  res.status(200).json({
+    status: 'success',
+    data: { domain }
+  })
+})
 
-exports.deleteDomain = async (req, res) => {
-  try {
-    await Domain.findByIdAndDelete(req.params.id);
+exports.updateDomain = catchAsync(async (req, res, next) => {
+  const updatedDomain = await Domain.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  })
 
-    res.status(204).json({
-      status: 'success',
-      data: null
-    })
+  if (!updatedDomain) {
+    const err = new AppError('No domain found with that ID', 404);
+    return next(err);
   }
-  catch (err) {
-    res.status(404).json({
-      status: 'Fail',
-      message: err  
-    })
+
+  res.status(200).json({
+    status: 'success',
+    data: { updatedDomain }
+  })
+})
+
+exports.deleteDomain = catchAsync(async (req, res, next) => {
+  const deletedDomain = await Domain.findByIdAndDelete(req.params.id);
+
+  if (!deletedDomain) {
+    const err = new AppError('No domain found with that ID', 404);
+    return next(err);
   }
-}
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+})
 

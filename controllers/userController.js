@@ -3,26 +3,16 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 
-exports.getAllUsers = async (req, res) => {
-  try {
-    // console.log(req.requestTime);
-    const allUsers = await User.find();
+exports.getAllUsers = catchAsync(async (req, res) => {
 
-    res.status(200).json({
-      status: 'success',
-      requestTime: req.requestTime,
-      results: allUsers.length,
-      data: { allUsers }
-    })
-  }
-  catch (err) {
-    res.status(404).json({
-      status: 'Fail',
-      message: err
-    })
-  }
+  const allUsers = await User.find();
 
-}
+  res.status(200).json({
+    status: 'success',
+    results: allUsers.length, 
+    data: { allUsers }
+  })
+})
 
 exports.createNewUser = catchAsync(async (req, res, next) => {
   // const newUser = new User({})

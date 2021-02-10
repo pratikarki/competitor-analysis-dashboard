@@ -60,8 +60,16 @@ const similarSiteSchema = mongoose.Schema({
 
 //defining schema for domain collection
 const domainSchema = mongoose.Schema({
-    name: { type: String, required: true },
-    url: { type: String, required: true },
+    name: {
+        type: String,
+        required: [true, 'A domain must have a name'],
+        unique: [true, 'Domain name cannot be duplicate']
+    },
+    url: {
+        type: String,
+        required: [true, 'A domain must have a url'],
+        unique: [true, 'Url cannot be duplicate']
+    },
     overallRank: { type: String },
     bounceRate: { type: String, required: true },
     searchTrafficPercent: { type: String },

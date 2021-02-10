@@ -1,12 +1,18 @@
 const express = require('express');
 
-// const domainController = require('../controllers/domainController');
 const { getAllDomains, createNewDomain, getDomain, updateDomain, deleteDomain } = require('../controllers/domainController');
+const { protect, restrictTo } = require('../controllers/authController');
 
 const router = express.Router(); //creating new router which is also a middleware
 
-router.route('/').get(getAllDomains).post(createNewDomain); //root of subrouter
-router.route('/:id').get(getDomain).patch(updateDomain).delete(deleteDomain);
+router.route('/')
+  .get(protect, getAllDomains)
+  .post(createNewDomain); //root of subrouter
+
+router.route('/:id')
+  .get(getDomain)
+  .patch(updateDomain)
+  .delete(protect, restrictTo('admin'), deleteDomain); //restrictTo('admin')
 
 module.exports = router;
 
