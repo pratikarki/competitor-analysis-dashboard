@@ -1,6 +1,10 @@
 //app.js is mainly used for declaring middlwares on routers
 const express = require('express');
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -9,17 +13,39 @@ const domainRouter = require('./routes/domainRoutes');
 
 const app = express();
 
-//1. MIDDLEWARES //these apply for all the routes
-app.use(express.json()); //This is a middleware, a function to modify incoming requests 
+//1. GLOBAL MIDDLEWARES //these apply for all the routes
+//Set security HTTP headers
+app.use(helmet());
 
+//View request information in console using 3rd party middleware 'morgan'
 if(process.env.NODE_ENV === 'development') { //only if environment is development
-  app.use(morgan('dev')); //3rd party middleware to view request information in console
+  app.use(morgan('dev'));
 }
 
+//Limit requests from same IP
+const limiter = rateLimit({ //it allows upto 150 requests in 1 hour from the same IP 
+  max: 150,
+  windowMs: 60 * 60 * 1000, //converting to milliseconds
+  message: 'Too many requests from this IP, please try again in an hour.'
+})
+app.use('/api', limiter);
+
+// Body parser, reading data from the body into req.body
+app.use(express.json({ limit: '10kb' }));
+
+//Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+//Data sanitization against XSS (Cross Side Scripting)
+app.use(xss());
+
+//Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
+  // console.log(req.headers);
   next();
 })
+
 
 //2. ROUTES
 //mounting routers on the specific routes.

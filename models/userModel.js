@@ -44,13 +44,18 @@ const userSchema = mongoose.Schema({
           validator: function(el) {
             return el === this.password;
           },
-          message: 'Passwords are not the same'
+          message: 'Confirm Password do not match'
         }
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
     photo: String,
+    accountActive: {
+        type: Boolean,
+        default: true,
+        select: false
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],
@@ -65,28 +70,52 @@ const userSchema = mongoose.Schema({
         default: Date.now
     },
     domain_id: {
-        type: String,
-        // type: Object,
-        required: [true, 'A user must have a domain id reference']
-    }
+        type: mongoose.Schema.ObjectId,
+        ref: 'Domain',
+        // required: [true, 'A user must have a domain id reference']
+    },
+    competitorSites: [
+        {
+          type: mongoose.Schema.ObjectId,
+          ref: 'Domain'
+        }
+    ]
 }); //, { timestamps: true }
 
-
+//DOCUMENT MIDDLEWARES: executes this function before .save() or .create(), but not update()
 //ENCRYPT PASSWORD BEFORE SAVE
 userSchema.pre('save', async function(next) {
     //Run this function only if password is modified
     if (!this.isModified('password')) return next();
-
+    
     //Hash password with cost of 12
     this.password = await bcrypt.hash(this.password, 12);
-
+    
     //Delete confirmPassword field
     this.confirmPassword = undefined;
     next();
 })
+//UPDATE passwordChangedAt IF PW IS CHANGED
+userSchema.pre('save', function(next) {
+    //if password is not modified OR if document is new, run next() middleware
+    if (!this.isModified('password') || this.isNew) return next();
+    
+    this.passwordChangedAt = Date.now() - 2000;
+    next();
+})  
 
+//QUERY MIDDLEWARE
+//SELECT ACTIVE USERS ONLY AND POPULATE EACH FIND QUERY
+userSchema.pre(/^find/, function(next) {
+    this.find({ accountActive: { $ne: false } });
+    // this.populate({
+    //     path: 'domain_id competitorSites',
+    //     select: '-__v'
+    // });
+    next();
+})
 
-//These are instance methods. It is available on all documents of a collection
+//INSTANCE METHODS: available on all documents of a collection
 userSchema.methods.checkPassword = async function (candidatePW, userPW) {
     return await bcrypt.compare(candidatePW, userPW); //returns true of passwords match, false if not
 }
