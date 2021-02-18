@@ -62,8 +62,8 @@ const userSchema = mongoose.Schema({
         default: 'user'
     },
     country: {
-        type: String,
-        required: [true, 'A user must have a country name']
+        type: String
+        // required: [true, 'A user must have a country name']
     },
     registeredDate: {
         type: Date,
@@ -80,7 +80,18 @@ const userSchema = mongoose.Schema({
           ref: 'Domain'
         }
     ]
-}); //, { timestamps: true }
+}, 
+{
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+});
+
+//Virtual populate feedbacks while querying users
+userSchema.virtual('feedbacks', {
+    ref: 'Feedback',
+    foreignField: 'from',
+    localField: '_id'
+  })
 
 //DOCUMENT MIDDLEWARES: executes this function before .save() or .create(), but not update()
 //ENCRYPT PASSWORD BEFORE SAVE
@@ -105,15 +116,19 @@ userSchema.pre('save', function(next) {
 })  
 
 //QUERY MIDDLEWARE
-//SELECT ACTIVE USERS ONLY AND POPULATE EACH FIND QUERY
+//SELECT ACTIVE USERS ONLY AND 
 userSchema.pre(/^find/, function(next) {
     this.find({ accountActive: { $ne: false } });
-    // this.populate({
-    //     path: 'domain_id competitorSites',
-    //     select: '-__v'
-    // });
     next();
 })
+//POPULATE EACH findById QUERY
+// userSchema.pre('findById', function(next) {
+//     this.populate({
+//         path: 'domain_id competitorSites',
+//         select: '-__v'
+//     });
+//     next();
+// })
 
 //INSTANCE METHODS: available on all documents of a collection
 userSchema.methods.checkPassword = async function (candidatePW, userPW) {

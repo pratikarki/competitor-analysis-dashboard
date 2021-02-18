@@ -177,6 +177,11 @@ exports.resetPassword = catchAsync(async (req, res, next)  => {
   createAndSendToken(user, 200, res);
 })
 
+exports.getInfo = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+}
+
 exports.updateInfo = catchAsync(async (req, res, next) => {
   let user = {};
 

@@ -10,6 +10,7 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const domainRouter = require('./routes/domainRoutes');
+const feedbackRouter = require('./routes/feedbackRoutes');
 
 const app = express();
 
@@ -50,7 +51,8 @@ app.use((req, res, next) => {
 //2. ROUTES
 //mounting routers on the specific routes.
 app.use('/api/v1/domains', domainRouter); //these are subrouters, implementing the middlewares
-app.use('/api/v1/users', userRouter); 
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/feedbacks', feedbackRouter);
 //when request is 'api/v1/users/:id', it'll enter middleware stack. And when it hits this middleware, request is matched and userRouter is run
 
 //if none of the routes match, following middlewares are run to handle 404 error

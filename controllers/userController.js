@@ -1,82 +1,18 @@
 const User = require('../models/userModel');
-const AppError = require('../utils/appError');
-const catchAsync = require('../utils/catchAsync');
+const factory = require('./factoryHandler');
+// const AppError = require('../utils/appError');
+// const catchAsync = require('../utils/catchAsync');
 
-exports.getAllUsers = catchAsync(async (req, res) => {
+exports.getAllUsers = factory.getAll(User, { path: 'domain_id competitorSites feedbacks', select: 'name' });
 
-  const allUsers = await User.find();
+exports.createNewUser = factory.createOne(User);
 
-  res.status(200).json({
-    status: 'success',
-    results: allUsers.length, 
-    data: { allUsers }
-  })
-})
+exports.getUser = factory.getOne(User, { path: 'domain_id competitorSites feedbacks' }); //, select: 'name rating category message createdAt'
 
-exports.createNewUser = catchAsync(async (req, res, next) => {
-  // const newUser = new User({})
-  // newUser.save();
-  const newUser = await User.create(req.body);
+exports.updateUser = factory.updateOne(User); //{ path: 'domain_id competitorSites', select: '-__v' }
 
-  res.status(201).json({
-    status: 'success',
-    data: { user: newUser }
-  })
-})
-
-exports.getUser = catchAsync(async (req, res, next) => {
-  // console.log(req.params);
-  const user = await User.findById(req.params.id).populate({
-    path: 'domain_id competitorSites',
-    select: '-__v'
-  });
-  console.log(user);
-  //User.findOne({ _id: req.params.id })
-
-  if (!user) {
-    const err = new AppError('No user found with that ID', 404);
-    return next(err);
-  }
-  
-  res.status(200).json({
-    status: 'success',
-    data: { user }
-  })
-})
-
-exports.updateUser = catchAsync(async (req, res, next) => {
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  }).populate({
-    path: 'domain_id competitorSites',
-    select: '-__v'
-  });
-
-  if (!updatedUser) {
-    const err = new AppError('No user found with that ID', 404);
-    return next(err);
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: { updatedUser }
-  })
-})
-
-exports.deleteUser = catchAsync(async (req, res, next) => {
-  const deletedUser = await User.findByIdAndDelete(req.params.id);
-
-  if (!deletedUser) {
-    const err = new AppError('No user found with that ID', 404);
-    return next(err);
-  }
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  })
-})
+exports.deleteUser = factory.deleteOne(User);
+//deleteOne returns a function that will delete a document from User model
 
 
 //APPENDIX

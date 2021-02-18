@@ -5,14 +5,17 @@ const { protect, restrictTo } = require('../controllers/authController');
 
 const router = express.Router(); //creating new router which is also a middleware
 
-router.route('/')
-  .get(protect, getAllDomains)
-  .post(createNewDomain); //root of subrouter
+//This will protect all routes after this middleware
+router.use(protect); 
+
+router.route('/') //root of subrouter
+  .get(restrictTo('admin'), getAllDomains)
+  .post(restrictTo('user'), createNewDomain);
 
 router.route('/:id')
   .get(getDomain)
   .patch(updateDomain)
-  .delete(protect, restrictTo('admin'), deleteDomain); //restrictTo('admin')
+  .delete(restrictTo('admin'), deleteDomain);
 
 module.exports = router;
 
