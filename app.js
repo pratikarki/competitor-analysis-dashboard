@@ -1,4 +1,5 @@
 //app.js is mainly used for declaring middlwares on routers
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
@@ -11,12 +12,18 @@ const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const domainRouter = require('./routes/domainRoutes');
 const feedbackRouter = require('./routes/feedbackRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
 //1. GLOBAL MIDDLEWARES //these apply for all the routes
+app.use(express.static(path.join(__dirname, 'public'))) //for serving static files inside public folder
+
 //Set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 //View request information in console using 3rd party middleware 'morgan'
 if(process.env.NODE_ENV === 'development') { //only if environment is development
@@ -50,7 +57,8 @@ app.use((req, res, next) => {
 
 //2. ROUTES
 //mounting routers on the specific routes.
-app.use('/api/v1/domains', domainRouter); //these are subrouters, implementing the middlewares
+app.use('/', viewRouter); //these are subrouters, implementing the middlewares
+app.use('/api/v1/domains', domainRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/feedbacks', feedbackRouter);
 //when request is 'api/v1/users/:id', it'll enter middleware stack. And when it hits this middleware, request is matched and userRouter is run

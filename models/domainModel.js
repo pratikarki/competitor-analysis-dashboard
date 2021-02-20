@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
 //schema for Keyword
-const keywordSchema = mongoose.Schema({
-    term: { type: String, required: true },
-    url: { type: String, required: true },
-    seoClicks: { type: Number },
-    searchVolume: { type: Number },
-    rank: { type: Number },
-    clicks: { type: Number }
-})
+// const keywordStringSchema = mongoose.Schema({ type: String })
+// const keywordNumberSchema = mongoose.Schema({ type: Number })
 
 //schema for Keywords
 const keywordsSchema = mongoose.Schema({
-    keywordType: { type: String, required: true },
-    keyword: [keywordSchema],
-    total: { type: Number }
+    allTypes: [{
+        type: String
+    }],
+    allKeywords: [[ String ]],
+    allUrls: [[ String ]],
+    allSeoClicks: [[ Number ]],
+    allSearchVolumes: [[ Number ]],
+    allRanks: [[ Number ]],
+    allMonthlyClicks: [[ Number ]]
 })
 
 //schema for Backlinks
@@ -55,7 +55,8 @@ const countrySchema = mongoose.Schema({
 //schema for SimilarSites
 const similarSiteSchema = mongoose.Schema({
     siteName: { type: Array, required: true },
-    overlapScore: { type: Array }
+    overlapScore: { type: Array },
+    rank: { type: Array }
 });
 
 //defining schema for domain collection
@@ -81,7 +82,6 @@ const domainSchema = mongoose.Schema({
     searchTrafficPercent: { type: String },
     avgTimeOnSite: { type: String },
     avgPageView: { type: String },
-    firstRecorded: { type: Date },
     noOrganicSearchKeyword: { type: Number },
     estMonthlySeoClick: { type: Number },
     estMonthlySeoClickValue: { type: Number },
@@ -90,7 +90,7 @@ const domainSchema = mongoose.Schema({
     clicks: clickSchema,
     topPages: topPageSchema,
     backlinks: backlinkSchema,
-    keywords: [keywordsSchema]
+    keywords: keywordsSchema
     // User_id: { type: Object }
 });
 

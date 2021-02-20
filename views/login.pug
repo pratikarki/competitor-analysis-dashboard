@@ -1,0 +1,51 @@
+extends base_1 
+
+block content 
+  section.home-pad 
+    .container 
+      .row 
+        .col-lg-7.d-block.py-5.pe-5
+          h1.display-4 Welcome to 
+            strong Competitor Analysis Dashboard
+          p.text-monospace.text-muted.my-3 Designed for your Online Competition.
+          hr
+          p.lead.my-4 Where you can analyze and compare your competitor's metrics, perform research on keywords and find valuable insights, all in one place.
+        
+        .col-lg-5.px-3.d-flex.justify-content-center
+          .card.bg-secondary.card-form.p-3.custom-border
+            .card-body.px-2.pb-2
+
+              .text-center 
+                h3.display-5(style='font-size: 2.6rem') Login 
+                small Enter your credentials below.
+              
+              form.p-4(action='')
+
+                .form-group 
+                  label(for='email') Email *
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.fas.fa-at
+                    input(type='email' class='form-control' id='email' placeholder='Email' required)
+                
+                .form-group.pt-4 
+                  label(for='password') Password *
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.fas.fa-key 
+                    input(type='password' class='form-control' id='password' placeholder='Password' required)
+                    button.input-group-text.pwToggle
+                      i.far.fa-eye-slash
+                  p.pt-2 
+                    a.text-dark(href='#')
+                      small.form-text.text-dark Forgot Your Password?
+
+                .d-flex.justify-content-between.pt-3.pb-2
+                  button.btn.btn-dark
+                    i.far.fa-sign-in-alt.me-2
+                    | Login
+                  .flex-column.align-self-center
+                    small.text-dark Dont Have an Account? 
+                      a.text-dark(href='/register')
+                        strong  Sign Up
+

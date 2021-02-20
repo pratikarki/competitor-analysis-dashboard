@@ -91,7 +91,7 @@
   <!-- end of modal -->
 
   <!-- navbar -->
-  <nav class="nav navbar-expand-md navbar-light">
+  <header class="nav navbar-expand-md navbar-light">
     <button class="navbar-toggler ms-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#dash_nav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -105,7 +105,7 @@
             <a href="overview.html" class="navbar-brand text-light text-center d-block mx-auto py-3 mb-4 bottom-border">Competitor's<br>Analysis</a>
 
             <div class="text-center">
-              <img src="/bootstrap/images/dummyUser.jpg" class="rounded-circle" height="80px" width="80px" alt="User Image">
+              <img src="/public/images/dummyUser.jpg" class="rounded-circle" height="80px" width="80px" alt="User Image">
               <p href="#" class="text-light pt-2">@UserName</p>
             </div>
 
@@ -143,19 +143,19 @@
           <!-- end of sidebar -->
 
           <!-- top-nav -->
-          <div class="col-xl-10 col-md-9 ms-auto bg-white fixed-to-top top-navbar border-bottom py-4"><!-- py-4 -->
+          <nav class="col-xl-10 col-md-9 ms-auto bg-white fixed-to-top top-navbar border-bottom py-4"><!-- py-4 -->
             <div class="row align-items-center">
               <div class="col text-center">
                 <h4 class="text-dark text-uppercase mb-0">Overview</h4>
               </div>
             </div>
-          </div>
+          </nav>
           <!-- end of top-nav -->
 
         </div>
       </div>
     </div>
-  </nav>
+  </header>
   <!-- end of navbar -->
 
   <!-- main card -->
@@ -867,7 +867,7 @@
     $('#year').text(new Date().getFullYear());
   </script>
 
-  <script src="../bootstrap/js/charts.js"></script>
+  <script src="../public/js/charts.js"></script>
 
 </body>
 

@@ -53,11 +53,11 @@ body {
 }
 
 .bottom-border {
-	border-bottom: 1px groove #eee;
+	border-bottom: 1px groove #c5c5c5;
 }
 
 .top-border {
-	border-top: 1px groove #eee;
+	border-top: 1px groove #c5c5c5;
 }
 
 .vertical-border {
@@ -66,6 +66,11 @@ body {
 
 .vertical-border-dark {
 	border-right: 1px solid #6c757d;
+}
+
+.custom-border {
+	border-radius: 9px;
+	border: 0.5px solid #c5c5c5;
 }
 
 .sidebar-link {
@@ -131,6 +136,11 @@ body {
 .card-no-bg {
 	background: #fff;
 }
+
+.card-form {
+	width: 29rem;
+}
+
 .card-common {
 	box-shadow: 1px 2px 5px #999;
 	transition: all 0.3s;

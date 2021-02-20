@@ -1,0 +1,84 @@
+extends base_1
+
+block content 
+  section.home-pad 
+    .container 
+      .row 
+        .col-lg-7.d-block.py-5.pe-5
+          h1.display-4 Welcome to 
+            strong Competitor Analysis Dashboard
+          p.text-monospace.text-muted.my-3 Designed for your Online Competition.
+          hr
+          p.lead.my-4 Where you can analyze and compare your competitor's metrics, perform research on keywords and find valuable insights, all in one place.
+
+        .col-lg-5.px-3.d-flex.justify-content-center
+          .card.bg-secondary.card-form.p-3.custom-border
+            .card-body.px-2
+
+              .text-center 
+                h3.display-5(style='font-size: 2.6rem') Create an Account
+                small Enter your details below.
+              
+              form.p-4(action='') 
+
+                .form-group 
+                  label(for='fullName') Full Name *
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.far.fa-user
+                    input(type='text' class='form-control' id='fullName' placeholder='Full Name' required)
+
+                .form-group.pt-4
+                  label(for='username') Username
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.fas.fa-at
+                    input(type='text' class='form-control' id='userName' placeholder='Username')
+
+                .form-group.pt-4
+                  label(for='email') Email Address *
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.far.fa-envelope
+                    input(type='email' class='form-control' id='email' placeholder='Email' required)
+                  small.form-text.text-dark Your email will not be shared with anyone.
+
+                .form-group.pt-4
+                  label(for='password') Password *
+                  .input-group
+                    .input-group-prepend
+                      i.input-group-text.fas.fa-key
+                    input(type='password' class='form-control' id='password' placeholder='Password' required)
+                    button.input-group-text.pwToggle 
+                      i.far.fa-eye-slash
+
+                .form-group.pt-4
+                label(for='confirmPassword') Confirm Password *
+                .input-group
+                  .input-group-prepend
+                    i.input-group-text.fas.fa-key
+                  input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required)
+                  button.input-group-text.pwToggleConfirm 
+                    i.far.fa-eye-slash
+
+                .form-group.pt-4
+                  label(for='domain') Domain Name *
+                  .input-group
+                    .input-group-prepend
+                      span.input-group-text https://www.
+                    input(type='text' class='form-control' id='domainName' placeholder='Domain Name' required)
+                
+                .d-flex.flex-row.justify-content-around.pt-4
+                  .flex-column.my-auto
+                    button.btn.btn-dark 
+                      i.fas.fa-user-plus.me-2
+                      | Sign Up
+                  .flex-column.my-auto OR 
+                  .flex-column.my-auto
+                    button.btn.btn-sm.btn-dark.text-left
+                      .d-flex.align-items-center
+                        i.fab.fa-google.fa-2x.me-2 
+                        | Sign Up 
+                        br
+                        | with Google
+                 

@@ -8,8 +8,7 @@ let domainID;
 let overviewData = {
   searchKeywordsCount: 0,
   estMonthlySeoClick: 0,
-  estMonthlySeoClicksValue: 0,
-  firstRecorded: 0
+  estMonthlySeoClicksValue: 0
 }
 let organicVsPaidData = {
   allCategories: [],
@@ -73,24 +72,6 @@ async function getDomainID() {
       }
     }
 
-    async function getHistoryDate() {
-      const URL = `https://www.spyfu.com/NsaApi/Domain/HistoryStartDates?domainId=${domainID}`;
-      try {
-        const res = await axios.get(URL);
-        console.log(res.status, res.statusText);
-        const result = res.data;
-
-        let firstRecorded;
-
-        firstRecorded = result.OrganicFirstRecordDate;
-        overviewData.firstRecorded = firstRecorded;
-
-        console.log(overviewData);
-      } catch(error) {
-        console.log(error);
-      }
-    }
-
     async function getOrganicVsPaidData() {
       const URL = `https://www.spyfu.com/NsaApi/Domain/ChartOrganicVsPaidClicks?domainId=${domainID}&numberOfMonths=12`;
       
@@ -119,7 +100,6 @@ async function getDomainID() {
     }
 
     // getOverview();
-    // getHistoryDate();
     // getOrganicVsPaidData();
 
   } catch (error) {
@@ -133,13 +113,13 @@ async function getKeywordsData() {
     const res = await axios.get(URL);
     console.log(res.status, res.statusText);
     const result = res.data;
-
+    console.log(res.data);
     let keyword, url, seoClick, searchVolume, rank, monthlyClick;
     let temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
 
     result.forEach(el => {
       if (el.searchType == 'MostValuable') {
-        keywordsData.allTypes.push('TopKeywords');
+        keywordsData.allTypes.push('Top Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -166,13 +146,13 @@ async function getKeywordsData() {
         keywordsData.allSeoClicks.push(temp_seoClicks);
         keywordsData.allSearchVolumes.push(temp_searchVolumes);
         keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allClicks.push(temp_monthlyClicks);
+        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'NewlyRanked') {
-        keywordsData.allTypes.push('NewKeywords');
+        keywordsData.allTypes.push('New Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -199,13 +179,13 @@ async function getKeywordsData() {
         keywordsData.allSeoClicks.push(temp_seoClicks);
         keywordsData.allSearchVolumes.push(temp_searchVolumes);
         keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allClicks.push(temp_monthlyClicks);
+        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'GainedClicks') {
-        keywordsData.allTypes.push('ClicksGainingKeywords');
+        keywordsData.allTypes.push('Clicks Gaining Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -232,13 +212,13 @@ async function getKeywordsData() {
         keywordsData.allSeoClicks.push(temp_seoClicks);
         keywordsData.allSearchVolumes.push(temp_searchVolumes);
         keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allClicks.push(temp_monthlyClicks);
+        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'LostClicks') {
-        keywordsData.allTypes.push('ClicksLosingKeywords');
+        keywordsData.allTypes.push('Clicks Losing Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -265,13 +245,13 @@ async function getKeywordsData() {
         keywordsData.allSeoClicks.push(temp_seoClicks);
         keywordsData.allSearchVolumes.push(temp_searchVolumes);
         keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allClicks.push(temp_monthlyClicks);
+        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'PageOne') {
-        keywordsData.allTypes.push('FirstPageKeywords');
+        keywordsData.allTypes.push('First Page Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -298,7 +278,7 @@ async function getKeywordsData() {
         keywordsData.allSeoClicks.push(temp_seoClicks);
         keywordsData.allSearchVolumes.push(temp_searchVolumes);
         keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allClicks.push(temp_monthlyClicks);
+        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
         
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
@@ -383,6 +363,6 @@ async function getBacklinksData() {
 }
 
 // getDomainID();
-// getKeywordsData();
+getKeywordsData();
 // getTopPagesData();
 // getBacklinksData();
