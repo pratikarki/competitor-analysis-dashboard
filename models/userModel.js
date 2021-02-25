@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'A user must have a password'],
         trim: true,
-        minlength: 8,
+        minlength: [8, 'Your new password is shorter than 8 characters'],
         select: false
     },
     confirmPassword: {
@@ -44,7 +44,7 @@ const userSchema = mongoose.Schema({
           validator: function(el) {
             return el === this.password;
           },
-          message: 'Confirm Password do not match'
+          message: 'Your confirm Password do not match'
         }
     },
     passwordChangedAt: Date,

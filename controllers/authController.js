@@ -18,7 +18,7 @@ const createAndSendToken = (user, statusCode, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //converting days to milliseconds
     httpOnly: true
   }
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; //use secure https only in production
+  //if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -75,11 +75,22 @@ exports.login = catchAsync(async (req, res, next) => {
   createAndSendToken(user, 200, res);
 })
 
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  })
+  res.status(200).json({ status: 'success' })
+}
+
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
   //1. Check if token exist
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
+  }
+  else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   if (!token) {
     const err = new AppError('You are not logged in. Please log in to get access.', 401);
@@ -90,7 +101,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
   //3. Check if user still exist
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await User.findById(decoded.id).populate({ path: 'domain_id' });
   if(!currentUser) {
     const err = new AppError('Sorry, the user with this token no longer exist :(', 401);
     return next(err);
@@ -106,6 +117,34 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 })
+
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      //1. Verify token
+      const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+
+      //3. Check if user still exist
+      const currentUser = await User.findById(decoded.id).populate({ path: 'domain_id competitorSites' });
+      if(!currentUser) {
+        return next();
+      }
+
+      //4. Check if user changed password after token was issued
+      if (currentUser.changedPasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      req.user = currentUser;
+      // res.locals.user = currentUser;
+      return next();
+    }
+    catch (err) {
+      return next();
+    }
+  }
+  next();
+}
 
 exports.restrictTo = (...roles) => (req, res, next) => {
   //roles is an array ['admin', 'user']

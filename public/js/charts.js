@@ -1,81 +1,80 @@
+
 //Organic vs Paid Chart
-if (document.getElementById('organicVsPaid')) {
-  let chartOrganicVsPaid = document.getElementById('organicVsPaid').getContext('2d');
-  let organicVsPaid = new Chart(chartOrganicVsPaid, {
-      type: 'line',
-      data: {
-          labels: ["Jan '20", "Feb '20", "Mar '20", "Apr '20", "May '20", "Jun '20", "Jul '20", "Aug '20", "Sep '20", "Oct '20", "Nov '20", "Dec '20"],
-          datasets: [
-            {
-              label: 'Organic Clicks',
-              data: [4776, 6071, 5384, 4870, 8126, 5784, 4642, 4713, 4666, 5667, 4867, 4724],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(255, 99, 132, 1)'
-              ],
-              borderWidth: 1
-            },
-            {
-              label: 'Paid Clicks',
-              data: [1594, 1988, 2033, 5648, 5548, 4138, 5097, 3954, 2548, 4460, 3800, 6066],
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)'
-              ],
-              borderWidth: 1
-            }
-          ]
+export const organicVsPaidChart = (selector, graphs) => {
+  let chartOrganicVsPaid = document.getElementById(`${selector}`).getContext('2d');
+  new Chart(chartOrganicVsPaid, {
+    type: 'line',
+    data: {
+      labels: graphs.categories,
+      datasets: [
+        {
+          label: 'Organic Clicks',
+          data: graphs.organicClicks,
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Paid Clicks',
+          data: graphs.paidClicks,
+          backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)'
+          ],
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Organic vs Paid Google Clicks',
+        fontFamily: 'Montserrat',
+        fontSize: 22,
+        fontColor: '#333',
+        fontStyle: 'normal'
       },
-      options: {
-        title: {
-          display: true,
-          text: 'Organic vs Paid Google Clicks',
-          fontFamily: 'Montserrat',
-          fontSize: 22,
-          fontColor: '#333',
-          fontStyle: 'normal'
-        },
-        legend: {
-          display: true,
-          align: 'end'
-        },
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
+      legend: {
+        display: true,
+        align: 'end'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
           }
+        }]
       }
-  });
-  
+    }
+  });  
 }
+
 
 //Organic Clicks Comparison
 if (document.getElementById('organicComparison')) {

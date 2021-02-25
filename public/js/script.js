@@ -8,7 +8,6 @@ if (document.querySelector('.pwToggle')) {
     password.setAttribute('type', type);
 
     // toggle eye slash icon
-    console.log(this.childNodes);
     try {
       this.childNodes[0].classList.toggle('fa-eye-slash');
       this.childNodes[0].classList.toggle('fa-eye');
@@ -30,7 +29,6 @@ if (document.querySelector('.pwToggleConfirm')) {
     password.setAttribute('type', type);
   
     // toggle eye slash icon
-    console.log(this.childNodes);
     try {
       this.childNodes[0].classList.toggle('fa-eye-slash');
       this.childNodes[0].classList.toggle('fa-eye');

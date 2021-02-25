@@ -1,517 +1,447 @@
 extends base_2 
 
+mixin overviewBox(data, text)
+  .col-xl-2.col-sm-4.col-6.p-2
+    .card.card-common
+      .card-body
+        .text-center
+          h2 #{data}
+      .card-footer.text-center.text-secondary
+        span= text
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/profile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/overview') Overview
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/compare_metrics') Compare Metrics
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/compare_keywords') Compare Keyword
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='#') Notes
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.py-4
+            // py-4
+            .row.align-items-center
+              .col.text-center
+                h4.text-dark.text-uppercase.mb-0 Overview
+          //- end of top-nav
+
+
 block content 
   section.overview-pad.container-fluid
     .card
       .row
         .col-xl-10.col-md-9.ms-auto.ps-0
           // tabs
-          .card-header
-            ul.nav.nav-tabs.card-header-tabs
-              li.nav-item
-                a.nav-link.text-dark.active(href='#')
-                  | #{domain.name}
+          .card-body.py-0.pe-0.ps-2
+            nav.nav.nav-tabs#nav-tab(role='tablist')
+              a#first-nav-tab.nav-item.nav-link.active.bg-custom(data-toggle='tab' href='#first-nav' role='tab' aria-controls='first-nav' aria-selected='true')= domain.name
+                i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
+
+              each site, i in competitors
+                -if(i==0) i='second';
+                -if(i==1) i='third';
+                -if(i==2) i='fourth';
+                -if(i==3) i='fifth';
+                a.nav-item.nav-link.bg-custom(id=`${i}-nav-tab` data-toggle='tab' href=`#${i}-nav` role='tab' aria-controls=`${i}-nav` aria-selected='false')= site.name
                   i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
-              li.nav-item.vertical-border
-                a.nav-link.text-dark(href='#')
-                  | CompetitorSite 1
-                  i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
-              li.nav-item.vertical-border
-                a.nav-link.text-dark(href='#')
-                  | CompetitorSite 2
-                  i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
-              li.nav-item.vertical-border
-                a.nav-link.text-dark(href='#')
-                  | CompetitorSite 3
-                  i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
-              li.nav-item.vertical-border
-                a.nav-link.text-dark(href='#')
-                  | CompetitorSite 4
-                  i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
-              li.p-2.ms-2
+                -if(i=='second') i=0;
+                -if(i=='third') i=1;
+                -if(i=='fourth') i=2;
+                -if(i=='fifth') i=3;
+
+              span.p-2.ms-2
                 i.fal.fa-plus.fa-lg.cross(data-toggle='modal' data-target='#add_modal')
-          .card-body.card-bg.pb-0
-            // first row of card body
-            .row.my-3.justify-content-around
-              .col-xl-2.col-sm-4.col-6.p-2
-                .card.card-common
-                  .card-body
-                    .text-center
-                      h2 #{domain.overallRank}
-                  .card-footer.text-center.text-secondary
-                    span Overall Alexa Rank
-              .col-xl-2.col-sm-4.col-6.p-2
-                .card.card-common
-                  .card-body
-                    .text-center
-                      h2 #{domain.bounceRate}
-                  .card-footer.text-center.text-secondary
-                    span Bounce Rate
-              .col-xl-2.col-sm-4.col-6.p-2
-                .card.card-common
-                  .card-body
-                    .text-center
-                      h2 #{domain.searchTrafficPercent}
-                  .card-footer.text-center.text-secondary
-                    span Search Traffic
-              .col-xl-2.col-sm-4.col-6.p-2
-                .card.card-common
-                  .card-body
-                    .text-center
-                      h2 #{domain.avgTimeOnSite}
-                  .card-footer.text-center.text-secondary
-                    span Avg Visit Duration
-              .col-xl-2.col-sm-4.col-6.p-2
-                .card.card-common
-                  .card-body
-                    .text-center
-                      h2 #{domain.avgPageView}
-                  .card-footer.text-center.text-secondary
-                    span Avg Page View
-            // end of first row of card body
-            // second row of card body
-            .row.py-5.justify-content-around.px-2.px-sm-0
-              .col-lg-5.col-sm-9.card-common.align-self-center.mb-lg-0.mb-4.card-no-bg(style='height: auto;')
-                .row.py-4.text-center.border-bottom
-                  h4.m-0 Organic Search
-                .row.justify-content-around.border-bottom
-                  .col.text-center.py-4.card-common-sm.vertical-border
-                    p Search Keywords
-                    h4
-                      strong #{domain.noOrganicSearchKeyword}
-                  .col.text-center.py-4.card-common-sm
-                    p Est Monthly Seo Clicks
-                    h4
-                      strong #{domain.estMonthlySeoClick}
-                .row.py-4.text-center
-                  h5.m-0
-                    | Est Monthly Seo Clicks Value: 
-                    strong= `$ ${domain.estMonthlySeoClickValue}`
-              .col-lg-6.col-sm-9.p-0
-                table.table.table-bordered.text-center.m-0.card-common.card-no-bg
-                  thead
-                    tr
-                      th.py-3
-                        h4.m-0 Similar Sites by Visitors
-                  tbody
-                    tr
-                      td.p-0
-                        table.table.table-striped.table-hover.bg-light.text-center.m-0
-                          thead
-                            tr.text-muted
-                              th.col-6.ps-5.align-lt #
-                              th.col-3 Overlap Score
-                              th.col-3 Rank
-                          tbody
-                            each key, i in domain.similarSites.siteName 
-                              tr
-                                td.ps-5.align-lt= domain.similarSites.siteName[i]
-                                td= domain.similarSites.overlapScore[i]
-                                td= domain.similarSites.rank[i]
-            // end of second row of card body
-            // third row of card body
-            .row.py-4.justify-content-around.px-2.px-sm-0
-              .col-lg-5.col-sm-9.align-self-center.mb-lg-0.mb-4.p-0.card-no-bg
-                table.table.table-bordered.text-center.m-0.card-common
-                  thead
-                    tr
-                      th.py-3
-                        h5.m-0 Visitors by Country
-                  tbody
-                    tr
-                      td.p-0
-                        table.table.table-striped.table-hover.bg-light.text-center.m-0
-                          thead
-                            tr.text-muted
-                              th
-                              th.align-lt
-                              th Site&apos;s Rank
-                              th Visitor&apos;s Percent
-                          tbody
-                            each key, i in domain.countries.countryCode 
-                              tr
-                                td
-                                  small= domain.countries.countryCode[i]
-                                td.align-lt= domain.countries.countryName[i]
-                                td= domain.countries.visitorPercent[i]
-                                td= domain.countries.siteCountryRank[i]
-              .col-lg-6.col-sm-10.p-0
-                .card-common.card-no-bg
-                  //- CHART GRAPH
-                  //- include _chartJS
-                  canvas#organicVsPaid(style='height: 160px; width: 250px;')
-            // end of third row of card body
-            // fourth row of card body
-            .row.py-4.justify-content-center.px-2.px-sm-0
-              .col-11
-                h3.text-muted.pt-4.m-0 Keywords
 
-                each val, i in domain.keywords.allTypes
-                  .pt-4.table-responsive
-                    table.table.table-hover.text-center.bg-light.card-common
+            #nav-tabContent.tab-content.p-4.custom-border
+              #first-nav.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='first-nav-tab')
+                //- first row of 1st tab
+                .row.my-3.justify-content-around
+                  +overviewBox(domain.overallRank, 'Overall Alexa Rank')
+                  +overviewBox(domain.bounceRate, 'Bounce Rate')
+                  +overviewBox(domain.searchTrafficPercent, 'Search Traffic')
+                  +overviewBox(domain.avgTimeOnSite, 'Avg Visit Duration')
+                  +overviewBox(domain.avgPageView, 'Avg Page View')
+                //- end of first row of 1st tab
+                //- second row of 1st tab
+                .row.py-5.justify-content-around.px-2.px-sm-0
+                  .col-lg-5.col-sm-9.card-common.align-self-center.mb-lg-0.mb-4.card-no-bg(style='height: auto;')
+                    .row.py-4.text-center.border-bottom
+                      h4.m-0 Organic Search
+                    .row.justify-content-around.border-bottom
+                      .col.text-center.py-4.card-common-sm.vertical-border
+                        p Search Keywords
+                        h4
+                          strong #{domain.noOrganicSearchKeyword}
+                      .col.text-center.py-4.card-common-sm
+                        p Est Monthly Seo Clicks
+                        h4
+                          strong #{Math.trunc(domain.estMonthlySeoClick)}
+                    .row.py-4.text-center
+                      h5.m-0
+                        | Est Monthly Seo Clicks Value: 
+                        strong= `$ ${domain.estMonthlySeoClickValue}`
+                  .col-lg-6.col-sm-9.p-0
+                    table.table.table-bordered.text-center.m-0.card-common.card-no-bg
                       thead
-                        tr.text-muted
-                          th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
-                          th Search Volume
-                          th SEO Clicks
-                          th Rank
-                          th Clicks
-                          th
-                            i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                        tr
+                          th.py-3
+                            h4.m-0 Similar Sites by Visitors
                       tbody
-                        each key, j in domain.keywords.allSeoClicks[i]
+                        tr
+                          td.p-0
+                            table.table.table-striped.table-hover.bg-light.text-center.m-0
+                              thead
+                                tr.text-muted
+                                  th.col-6.ps-5.align-lt #
+                                  th.col-3 Overlap Score
+                                  th.col-3 Rank
+                              tbody
+                                each key, i in domain.similarSites.siteName 
+                                  tr
+                                    td.ps-5.align-lt= domain.similarSites.siteName[i]
+                                    td= domain.similarSites.overlapScore[i]
+                                    td= domain.similarSites.rank[i]
+                //- end of second row of 1st tab
+                //- third row of 1st tab
+                .row.py-4.justify-content-around.px-2.px-sm-0
+                  .col-lg-5.col-sm-9.align-self-center.mb-lg-0.mb-4.p-0.card-no-bg
+                    table.table.table-bordered.text-center.m-0.card-common
+                      thead
+                        tr
+                          th.py-3
+                            h5.m-0 Visitors by Country
+                      tbody
+                        tr
+                          td.p-0
+                            table.table.table-striped.table-hover.bg-light.text-center.m-0
+                              thead
+                                tr.text-muted
+                                  th
+                                  th.align-lt
+                                  th Site&apos;s Rank
+                                  th Visitor&apos;s Percent
+                              tbody
+                                each key, i in domain.countries.countryCode 
+                                  tr
+                                    td
+                                      small= domain.countries.countryCode[i]
+                                    td.align-lt= domain.countries.countryName[i]
+                                    td= domain.countries.visitorPercent[i]
+                                    td= domain.countries.siteCountryRank[i]
+                  .col-lg-6.col-sm-10.p-0
+                    .card-common.card-no-bg
+                      //- CHART GRAPH
+                      //- include _chartJS
+                      canvas#organicVsPaid(data-graphs = `${JSON.stringify(domain.clicks)}` style='height: 160px; width: 250px;')
+                //- end of third row of 1st tab
+                //- fourth row of 1st tab
+                .row.py-4.justify-content-center.px-2.px-sm-0
+                  .col-11
+                    h3.text-muted.pt-4.m-0 Keywords
+
+                    each val, i in domain.keywords.allTypes
+                      .pt-4.table-responsive
+                        table.table.table-hover.text-center.bg-light.card-common
+                          thead
+                            tr.text-muted
+                              th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
+                              th Search Volume
+                              th SEO Clicks
+                              th Rank
+                              th Clicks
+                              th
+                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                          tbody
+                            each key, j in domain.keywords.allSeoClicks[i]
+                              tr
+                                td.ps-5.align-lt= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
+                                td= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                                td= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                                td= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                                td= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                                td.text-muted
+                                  i.fal.fa-times.cross(onclick='')
+                              -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
+                //- end of fourth row of 1st tab
+                //- fifth row of 1st tab
+                .row.py-4.justify-content-center.px-2.px-sm-0
+                  .col-11
+                    h3.text-muted.pt-4.m-0 Top Pages
+                    .pt-4.table-responsive
+                      table.table.table-hover.text-center.bg-light.card-common
+                        thead
+                          tr.text-muted
+                            th.col-4.ps-5.align-lt Page
+                            th.col-3 Keyword
+                            th Est Monthly SEO Clicks
+                            th Keyword Count
+                            th
+                              i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                        tbody
+                          each key, i in domain.topPages.pageTitle 
+                            tr
+                              td.ps-5.align-lt
+                                a.text-dark(href=`${domain.topPages.pageUrl[i]}`)= domain.topPages.pageTitle[i]
+                              td= domain.topPages.topKeyword[i]
+                              td= domain.topPages.estMonthlySeoClicks[i]
+                              td= domain.topPages.keywordCount[i]
+                              td.text-muted
+                                i.fal.fa-times.cross(onclick='')
+                //- end of fifth row of 1st tab
+                //- sixth row of 1st tab
+                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                  .col-11
+                    h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                    .pt-4.table-responsive
+                      table.table.table-hover.text-center.bg-light.card-common
+                        thead
+                          tr.text-muted
+                            th.col-4.ps-5.align-lt Link
+                            th
+                              | Domain Monthly
+                              br
+                              | Organic Clicks
+                            th
+                              | Page Monthly
+                              br
+                              | Organic Clicks
+                            th Domain Strength
+                            th Outbound Links
+                            th
+                              i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                        tbody
+                          each key, i in domain.backlinks.backlinkDomain 
+                            tr
+                              td.ps-5.align-lt
+                                a.text-dark(href=`${domain.backlinks.backlinkUrl[i]}`)= domain.backlinks.backlinkDomain[i]
+                              td= domain.backlinks.domainMonthlyOrganicClicks[i]
+                              td= domain.backlinks.pageMonthlyOrganicClicks[i]
+                              td= domain.backlinks.domainStrength[i]
+                              td= domain.backlinks.outboundLinks[i]
+                              td.text-muted
+                                i.fal.fa-times.cross(onclick='')
+                //- end of sixth row of 1st tab
+
+              each site, i in competitors
+                -if(i==0) i='second';
+                -if(i==1) i='third';
+                -if(i==2) i='fourth';
+                -if(i==3) i='fifth';
+                .tab-pane.fade(id=`${i}-nav` role='tabpanel' aria-labelledby=`${i}-nav-tab`)
+                  //- first row of loop
+                  .row.my-3.justify-content-around
+                    +overviewBox(site.overallRank, 'Overall Alexa Rank')
+                    +overviewBox(site.bounceRate, 'Bounce Rate')
+                    +overviewBox(site.searchTrafficPercent, 'Search Traffic')
+                    +overviewBox(site.avgTimeOnSite, 'Avg Visit Duration')
+                    +overviewBox(site.avgPageView, 'Avg Page View')
+                  //- end of first row of loop
+                  //- second row of loop
+                  .row.py-5.justify-content-around.px-2.px-sm-0
+                    .col-lg-5.col-sm-9.card-common.align-self-center.mb-lg-0.mb-4.card-no-bg(style='height: auto;')
+                      .row.py-4.text-center.border-bottom
+                        h4.m-0 Organic Search
+                      .row.justify-content-around.border-bottom
+                        .col.text-center.py-4.card-common-sm.vertical-border
+                          p Search Keywords
+                          h4
+                            strong #{site.noOrganicSearchKeyword}
+                        .col.text-center.py-4.card-common-sm
+                          p Est Monthly Seo Clicks
+                          h4
+                            strong #{Math.trunc(site.estMonthlySeoClick)}
+                      .row.py-4.text-center
+                        h5.m-0
+                          | Est Monthly Seo Clicks Value: 
+                          strong= `$ ${site.estMonthlySeoClickValue}`
+                    .col-lg-6.col-sm-9.p-0
+                      table.table.table-bordered.text-center.m-0.card-common.card-no-bg
+                        thead
                           tr
-                            td.ps-5.align-lt= domain.keywords.allKeywords[i][j]
-                            td= domain.keywords.allSeoClicks[i][j]
-                            td= domain.keywords.allSearchVolumes[i][j]
-                            td= domain.keywords.allRanks[i][j]
-                            td= domain.keywords.allMonthlyClicks[i][j]
-                            td.text-muted
-                              i.fal.fa-times.cross(onclick='')
-                          -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
+                            th.py-3
+                              h4.m-0 Similar Sites by Visitors
+                        tbody
+                          tr
+                            td.p-0
+                              table.table.table-striped.table-hover.bg-light.text-center.m-0
+                                thead
+                                  tr.text-muted
+                                    th.col-6.ps-5.align-lt #
+                                    th.col-3 Overlap Score
+                                    th.col-3 Rank
+                                tbody
+                                  each key, i in site.similarSites.siteName 
+                                    tr
+                                      td.ps-5.align-lt= site.similarSites.siteName[i]
+                                      td= site.similarSites.overlapScore[i]
+                                      td= site.similarSites.rank[i]
+                  //- end of second row of loop
+                  //- third row of loop
+                  .row.py-4.justify-content-around.px-2.px-sm-0
+                    .col-lg-5.col-sm-9.align-self-center.mb-lg-0.mb-4.p-0.card-no-bg
+                      table.table.table-bordered.text-center.m-0.card-common
+                        thead
+                          tr
+                            th.py-3
+                              h5.m-0 Visitors by Country
+                        tbody
+                          tr
+                            td.p-0
+                              table.table.table-striped.table-hover.bg-light.text-center.m-0
+                                thead
+                                  tr.text-muted
+                                    th
+                                    th.align-lt
+                                    th Site&apos;s Rank
+                                    th Visitor&apos;s Percent
+                                tbody
+                                  each key, i in site.countries.countryCode 
+                                    tr
+                                      td
+                                        small= site.countries.countryCode[i]
+                                      td.align-lt= site.countries.countryName[i]
+                                      td= site.countries.visitorPercent[i]
+                                      td= site.countries.siteCountryRank[i]
+                    .col-lg-6.col-sm-10.p-0
+                      .card-common.card-no-bg
+                        //- CHART GRAPH
+                        -if(i=='second') i='organicVsPaidSecond';
+                        -if(i=='third') i='organicVsPaidThird';
+                        -if(i=='fourth') i='organicVsPaidFourth';
+                        -if(i=='fifth') i='organicVsPaidFifth';
+                        canvas(id=`${i}` data-graphs = `${JSON.stringify(site.clicks)}` style='height: 160px; width: 250px;')
+                        -if(i=='organicVsPaidSecond') i='second';
+                        -if(i=='organicVsPaidThird') i='third';
+                        -if(i=='organicVsPaidFourth') i='fourth';
+                        -if(i=='organicVsPaidFifth') i='fifth';
+                  //- end of third row of loop
+                  //- fourth row of loop
+                  .row.py-4.justify-content-center.px-2.px-sm-0
+                    .col-11
+                      h3.text-muted.pt-4.m-0 Keywords
 
-                //-   table.table.table-hover.text-center.bg-light.card-common
-                //-     thead
-                //-       tr.text-muted
-                //-         th.col-4.ps-5.align-lt Top Keywords
-                //-         th Search Volume
-                //-         th SEO Clicks
-                //-         th Rank
-                //-         th Clicks
-                //-         th
-                //-           i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                //-     tbody
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //- .pt-4.table-responsive
-                //-   table.table.table-hover.text-center.bg-light.card-common
-                //-     thead
-                //-       tr.text-muted
-                //-         th.col-4.ps-5.align-lt New Keywords
-                //-         th Search Volume
-                //-         th SEO Clicks
-                //-         th Rank
-                //-         th Clicks
-                //-         th
-                //-           i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                //-     tbody
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //- .pt-4.table-responsive
-                //-   table.table.table-hover.text-center.bg-light.card-common
-                //-     thead
-                //-       tr.text-muted
-                //-         th.col-4.ps-5.align-lt Clicks Gaining Keywords
-                //-         th Search Volume
-                //-         th SEO Clicks
-                //-         th Rank
-                //-         th Clicks
-                //-         th
-                //-           i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                //-     tbody
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //- .pt-4.table-responsive
-                //-   table.table.table-hover.text-center.bg-light.card-common
-                //-     thead
-                //-       tr.text-muted
-                //-         th.col-4.ps-5.align-lt Clicks Losing Keywords
-                //-         th Search Volume
-                //-         th SEO Clicks
-                //-         th Rank
-                //-         th Clicks
-                //-         th
-                //-           i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                //-     tbody
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //- .pt-4.table-responsive
-                //-   table.table.table-hover.text-center.bg-light.card-common
-                //-     thead
-                //-       tr.text-muted
-                //-         th.col-4.ps-5.align-lt First Page Keywords
-                //-         th Search Volume
-                //-         th SEO Clicks
-                //-         th Rank
-                //-         th Clicks
-                //-         th
-                //-           i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                //-     tbody
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //-       tr
-                //-         td.ps-5.align-lt abc
-                //-         td 123
-                //-         td 456
-                //-         td 789
-                //-         td 012
-                //-         td.text-muted
-                //-           i.fal.fa-times.cross(onclick='')
-                //- .pt-4.table-responsive
-                  table.table.table-hover.text-center.bg-light.card-common
-                    thead
-                      tr.text-muted
-                        th.col-4.ps-5.align-lt Other Related Keywords
-                        th Search Volume
-                        th SEO Clicks
-                        th Rank
-                        th Clicks
-                        th
-                          i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                    tbody
-                      tr
-                        td.ps-5.align-lt abc
-                        td 123
-                        td 456
-                        td 789
-                        td 012
-                        td.text-muted
-                          i.fal.fa-times.cross(onclick='')
-                      tr
-                        td.ps-5.align-lt abc
-                        td 123
-                        td 456
-                        td 789
-                        td 012
-                        td.text-muted
-                          i.fal.fa-times.cross(onclick='')
-                      tr
-                        td.ps-5.align-lt abc
-                        td 123
-                        td 456
-                        td 789
-                        td 012
-                        td.text-muted
-                          i.fal.fa-times.cross(onclick='')
-                      tr
-                        td.ps-5.align-lt abc
-                        td 123
-                        td 456
-                        td 789
-                        td 012
-                        td.text-muted
-                          i.fal.fa-times.cross(onclick='')
-            // end of fourth row of card body
-            // fifth row of card body
-            .row.py-4.justify-content-center.px-2.px-sm-0
-              .col-11
-                h3.text-muted.pt-4.m-0 Top Pages
-                .pt-4.table-responsive
-                  table.table.table-hover.text-center.bg-light.card-common
-                    thead
-                      tr.text-muted
-                        th.col-4.ps-5.align-lt Page
-                        th.col-3 Keyword
-                        th Est Monthly SEO Clicks
-                        th Keyword Count
-                        th
-                          i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                    tbody
-                      each key, i in domain.topPages.pageTitle 
-                        tr
-                          td.ps-5.align-lt
-                            a.text-dark(href=`${domain.topPages.pageUrl[i]}`)= domain.topPages.pageTitle[i]
-                          td= domain.topPages.topKeyword[i]
-                          td= domain.topPages.estMonthlySeoClicks[i]
-                          td= domain.topPages.keywordCount[i]
-                          td.text-muted
-                            i.fal.fa-times.cross(onclick='')
+                      each val, i in site.keywords.allTypes
+                        .pt-4.table-responsive
+                          table.table.table-hover.text-center.bg-light.card-common
+                            thead
+                              tr.text-muted
+                                th.col-4.ps-5.align-lt= site.keywords.allTypes[i]
+                                th Search Volume
+                                th SEO Clicks
+                                th Rank
+                                th Clicks
+                                th
+                                  i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                            tbody
+                              each key, j in site.keywords.allSeoClicks[i]
+                                tr
+                                  td.ps-5.align-lt= `${site.keywords.allKeywords[i][j] ? site.keywords.allKeywords[i][j] : '-'}`
+                                  td= `${site.keywords.allSeoClicks[i][j] ? site.keywords.allSeoClicks[i][j] : '-'}`
+                                  td= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
+                                  td= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
+                                  td= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
+                                  td.text-muted
+                                    i.fal.fa-times.cross(onclick='')
+                                -if (j > site.keywords.allSeoClicks[i].length-2) { break };
+                  //- end of fourth row of loop
+                  //- fifth row of loop
+                  .row.py-4.justify-content-center.px-2.px-sm-0
+                    .col-11
+                      h3.text-muted.pt-4.m-0 Top Pages
+                      .pt-4.table-responsive
+                        table.table.table-hover.text-center.bg-light.card-common
+                          thead
+                            tr.text-muted
+                              th.col-4.ps-5.align-lt Page
+                              th.col-3 Keyword
+                              th Est Monthly SEO Clicks
+                              th Keyword Count
+                              th
+                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                          tbody
+                            each key, i in site.topPages.pageTitle 
+                              tr
+                                td.ps-5.align-lt
+                                  a.text-dark(href=`${site.topPages.pageUrl[i]}`)= site.topPages.pageTitle[i]
+                                td= site.topPages.topKeyword[i]
+                                td= site.topPages.estMonthlySeoClicks[i]
+                                td= site.topPages.keywordCount[i]
+                                td.text-muted
+                                  i.fal.fa-times.cross(onclick='')
+                  //- end of fifth row of loop
+                  //- sixth row of loop
+                  .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                    .col-11
+                      h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                      .pt-4.table-responsive
+                        table.table.table-hover.text-center.bg-light.card-common
+                          thead
+                            tr.text-muted
+                              th.col-4.ps-5.align-lt Link
+                              th
+                                | Domain Monthly
+                                br
+                                | Organic Clicks
+                              th
+                                | Page Monthly
+                                br
+                                | Organic Clicks
+                              th Domain Strength
+                              th Outbound Links
+                              th
+                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
+                          tbody
+                            each key, i in site.backlinks.backlinkDomain 
+                              tr
+                                td.ps-5.align-lt
+                                  a.text-dark(href=`${site.backlinks.backlinkUrl[i]}`)= site.backlinks.backlinkDomain[i]
+                                td= site.backlinks.domainMonthlyOrganicClicks[i]
+                                td= site.backlinks.pageMonthlyOrganicClicks[i]
+                                td= site.backlinks.domainStrength[i]
+                                td= site.backlinks.outboundLinks[i]
+                                td.text-muted
+                                  i.fal.fa-times.cross(onclick='')
+                  //- end of sixth row of loop
 
-            // end of fifth row of card body
-            // sixth row of card body
-            .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
-              .col-11
-                h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
-                .pt-4.table-responsive
-                  table.table.table-hover.text-center.bg-light.card-common
-                    thead
-                      tr.text-muted
-                        th.col-4.ps-5.align-lt Link
-                        th
-                          | Domain Monthly
-                          br
-                          | Organic Clicks
-                        th
-                          | Page Monthly
-                          br
-                          | Organic Clicks
-                        th Domain Strength
-                        th Outbound Links
-                        th
-                          i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
-                    tbody
-                      each key, i in domain.backlinks.backlinkDomain 
-                        tr
-                          td.ps-5.align-lt
-                            a.text-dark(href=`${domain.backlinks.backlinkUrl[i]}`)= domain.backlinks.backlinkDomain[i]
-                          td= domain.backlinks.domainMonthlyOrganicClicks[i]
-                          td= domain.backlinks.pageMonthlyOrganicClicks[i]
-                          td= domain.backlinks.domainStrength[i]
-                          td= domain.backlinks.outboundLinks[i]
-                          td.text-muted
-                            i.fal.fa-times.cross(onclick='')
-            // end of sixth row of card body
+                -if(i=='second') i=0;
+                -if(i=='third') i=1;
+                -if(i=='fourth') i=2;
+                -if(i=='fifth') i=3;
+              
           // end of card-body
+          
           // footer
-          footer.row.py-0.px-sm-0.px-2
-            .row.border-top.align-items-center.py-2.card-no-bg
-              .col-md-5.col-4.offset-1
-                p.text-monospace.m-0
-                  i.far.fa-copyright
-                  span#year
-                  |  By Pratik Karki
-              .col-xl-3.col-lg-4.col-md-5.col-sm-5.col-6.ms-auto
-                blockquote.blockquote.m-0
-                  p.text-secondary.ps-4
-                    small Powered By:
-                  .blockquote-footer
-                    cite(title='Source Title')
-                      small Spyfu, Inc.
-                  .blockquote-footer
-                    cite(title='Source Title')
-                      small Alexa Internet, Inc.
+          include _footer_2
           // end of footer
+
         // end of col-xl-10 col-md-9 ms-auto
       // end of row

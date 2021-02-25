@@ -12,9 +12,9 @@ html(lang='en')
     link(rel='preconnect' href='https://fonts.gstatic.com')
     link(href='https://fonts.googleapis.com/css2?family=Montserrat&display=swap' rel='stylesheet')
 
-    link(rel='stylesheet' href='css/style.css')
+    link(rel='stylesheet' href='/css/style.css')
     //- try
-    link(rel='stylesheet' href='../css/style.css') 
+    //- link(rel='stylesheet' href='../css/style.css') 
     title Competitor Analysis | #{title}
 
   body(style="font-family: 'Montserrat', sans-serif")
@@ -29,7 +29,7 @@ html(lang='en')
               i.far.fa-times.cross
           .modal-footer
             a.btn.btn-white(type='button' data-dismiss='modal') Cancel
-            a.btn.btn-outline-danger(type='button' href='/login') Yes, logout
+            a.btn.btn-outline-danger(type='button')#logout_Btn Yes, logout
 
     .modal.fade#add_modal
       .modal-dialog
@@ -44,7 +44,7 @@ html(lang='en')
             .input-group
               .input-group-prepend
                 span.input-group-text https://www.
-              input.form-control(type='text' id='domainName' placeholder='Domain Name')
+              input.form-control(type='text' id='domainName' placeholder='Domain Name' autocomplete='off')
           .modal-footer
             a.btn.btn-white(type='button' data-dismiss='modal') Cancel
             a.btn.btn-outline-danger(type='button' onclick='') Add
@@ -74,15 +74,13 @@ html(lang='en')
             a.btn.btn-outline-danger(type='button' onclick='') Yes, remove
 
     //HEADER
-    include _header_2
+    block header
 
     //CONTENT
     block content 
       .home-pad 
         h1 Hello (this content will be replaced )
          
-    //FOOTER
-    include _footer_2
 
     //- chart.js CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js' integrity='sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==' crossorigin='anonymous')
@@ -94,7 +92,7 @@ html(lang='en')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous')
 
 
-    script(src='../js/charts.js')
+    script(type='module' src='/js/bundle.js')
     
     //- Get the current year for the copyright
     //- script $('#year').text(new Date().getFullYear());

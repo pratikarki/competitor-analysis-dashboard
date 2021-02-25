@@ -19,28 +19,28 @@ block content
                 h3.display-5(style='font-size: 2.6rem') Login 
                 small Enter your credentials below.
               
-              form.p-4(action='')
+              form.form.form--login.p-4
 
                 .form-group 
                   label(for='email') Email *
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-at
-                    input(type='email' class='form-control' id='email' placeholder='Email' required)
+                    input.form-control(type='email' id='email' placeholder='Email' required)
                 
                 .form-group.pt-4 
                   label(for='password') Password *
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-key 
-                    input(type='password' class='form-control' id='password' placeholder='Password' required)
+                    input.form-control(type='password' id='password' placeholder='Password' required)
                     button.input-group-text.pwToggle
                       i.far.fa-eye-slash
                   p.pt-2 
                     a.text-dark(href='#')
                       small.form-text.text-dark Forgot Your Password?
 
-                .d-flex.justify-content-between.pt-3.pb-2
+                .d-flex.justify-content-between.pt-3.pb-1
                   button.btn.btn-dark
                     i.far.fa-sign-in-alt.me-2
                     | Login

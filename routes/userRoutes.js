@@ -1,12 +1,13 @@
 const express = require('express');
 
 const { getAllUsers, createNewUser, getUser, updateUser, deleteUser } = require('../controllers/userController');
-const { signup, login, protect, restrictTo, forgotPassword, resetPassword, getInfo, updateInfo, deleteMe } = require('../controllers/authController');
+const { signup, login, protect, restrictTo, forgotPassword, resetPassword, getInfo, updateInfo, deleteMe, logout } = require('../controllers/authController');
 
 const router = express.Router(); //creating new router which is also a middleware
 
 router.post('/signup', signup);
 router.post('/login', login);
+router.get('/logout', logout);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
 
