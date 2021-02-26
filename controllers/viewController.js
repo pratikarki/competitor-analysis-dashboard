@@ -38,6 +38,24 @@ exports.getOverviewPage = catchAsync(async (req, res, next) => {
   });
 })
 
+exports.getMetricsPage = catchAsync(async (req, res, next) => {
+  // 1. Get all data from collection
+  if (!req.user) {
+    const err = new AppError('You are not logged in to view this dashboard. Please login to proceed.', 403);
+    return next(err);
+  }
+  const user = req.user;
+  // 2. Build template
+
+  // 3. Render template using the domain data
+  res.status(200).render('compare_metrics', {
+    title: 'Metrics Comparison',
+    user: user,
+    domain: user.domain_id,
+    competitors: user.competitorSites
+  });
+})
+
 exports.getProfilePage = (req, res) => {
   const user = req.user;
   res.status(200).render('profile', {

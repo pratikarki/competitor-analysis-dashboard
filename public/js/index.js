@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { organicVsPaidChart } from './charts';
+import { organicVsPaidChart, organicComparison } from './charts';
 import { login, logout } from './login';
 import { updateUserProfile } from './updateUser'
 
@@ -29,6 +29,13 @@ if (document.getElementById('organicVsPaidFifth')) {
   const graphs = JSON.parse(document.getElementById('organicVsPaidFifth').dataset.graphs);
   organicVsPaidChart('organicVsPaidFifth', graphs);
 }
+
+
+if (document.getElementById('organicComparison')) {
+  const graphs = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
+  organicComparison('organicComparison', graphs);
+}
+
 
 if (loginForm) {
   loginForm.addEventListener('submit', event => {

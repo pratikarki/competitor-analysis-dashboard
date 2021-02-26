@@ -1,0 +1,226 @@
+extends base_2 
+
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/profile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/overview') Overview
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/metrics') Compare Metrics
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/keywords') Compare Keyword
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='#') Notes
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+            .row.align-items-center
+              .col.text-center
+                h4.text-light.text-uppercase.mb-0 Metrics Comparison
+          //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .col-xl-10.col-md-9.ms-auto
+      .card.card-bg.m-5.mt-4
+        .card-body.mx-3.p-0
+          // first row
+          .row.mb-5.justify-content-around
+            table.table.table-striped.table-hover.bg-light.text-center.mb-5
+              thead
+                tr.text-muted
+                  th.col-4.ps-5.align-lt.vertical-border #
+                  each site in competitors
+                    th.vertical-border= site.name
+
+              tbody
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Rank
+                  each site, i in competitors
+                    td= `#${site.overallRank}`
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Bounce Rate
+                  each site, i in competitors
+                    td= site.bounceRate
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Search Traffic
+                  each site, i in competitors
+                    td= site.searchTrafficPercent
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Visit Duration
+                  each site, i in competitors
+                    td= site.avgTimeOnSite
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Average Page View
+                  each site, i in competitors
+                    td= site.avgPageView
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Search Keywords
+                  each site, i in competitors
+                    td= site.noOrganicSearchKeyword
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Est Monthly Seo Clicks
+                  each site, i in competitors
+                    td= site.estMonthlySeoClick
+                tr
+                  td.align-lt
+                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
+                    | Est Monthly Seo Clicks Value
+                  each site, i in competitors
+                    td= site.estMonthlySeoClickValue
+
+          // end of first row
+          // second row
+          h4.text-uppercase.px-2.py-3 Organic Clicks Graph
+          .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
+            .row.px-3.py-4.border-bottom
+              //- .dropdown
+              //-   a.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
+              //-     | Add Site
+              //-   .dropdown-menu
+              //-     a.dropdown-item(href='#') Site 1
+              //-     a.dropdown-item(href='#') Site 2
+              //-     a.dropdown-item(href='#') Site 3
+              //-     a.dropdown-item(href='#') Site 4
+              //-     a.dropdown-item(href='#') Site 5
+              //-   button.ms-3.btn.btn-outline-dark(onclick='') Add
+            .row.p-0.justify-content-around
+              .col-lg-3.col-23.vertical-border
+                .row.border-bottom.graph-box-one
+                  p.m-0.p-3= domain.name
+                
+                each site, i in competitors
+                  -if(i==0) i='two';
+                  -if(i==1) i='three';
+                  -if(i==2) i='four';
+                  -if(i==3) i='five';
+                  .row.border-bottom(class=`graph-box-${i}`)
+                    p.m-0.p-3= site.name
+                  -if(i=='two') i=0;
+                  -if(i=='three') i=1;
+                  -if(i=='four') i=2;
+                  -if(i=='five') i=3;
+                  
+              .col-lg-9.col-23
+                -let dataArray = [];
+                -let domainName = { name: domain.name }
+                -dataArray.push({...domainName, ...domain.clicks})
+                each site in competitors 
+                  -let siteName = { name: site.name }
+                  -dataArray.push({...siteName, ...site.clicks})
+                canvas#organicComparison(data-graphs = `${JSON.stringify(dataArray)}` style='width: 350px; height: 210px;')
+          // end of second row
+          // third row
+          h4.text-uppercase.px-2.py-3 Search Traffic
+          .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
+            .row.px-3.py-4.border-bottom
+              //- .dropdown
+              //-   a.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
+              //-     | Add Site
+              //-   .dropdown-menu
+              //-     a.dropdown-item(href='#') Site 1
+              //-     a.dropdown-item(href='#') Site 2
+              //-     a.dropdown-item(href='#') Site 3
+              //-     a.dropdown-item(href='#') Site 4
+              //-     a.dropdown-item(href='#') Site 5
+              //-   button.ms-3.btn.btn-outline-dark(onclick='') Add
+            .row.p-0.justify-content-around
+              .col-lg-3.vertical-border
+                .row.border-bottom
+                  p.m-0.p-3= domain.name
+                    span(style='float: right;')
+                      i.text-muted.fal.fa-times.cross(onclick='')
+                each site in competitors 
+                  .row.border-bottom
+                    p.m-0.p-3= site.name
+                      span(style='float: right;')
+                        i.text-muted.fal.fa-times.cross(onclick='')
+              .col-lg-9
+                .row.px-4
+                  .col-sm-2.pe-0
+                    p.m-0.py-3= domain.searchTrafficPercent
+                  .col-sm-10.ps-0.align-self-center
+                    .progress
+                      .progress-bar.bg-primary(style=`width: ${(domain.searchTrafficPercent) ? domain.searchTrafficPercent : '100%'};`)= domain.searchTrafficPercent
+                each site, i in competitors 
+                  -if(i==0) i='danger';
+                  -if(i==1) i='info';
+                  -if(i==2) i='warning';
+                  -if(i==3) i='secondary';
+                  .row.px-4
+                    .col-sm-2.pe-0
+                      p.m-0.py-3= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
+                    .col-sm-10.ps-0.align-self-center
+                      .progress
+                        .progress-bar(class=`bg-${i}` style=`width: ${(site.searchTrafficPercent) ? site.searchTrafficPercent : '100%; color: black; background-color: #E9ECEF !important'};`)= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
+                  -if(i=='danger') i=0;
+                  -if(i=='info') i=1;
+                  -if(i=='warning') i=2;
+                  -if(i=='secondary') i=3;
+                //- .row.px-4
+                //-   .col-sm-2.pe-0
+                //-     p.m-0.py-3 26.3%
+                //-   .col-sm-10.ps-0.align-self-center
+                //-     .progress
+                //-       .progress-bar.bg-danger(style='width: 26.3%;') 26.3%
+                //- .row.px-4
+                //-   .col-sm-2.pe-0
+                //-     p.m-0.py-3 17.0%
+                //-   .col-sm-10.ps-0.align-self-center
+                //-     .progress
+                //-       .progress-bar.bg-info(style='width: 17.0%;') 17.0%
+                //- .row.px-4
+                //-   .col-sm-2.pe-0
+                //-     p.m-0.py-3 No Data
+                //-   .col-sm-10.ps-0.align-self-center
+                //-     .progress
+                //-       .progress-bar.bg-secondary(style='width: 100%;') No Data
+          // end of third row
+        // end of card body
+      // end of card
+      // footer
+      include _footer_2
+      // end of footer
+    // end of col-xl-10 col-md-9 ms-auto
+

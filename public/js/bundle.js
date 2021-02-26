@@ -6603,7 +6603,7 @@ try {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.organicVsPaidChart = void 0;
+exports.organicComparison = exports.organicVsPaidChart = void 0;
 
 //Organic vs Paid Chart
 var organicVsPaidChart = function organicVsPaidChart(selector, graphs) {
@@ -6653,55 +6653,65 @@ var organicVsPaidChart = function organicVsPaidChart(selector, graphs) {
 
 exports.organicVsPaidChart = organicVsPaidChart;
 
-if (document.getElementById('organicComparison')) {
-  var chartOrganicComparison = document.getElementById('organicComparison').getContext('2d');
-  var organicComparison = new Chart(chartOrganicComparison, {
+var organicComparison = function organicComparison(selector, graphs) {
+  var chartOrganicComparison = document.getElementById("".concat(selector)).getContext('2d');
+  var datasets = [];
+
+  for (var i = 0; i < graphs.length; i++) {
+    var bgColor = void 0,
+        bdColor = void 0;
+
+    if (i == 0) {
+      bgColor = 'rgba(255, 99, 132, 0.2)', bdColor = 'rgba(255, 99, 132, 1)';
+    }
+
+    ;
+
+    if (i == 1) {
+      bgColor = 'rgba(54, 162, 235, 0.2)', bdColor = 'rgba(54, 162, 235, 1)';
+    }
+
+    ;
+
+    if (i == 2) {
+      bgColor = 'rgba(255, 206, 86, 0.2)', bdColor = 'rgba(255, 206, 86, 1)';
+    }
+
+    ;
+
+    if (i == 3) {
+      bgColor = 'rgba(153, 102, 255, 0.2)', bdColor = 'rgba(153, 102, 255, 1)';
+    }
+
+    ;
+
+    if (i == 4) {
+      bgColor = 'rgba(75, 192, 192, 0.2)', bdColor = 'rgba(75, 192, 192, 1)';
+    }
+
+    ;
+    var anObject = {
+      label: graphs[i].name,
+      data: graphs[i]._doc.organicClicks,
+      backgroundColor: [bgColor],
+      borderColor: [bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor, bdColor],
+      borderWidth: 1
+    };
+    datasets.push(anObject);
+  }
+
+  new Chart(chartOrganicComparison, {
     type: 'line',
     data: {
-      labels: ["Jan '20", "Feb '20", "Mar '20", "Apr '20", "May '20", "Jun '20", "Jul '20", "Aug '20", "Sep '20", "Oct '20", "Nov '20", "Dec '20"],
-      datasets: [{
-        //Site 1
-        label: 'Site 1',
-        data: [4776, 6071, 5384, 4870, 8126, 5784, 4642, 4713, 4666, 5667, 4867, 4724],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-        borderWidth: 1
-      }, {
-        //Site 2
-        label: 'Site 2',
-        data: [1594, 1988, 2033, 5648, 5548, 4138, 5097, 3954, 2548, 4460, 3800, 6066],
-        backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-        borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-        borderWidth: 1
-      }, {
-        //Site 3
-        label: 'Site 3',
-        data: [2776, 4071, 1384, 870, 1126, 3784, 6642, 7713, 5666, 6667, 7867, 5724],
-        backgroundColor: ['rgba(255, 206, 86, 0.2)'],
-        borderColor: ['rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 1)'],
-        borderWidth: 1
-      }, {
-        //Site 4
-        label: 'Site 4',
-        data: [1776, 2071, 3384, 1870, 2126, 784, 3642, 2713, 3666, 2667, 1867, 2724],
-        backgroundColor: ['rgba(153, 102, 255, 0.2)'],
-        borderColor: ['rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)'],
-        borderWidth: 1
-      }, {
-        //Site 5
-        label: 'Site 5',
-        data: [8776, 9071, 10384, 11870, 12126, 11784, 13642, 12713, 12666, 10667, 9867, 8724],
-        backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)'],
-        borderWidth: 1
-      }]
+      labels: graphs[0]._doc.categories,
+      datasets: datasets
     },
     options: {
       title: {
         display: true,
         text: 'Organic Clicks Comparision',
         fontFamily: 'Montserrat',
-        fontSize: 22,
+        fontSize: 20,
         fontColor: '#333',
         fontStyle: 'normal'
       },
@@ -6718,8 +6728,10 @@ if (document.getElementById('organicComparison')) {
       }
     }
   });
-} //Paid Clicks Comparison
+}; //Paid Clicks Comparison
 
+
+exports.organicComparison = organicComparison;
 
 if (document.getElementById('paidComparison')) {
   var chartPaidComparison = document.getElementById('paidComparison').getContext('2d');
@@ -8653,7 +8665,7 @@ var login = /*#__PURE__*/function () {
               (0, _alerts.showAlert)('success', 'Logged in successfully!');
               window.setTimeout(function () {
                 location.assign('/overview');
-              }, 1000);
+              }, 500);
             }
 
             _context.next = 10;
@@ -8700,7 +8712,7 @@ var logout = /*#__PURE__*/function () {
               (0, _alerts.showAlert)('success', 'Logging out please wait..');
               window.setTimeout(function () {
                 location.assign('/');
-              }, 1000);
+              }, 500);
             }
 
             _context2.next = 10;
@@ -9095,6 +9107,12 @@ if (document.getElementById('organicVsPaidFifth')) {
   (0, _charts.organicVsPaidChart)('organicVsPaidFifth', _graphs4);
 }
 
+if (document.getElementById('organicComparison')) {
+  var _graphs5 = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
+
+  (0, _charts.organicComparison)('organicComparison', _graphs5);
+}
+
 if (loginForm) {
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -9196,7 +9214,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60864" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58564" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

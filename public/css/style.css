@@ -58,6 +58,10 @@ body {
 	box-shadow: 5px, 7px, 25px, #999;
 }
 
+.dark-bg {
+	background-color: #333943f5 !important;
+}
+
 .bottom-border {
 	border-bottom: 1px groove #c5c5c5;
 }
@@ -74,9 +78,10 @@ body {
 	border-right: 1px solid #6c757d;
 }
 
-.custom-border {
-	border-radius: 9px;
+.card-border {
+	border-radius: 5px;
 	border: 0.5px solid #c5c5c5;
+	background-color: #9da6af;
 }
 
 .sidebar-link {
@@ -121,7 +126,7 @@ body {
 }
 
 .current {
-	background-color: rgba(173, 122, 122, 0.884);
+	background-color: rgb(142 76 76);
 	border-radius: 5px;
 	box-shadow: 2px 5px 10px #111;
 	transition: all 0.3s;
@@ -147,19 +152,19 @@ body {
 /* end of navbar */
 
 /* graph */
-.graph-box-1 {
+.graph-box-one {
 	border-left: 5px solid rgba(255, 99, 132, 1);
 }
-.graph-box-2 {
+.graph-box-two {
 	border-left: 5px solid rgba(54, 162, 235, 1);
 }
-.graph-box-3 {
+.graph-box-three {
 	border-left: 5px solid rgba(255, 206, 86, 1);
 }
-.graph-box-4 {
+.graph-box-four {
 	border-left: 5px solid rgba(153, 102, 255, 1);
 }
-.graph-box-5 {
+.graph-box-five {
 	border-left: 5px solid rgba(75, 192, 192, 1);
 }
 
