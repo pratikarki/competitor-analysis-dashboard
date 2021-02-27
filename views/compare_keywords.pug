@@ -1,0 +1,102 @@
+extends base_2 
+
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/profile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/overview') Overview
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/metrics') Compare Metrics
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/keywords') Compare Keyword
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+            .row.align-items-center
+              .col.text-center
+                h4.text-light.text-uppercase.mb-0 Keywords Comparison
+          //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .col-xl-10.col-md-9.ms-auto
+      .card.card-bg.m-4
+        .card-body.mx-3.p-0
+          // first row
+          each val, i in domain.keywords.allTypes
+            .pt-5
+              h3.text-muted.pb-3.m-0.text-uppercase= domain.keywords.allTypes[i]
+              .row.mb-5.card-common.card-no-bg
+                .col-2.text-center.thead-pad
+                  .row.align-items-center.border-top(style='height: 204px;')
+                    // 1row=40.8px , 5rows=204px
+                    strong= domain.name
+                  each site in competitors 
+                    .row.align-items-center.border-top(style='height: 204px;')
+                      strong= site.name
+                .col-10.p-0(style='border: 0.5px solid black;')
+                  table.table.table-hover.bg-light.text-center.m-0
+                    thead
+                      tr.text-muted
+                        th.col-5.ps-4.align-lt= domain.keywords.allTypes[i]
+                        th Search Volume
+                        th Seo Clicks
+                        th Rank
+                        th Clicks
+                    tbody
+                      each key, j in domain.keywords.allSeoClicks[i]
+                        tr
+                          td.align-lt.ps-4.vertical-border-dark= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
+                            span(style='float: right;')
+                              i.text-muted.fal.fa-times.cross(onclick='')
+                          td= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                          td= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                          td= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                          td= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                    
+                    each site in competitors
+                      tbody
+                        each key, k in site.keywords.allSeoClicks[i]
+                          tr
+                            td.align-lt.ps-4.vertical-border-dark= `${site.keywords.allKeywords[i][k] ? site.keywords.allKeywords[i][k] : '-'}`
+                              span(style='float: right;')
+                                i.text-muted.fal.fa-times.cross(onclick='')
+                            td= `${site.keywords.allSearchVolumes[i][k] ? site.keywords.allSearchVolumes[i][k] : '-'}`
+                            td= `${site.keywords.allSeoClicks[i][k] ? site.keywords.allSeoClicks[i][k] : '-'}`
+                            td= `${site.keywords.allRanks[i][k] ? site.keywords.allRanks[i][k] : '-'}`
+                            td= `${site.keywords.allMonthlyClicks[i][k] ? site.keywords.allMonthlyClicks[i][k] : '-'}`
+
+          // end of first row
+        // end of card body
+      // end of card
+      // footer
+      include _footer_2
+      // end of footer
+    // end of col-xl-10 col-md-9 ms-auto

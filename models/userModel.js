@@ -121,14 +121,6 @@ userSchema.pre(/^find/, function(next) {
     this.find({ accountActive: { $ne: false } });
     next();
 })
-//POPULATE EACH findById QUERY
-// userSchema.pre('findById', function(next) {
-//     this.populate({
-//         path: 'domain_id competitorSites',
-//         select: '-__v'
-//     });
-//     next();
-// })
 
 //INSTANCE METHODS: available on all documents of a collection
 userSchema.methods.checkPassword = async function (candidatePW, userPW) {

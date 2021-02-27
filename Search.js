@@ -362,7 +362,7 @@ async function getBacklinksData() {
   }
 }
 
-getDomainID();
-// getKeywordsData();
+// getDomainID();
+getKeywordsData();
 // getTopPagesData();
 // getBacklinksData();

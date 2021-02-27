@@ -1,4 +1,4 @@
-# Ignore node_modules folder
+#Ignore node_modules folder
 node_modules/
 
 #Ignore config.env
@@ -6,3 +6,6 @@ config.env
 
 #Ignore .cache folder
 .cache
+
+#Ignore .vscode folder
+.vscode

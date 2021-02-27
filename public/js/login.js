@@ -32,7 +32,7 @@ export const logout = async() => {
     })
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Logging out please wait..');
+      showAlert('success', 'Logging you out please wait..');
       window.setTimeout(() => {
         location.assign('/');
       }, 500);

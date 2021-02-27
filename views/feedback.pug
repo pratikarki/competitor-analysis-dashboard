@@ -1,0 +1,88 @@
+extends base_2 
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/profile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/overview') Overview
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/metrics') Compare Metrics
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/keywords') Compare Keyword
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/feedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+            .row.align-items-center
+              .col.text-center
+                h4.text-light.text-uppercase.mb-0 Feedback
+          //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .col-xl-10.col-md-9.ms-auto
+      form.form--feedback.m-5.mt-4
+        .card.card-b1.p-5
+          .card-body.p-4.text-center
+            p.lead We would appreciate your feedback to improve our website.
+            p.pt-3.m-0 How would your rate this application?
+            .stars.pt-4
+              .star-widget
+                input#rate-5(type='radio' name='rate' value='5')
+                label.fas.fa-star.fa-2x(for='rate-5')
+                input#rate-4(type='radio' name='rate' value='4')
+                label.fas.fa-star.fa-2x(for='rate-4')
+                input#rate-3(type='radio' name='rate' value='3')
+                label.fas.fa-star.fa-2x(for='rate-3')
+                input#rate-2(type='radio' name='rate' value='2')
+                label.fas.fa-star.fa-2x(for='rate-2')
+                input#rate-1(type='radio' name='rate' value='1')
+                label.fas.fa-star.fa-2x(for='rate-1')
+            hr.bottom-border.mx-4.my-5
+            p Please select your feedback category below:
+            .py-4
+              button#suggestion.btn.btn-outline-secondary.my-xl-0.my-3.card-common.custom-hover(value='suggestion') Suggestion
+              button#somethingWrong.btn.btn-outline-secondary.mx-5.card-common.custom-hover(value='something wrong')
+                | Something isn&apos;t
+                br
+                | quite right
+              button#compliment.btn.btn-outline-secondary.my-xl-0.my-3.card-common.custom-hover(value='compliment') Compliment
+            hr.bottom-border.mx-4.my-3
+            .m-5
+              p.pb-3 Please leave your feedback below:
+              textarea#feedbackMessage.form-control(name='feedbackMessage' cols='0' rows='13' placeholder='Write a message..')
+            button#btn--send.btn.btn-outline-secondary.card-common.custom-hoverTwo(type='submit' data-toggle='modal' data-target='#thanks_modal')
+              i.fal.fa-paper-plane.pe-2
+              | Send
+          // end of card body
+        // end of card
+      // footer
+      include _footer_2
+      // end of footer
+    // end of col-xl-10 col-md-9 ms-auto
+

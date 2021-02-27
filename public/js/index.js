@@ -2,12 +2,23 @@ import '@babel/polyfill';
 import { organicVsPaidChart, organicComparison } from './charts';
 import { login, logout } from './login';
 import { updateUserProfile } from './updateUser'
+import { sendFeedback } from './sendFeedback'
 
 // DOM ELEMENTS
+const year = document.getElementById('year');
 const loginForm = document.querySelector('.form--login');
 const logoutBtn = document.getElementById('logout_Btn');
-const userProfileForm = document.querySelector('.form--profile');
+const profileForm = document.querySelector('.form--profile');
+const pwToggle = document.querySelector('.pwToggle');
+const pwToggleConfirm = document.querySelector('.pwToggleConfirm');
+const btnSuggestion = document.getElementById('suggestion');
+const btnSomethingWrong = document.getElementById('somethingWrong');
+const btnCompliment = document.getElementById('compliment');
+const feedbackForm = document.querySelector('.form--feedback');
 
+if (year) {
+  year.innerHTML = ` ${new Date().getFullYear()}`;
+}
 
 if (document.getElementById('organicVsPaid')) {
   const graphs = JSON.parse(document.getElementById('organicVsPaid').dataset.graphs);
@@ -30,7 +41,6 @@ if (document.getElementById('organicVsPaidFifth')) {
   organicVsPaidChart('organicVsPaidFifth', graphs);
 }
 
-
 if (document.getElementById('organicComparison')) {
   const graphs = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
   organicComparison('organicComparison', graphs);
@@ -51,7 +61,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener('click', logout);
 }
 
-if (userProfileForm) {
+if (profileForm) {
   addEventListener('submit', async (event) => {
     event.preventDefault();
     document.getElementById('btn--save').textContent = 'Saving...';
@@ -73,5 +83,100 @@ if (userProfileForm) {
     document.getElementById('currentpassword').value = '';
     document.getElementById('newpassword').value = '';
     document.getElementById('confirmpassword').value = '';
+  })
+}
+
+if (pwToggle) {
+  pwToggle.addEventListener('click', function (event) {
+    event.preventDefault();
+    const password = document.querySelector('#password');
+    // toggle & set the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle eye slash icon
+    try {
+      this.childNodes[0].classList.toggle('fa-eye-slash');
+      this.childNodes[0].classList.toggle('fa-eye');
+    }
+    catch {
+      this.childNodes[1].classList.toggle('fa-eye-slash');
+      this.childNodes[1].classList.toggle('fa-eye');
+    }
+  });
+}
+
+if (pwToggleConfirm) {
+  pwToggleConfirm.addEventListener('click', function (event) {
+    event.preventDefault();
+    const password = document.querySelector('#confirmPassword');
+    // toggle & set the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle eye slash icon
+    try {
+      this.childNodes[0].classList.toggle('fa-eye-slash');
+      this.childNodes[0].classList.toggle('fa-eye');
+    }
+    catch {
+      this.childNodes[1].classList.toggle('fa-eye-slash');
+      this.childNodes[1].classList.toggle('fa-eye');
+    }
+  });
+}
+
+if (btnSuggestion) {
+  btnSuggestion.addEventListener('click', function (event) {
+    event.preventDefault();
+    btnSuggestion.parentElement.childNodes.forEach(el => {
+      if (el.classList.contains('select-btn')) {
+        el.classList.remove('select-btn');
+      }
+    })
+    btnSuggestion.classList.add('select-btn');
+  })
+}
+if (btnSomethingWrong) {
+  btnSomethingWrong.addEventListener('click', function (event) {
+    event.preventDefault();
+    btnSomethingWrong.parentElement.childNodes.forEach(el => {
+      if (el.classList.contains('select-btn')) {
+        el.classList.remove('select-btn');
+      }
+    })
+    btnSomethingWrong.classList.add('select-btn');
+  })
+}
+if (btnCompliment) {
+  btnCompliment.addEventListener('click', function (event) {
+    event.preventDefault();
+    btnCompliment.parentElement.childNodes.forEach(el => {
+      if (el.classList.contains('select-btn')) {
+        el.classList.remove('select-btn');
+      }
+    })
+    btnCompliment.classList.add('select-btn');
+  })
+}
+
+if (feedbackForm) {
+  addEventListener('submit', async (event) => {
+    event.preventDefault();
+    document.getElementById('btn--send').textContent = 'Sending...';
+
+    let rating;
+    if (document.querySelector('input[name="rate"]:checked')) {
+      rating = document.querySelector('input[name="rate"]:checked').value;
+    } else { rating = undefined }
+
+    let category;
+    if (document.querySelector('.select-btn')) {
+      category = document.querySelector('.select-btn').value;
+    } else { category = undefined }
+
+    let message = document.getElementById('feedbackMessage').value;
+    if (message == '') { message = undefined }
+
+    await sendFeedback({ rating, category, message });
+    document.getElementById('btn--send').textContent = 'Send';
   })
 }

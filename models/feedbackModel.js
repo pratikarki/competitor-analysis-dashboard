@@ -9,15 +9,18 @@ const feedbackSchema = mongoose.Schema({
     rating: {
         type: Number,
         min: 1,
-        max: 5
+        max: 5,
+        required: [true, 'Please select a rating for this application']
     },
     category: {
         type: String,
-        enum: ['suggestion', 'somethingNotRight', 'compliment'],
+        enum: ['suggestion', 'something wrong', 'compliment'],
+        required: [true, 'Select a category about your feedback']
     },
     message: {
         type: String,
-        required: [true, 'Feedback message can not be empty']
+        required: [true, 'Please write a message for us'],
+        unique: true
     },
     createdAt: {
         type: Date,
@@ -26,7 +29,7 @@ const feedbackSchema = mongoose.Schema({
 })
 
 // combination of (from & message) fields has to be unique // prevents duplicate feedbacks
-feedbackSchema.index({ from: 1, message: 1 }, { unique: true });
+// feedbackSchema.index({ from: 1, message: 1 }, { unique: true });
 
 feedbackSchema.pre(/^find/, function(next) {
   this.populate();

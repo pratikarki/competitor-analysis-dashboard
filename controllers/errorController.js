@@ -19,6 +19,9 @@ const handleDuplicateFieldsDB = err => {
   else if (err.keyValue.url) {
     message = `Duplicate Url: '${err.keyValue.url}'. Please use another Url!`;
   }
+  else if (err.keyValue.message) {
+    message = 'Seems like we already have that exact same message, Please send us something new';
+  }
   return new AppError(message, 400);
 }
 

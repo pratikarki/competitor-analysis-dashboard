@@ -21,15 +21,11 @@ exports.getRegisterPage = (req, res) => {
 }
 
 exports.getOverviewPage = catchAsync(async (req, res, next) => {
-  // 1. Get all data from collection
   if (!req.user) {
     const err = new AppError('You are not logged in to view this dashboard. Please login to proceed.', 403);
     return next(err);
   }
   const user = req.user;
-  // 2. Build template
-
-  // 3. Render template using the domain data
   res.status(200).render('overview', {
     title: 'Overview',
     user: user,
@@ -39,17 +35,27 @@ exports.getOverviewPage = catchAsync(async (req, res, next) => {
 })
 
 exports.getMetricsPage = catchAsync(async (req, res, next) => {
-  // 1. Get all data from collection
   if (!req.user) {
     const err = new AppError('You are not logged in to view this dashboard. Please login to proceed.', 403);
     return next(err);
   }
   const user = req.user;
-  // 2. Build template
-
-  // 3. Render template using the domain data
   res.status(200).render('compare_metrics', {
     title: 'Metrics Comparison',
+    user: user,
+    domain: user.domain_id,
+    competitors: user.competitorSites
+  });
+})
+
+exports.getKeywordsPage = catchAsync(async (req, res, next) => {
+  if (!req.user) {
+    const err = new AppError('You are not logged in to view this dashboard. Please login to proceed.', 403);
+    return next(err);
+  }
+  const user = req.user;
+  res.status(200).render('compare_keywords', {
+    title: 'Keywords Comparison',
     user: user,
     domain: user.domain_id,
     competitors: user.competitorSites
@@ -62,5 +68,13 @@ exports.getProfilePage = (req, res) => {
     title: `Profile | ${user.fullName.split(' ')[0]}`,
     user: user,
     domain: user.domain_id,
+  })
+}
+
+exports.getFeedbackPage = (req, res) => {
+  const user = req.user;
+  res.status(200).render('feedback', {
+    title: `Feedback`,
+    user: user
   })
 }
