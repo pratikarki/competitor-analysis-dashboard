@@ -14,7 +14,7 @@ block header
               br
               | Analysis
             .text-center
-              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
               p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
             .text-center.bottom-border
               .pb-3
@@ -52,14 +52,14 @@ block content
                 h4.text-uppercase.mt-3.mb-2 Edit Information
                 .row.my-5.p-0
                   .col-xl-5.text-center
-                    img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='230px' width='230px' alt='User Image')
+                    img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='230px' width='230px' alt='User Image')
                   .col-xl-7.align-self-center(style='padding-right: 22px')
-                    label.mb-2(for='file') Upload an Image
-                    input#file.form-control.mb-2(type='file')
+                    label.mb-2(for='photo') Upload an Image
+                    input#photo.form-control.mb-2(type='file', name='photo', accept='image/*')
                     small#fileHelp.form-text.text-muted
-                      | Acceptable format jpeg and png only.
-                      br
-                      | Max file size 50kb.
+                      | Any image format is acceptable.
+                      //- br
+                      //- | Max file size 1024kb.
               // end of first row
               // second row
               .row.mx-2.mb-5.justify-content-around.card-no-bg.profile-row

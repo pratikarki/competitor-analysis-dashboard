@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
     },
     userName: { 
         type: String,
-        required: [true, 'A user must have a username'],
+        // required: [true, 'A user must have a username'],
         unique: [true, 'Username cannot be duplicate'],
         trim: true,
         maxlength: [15, 'Username must have less than 15 characters'],
@@ -44,13 +44,16 @@ const userSchema = mongoose.Schema({
           validator: function(el) {
             return el === this.password;
           },
-          message: 'Your confirm Password do not match'
+          message: 'Your confirm password do not match'
         }
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
-    photo: String,
+    photo: {
+        type: String,
+        default: 'defaultUser.jpg'
+    },
     accountActive: {
         type: Boolean,
         default: true,
@@ -145,7 +148,7 @@ userSchema.methods.createPasswordResetToken = function() {
     this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
     this.passwordResetExpires = Date.now() + 10*60*1000;
   
-    console.log({resetToken}, this.passwordResetToken);
+    // console.log({resetToken}, this.passwordResetToken);
     return resetToken;
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const updateUserProfile = async (data) => {
+export const updateProfile = async (data) => {
   try {
     const res = await axios({
       method: 'PATCH',

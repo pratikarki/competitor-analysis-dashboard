@@ -15,7 +15,7 @@ block header
               br
               | Analysis
             .text-center
-              img.rounded-circle(src=`${(user.photo) ? `/images/${user.photo}`: `/images/dummyUser.jpg`}` height='80px' width='80px' alt='User Image')
+              img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
               p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
             .text-center.bottom-border
               .pb-3

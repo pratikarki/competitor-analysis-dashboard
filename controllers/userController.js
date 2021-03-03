@@ -1,7 +1,41 @@
+const multer = require('multer');
+const sharp = require('sharp');
 const User = require('../models/userModel');
 const factory = require('./factoryHandler');
-// const AppError = require('../utils/appError');
+const AppError = require('../utils/appError');
 // const catchAsync = require('../utils/catchAsync');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  }
+  else {
+    const err = new AppError('Not an image, Please upload an image file', 400);
+    cb(err, false);
+  }
+}
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+exports.uploadPhoto = upload.single('photo');
+
+exports.resizePhoto = (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/images/users/${req.file.filename}`)
+  
+  next();
+}
 
 exports.getAllUsers = factory.getAll(User, { path: 'domain_id competitorSites feedbacks', select: 'name' });
 

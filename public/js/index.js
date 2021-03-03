@@ -1,12 +1,17 @@
 import '@babel/polyfill';
 import { organicVsPaidChart, organicComparison } from './charts';
 import { login, logout } from './login';
-import { updateUserProfile } from './updateUser'
-import { sendFeedback } from './sendFeedback'
+import { updateProfile } from './updateUser';
+import { sendFeedback } from './sendFeedback';
+import { forgotPass } from './forgotPass';
+import { resetPass } from './resetPass';
+
 
 // DOM ELEMENTS
 const year = document.getElementById('year');
 const loginForm = document.querySelector('.form--login');
+const forgotForm = document.querySelector('.form--forgot');
+const resetForm = document.querySelector('.form--reset');
 const logoutBtn = document.getElementById('logout_Btn');
 const profileForm = document.querySelector('.form--profile');
 const pwToggle = document.querySelector('.pwToggle');
@@ -57,6 +62,26 @@ if (loginForm) {
   })
 }
 
+if (forgotForm) {
+  forgotForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const email = document.getElementById('forgotEmail').value;
+
+    forgotPass(email);
+  })
+}
+
+if (resetForm) {
+  resetForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const path = window.location.pathname;
+
+    resetPass(password, confirmPassword, path);
+  })
+}
+
 if (logoutBtn) {
   logoutBtn.addEventListener('click', logout);
 }
@@ -66,17 +91,23 @@ if (profileForm) {
     event.preventDefault();
     document.getElementById('btn--save').textContent = 'Saving...';
 
-    const fullName = document.getElementById('fullName').value;
-    const userName = document.getElementById('userName').value;
+    const form = new FormData();
+    form.append('fullName', document.getElementById('fullName').value);
+    form.append('userName', document.getElementById('userName').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+
     const currentPassword = document.getElementById('currentpassword').value;
     const newPassword = document.getElementById('newpassword').value;
     const confirmPassword = document.getElementById('confirmpassword').value;
 
     if (currentPassword === '' || newPassword === '' || confirmPassword === '') {
-      await updateUserProfile({ fullName, userName });
+      await updateProfile(form);
     }
     else {
-      await updateUserProfile({ fullName, userName, currentPassword, newPassword, confirmPassword });
+      form.append('currentPassword', currentPassword);
+      form.append('newPassword', newPassword);
+      form.append('confirmPassword', confirmPassword);
+      await updateProfile(form);
     }
 
     document.getElementById('btn--save').textContent = 'Save Profile';

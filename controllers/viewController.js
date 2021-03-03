@@ -1,4 +1,5 @@
-const Domain = require('../models/domainModel');
+const crypto = require('crypto');
+const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -77,4 +78,26 @@ exports.getFeedbackPage = (req, res) => {
     title: `Feedback`,
     user: user
   })
+}
+
+
+exports.getPasswordForgotPage = (req, res) => {
+  res.status(200).render('passwordForgot', {
+    title: 'Forgot Password'
+  });
+}
+
+exports.getPasswordResetPage = async (req, res, next) => {
+  //Get user based on the token
+  const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+  const user = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } });
+
+  if (!user) {
+    const err = new AppError('Your token is invalid or has expired, please try again..', 400);
+    return next(err);
+  }
+
+  res.status(200).render('passwordReset', {
+    title: 'Reset Password'
+  });
 }

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
-const sendEmail = require('../utils/email');
+const Email = require('../utils/email');
 const catchAsync = require('../utils/catchAsync');
 
 const signToken = id => jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -52,6 +52,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     country: req.body.country,
     domain_id: req.body.domain_id
   })
+
+  const url = `${req.protocol}://${req.get('host')}/profile`;
+  await new Email(newUser, url).sendWelcome();
+
   createAndSendToken(newUser, 201, res);
 })
 
@@ -168,15 +172,9 @@ exports.forgotPassword = catchAsync(async (req, res, next)  => {
   user.save({ validateBeforeSave: false });
 
   //3. Send it to user's email
-  const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
-  const message = `Forgot password? Click the link below to reset your password:\n${resetURL}.\nIf not so, please ignore this email.`;
-
   try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Your password reset token (Only valid for 10 minutes)',
-      message
-    })
+    const resetURL = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
+    await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({
       status: 'success',
@@ -227,7 +225,8 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
   if (req.body.fullName || req.body.userName) {
     //1. Filter only the fields to be updated ie 'fullName' and 'userName'
     const filteredBody = filterObj(req.body, 'fullName', 'userName');
-
+    if (req.file) filteredBody.photo = req.file.filename;
+    
     //2. Update user document
     user = await User.findByIdAndUpdate(req.user.id, filteredBody, { new: true, runValidators: true });
   }
