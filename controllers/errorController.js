@@ -11,13 +11,13 @@ const handleDuplicateFieldsDB = err => {
     message = `Duplicate userName: '${err.keyValue.userName}'. Sorry, the username is already taken`;
   }
   else if (err.keyValue.email) {
-    message = `Duplicate email: '${err.keyValue.email}'. Sorry, the email is already taken`;
+    message = `Duplicate email: '${err.keyValue.email}'. Sorry, the email has already been used`;
   }
   else if (err.keyValue.name) {
-    message = `Duplicate Domain Name: '${err.keyValue.name}'. Please use another domain name!`;
+    message = `Duplicate Domain Name: '${err.keyValue.name}'. Domain cannot be duplicate in database`;
   }
   else if (err.keyValue.url) {
-    message = `Duplicate Url: '${err.keyValue.url}'. Please use another Url!`;
+    message = `Duplicate Url: '${err.keyValue.url}'. Url cannot be duplicate in database`;
   }
   else if (err.keyValue.message) {
     message = 'Seems like we already have that exact same message, Please send us something new';

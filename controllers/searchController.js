@@ -1,10 +1,14 @@
-//Scraping information from alexa
+//Scraping from Alexa and Getting data from Spyfu
 const axios = require('axios');
 const cheerio = require('cheerio');
 const lookup = require('country-code-lookup');
 
+// import axios from 'axios';
+// import cheerio from 'cheerio';
+// import lookup from 'country-code-lookup';
 
-const getDomainData = async (domain) => {
+
+exports.getDomainData = async (domain) => {
   // define an object
   let domainID;
   let data = {
@@ -463,8 +467,6 @@ const getDomainData = async (domain) => {
   await getBacklinks();
 
   //return the object containing data
-  console.log(data);
-  // return data;
+  // console.log(data);
+  return data;
 }
-
-getDomainData('flipkart.com');

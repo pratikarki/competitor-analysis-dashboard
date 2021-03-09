@@ -6690,6 +6690,12 @@ var organicComparison = function organicComparison(selector, graphs) {
     }
 
     ;
+
+    if (i == 5) {
+      bgColor = 'rgba(135, 135, 135, 0.2)', bdColor = 'rgba(128, 128, 128, 1)';
+    }
+
+    ;
     var anObject = {
       label: graphs[i].name,
       data: graphs[i]._doc.organicClicks,
@@ -9010,6 +9016,1916 @@ var resetPass = /*#__PURE__*/function () {
 }();
 
 exports.resetPass = resetPass;
+},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"../../node_modules/is-valid-domain/data/sldMap.json":[function(require,module,exports) {
+module.exports = {
+  "com.ac": true,
+  "net.ac": true,
+  "gov.ac": true,
+  "org.ac": true,
+  "mil.ac": true,
+  "co.ae": true,
+  "net.ae": true,
+  "gov.ae": true,
+  "ac.ae": true,
+  "sch.ae": true,
+  "org.ae": true,
+  "mil.ae": true,
+  "pro.ae": true,
+  "name.ae": true,
+  "com.af": true,
+  "edu.af": true,
+  "gov.af": true,
+  "net.af": true,
+  "org.af": true,
+  "com.al": true,
+  "edu.al": true,
+  "gov.al": true,
+  "mil.al": true,
+  "net.al": true,
+  "org.al": true,
+  "ed.ao": true,
+  "gv.ao": true,
+  "og.ao": true,
+  "co.ao": true,
+  "pb.ao": true,
+  "it.ao": true,
+  "com.ar": true,
+  "edu.ar": true,
+  "gob.ar": true,
+  "gov.ar": true,
+  "int.ar": true,
+  "mil.ar": true,
+  "net.ar": true,
+  "org.ar": true,
+  "tur.ar": true,
+  "gv.at": true,
+  "ac.at": true,
+  "co.at": true,
+  "or.at": true,
+  "com.au": true,
+  "net.au": true,
+  "org.au": true,
+  "edu.au": true,
+  "gov.au": true,
+  "csiro.au": true,
+  "asn.au": true,
+  "id.au": true,
+  "vic.au": true,
+  "sa.au": true,
+  "wa.au": true,
+  "nt.au": true,
+  "tas.au": true,
+  "qld.au": true,
+  "act.au": true,
+  "conf.au": true,
+  "oz.au": true,
+  "org.ba": true,
+  "net.ba": true,
+  "edu.ba": true,
+  "gov.ba": true,
+  "mil.ba": true,
+  "unsa.ba": true,
+  "untz.ba": true,
+  "unmo.ba": true,
+  "unbi.ba": true,
+  "unze.ba": true,
+  "co.ba": true,
+  "com.ba": true,
+  "rs.ba": true,
+  "co.bb": true,
+  "com.bb": true,
+  "net.bb": true,
+  "org.bb": true,
+  "gov.bb": true,
+  "edu.bb": true,
+  "info.bb": true,
+  "store.bb": true,
+  "tv.bb": true,
+  "biz.bb": true,
+  "com.bh": true,
+  "info.bh": true,
+  "cc.bh": true,
+  "edu.bh": true,
+  "biz.bh": true,
+  "net.bh": true,
+  "org.bh": true,
+  "gov.bh": true,
+  "com.bn": true,
+  "edu.bn": true,
+  "gov.bn": true,
+  "net.bn": true,
+  "org.bn": true,
+  "com.bo": true,
+  "net.bo": true,
+  "org.bo": true,
+  "tv.bo": true,
+  "mil.bo": true,
+  "int.bo": true,
+  "gob.bo": true,
+  "gov.bo": true,
+  "edu.bo": true,
+  "adm.br": true,
+  "adv.br": true,
+  "agr.br": true,
+  "am.br": true,
+  "arq.br": true,
+  "art.br": true,
+  "ato.br": true,
+  "b.br": true,
+  "bio.br": true,
+  "blog.br": true,
+  "bmd.br": true,
+  "cim.br": true,
+  "cng.br": true,
+  "cnt.br": true,
+  "com.br": true,
+  "coop.br": true,
+  "ecn.br": true,
+  "edu.br": true,
+  "eng.br": true,
+  "esp.br": true,
+  "etc.br": true,
+  "eti.br": true,
+  "far.br": true,
+  "flog.br": true,
+  "fm.br": true,
+  "fnd.br": true,
+  "fot.br": true,
+  "fst.br": true,
+  "g12.br": true,
+  "ggf.br": true,
+  "gov.br": true,
+  "imb.br": true,
+  "ind.br": true,
+  "inf.br": true,
+  "jor.br": true,
+  "jus.br": true,
+  "lel.br": true,
+  "mat.br": true,
+  "med.br": true,
+  "mil.br": true,
+  "mus.br": true,
+  "net.br": true,
+  "nom.br": true,
+  "not.br": true,
+  "ntr.br": true,
+  "odo.br": true,
+  "org.br": true,
+  "ppg.br": true,
+  "pro.br": true,
+  "psc.br": true,
+  "psi.br": true,
+  "qsl.br": true,
+  "rec.br": true,
+  "slg.br": true,
+  "srv.br": true,
+  "tmp.br": true,
+  "trd.br": true,
+  "tur.br": true,
+  "tv.br": true,
+  "vet.br": true,
+  "vlog.br": true,
+  "wiki.br": true,
+  "zlg.br": true,
+  "com.bs": true,
+  "net.bs": true,
+  "org.bs": true,
+  "edu.bs": true,
+  "gov.bs": true,
+  "om.bz": true,
+  "du.bz": true,
+  "ov.bz": true,
+  "et.bz": true,
+  "rg.bz": true,
+  "ab.ca": true,
+  "bc.ca": true,
+  "mb.ca": true,
+  "nb.ca": true,
+  "nf.ca": true,
+  "nl.ca": true,
+  "ns.ca": true,
+  "nt.ca": true,
+  "nu.ca": true,
+  "on.ca": true,
+  "pe.ca": true,
+  "qc.ca": true,
+  "sk.ca": true,
+  "yk.ca": true,
+  "co.ck": true,
+  "org.ck": true,
+  "edu.ck": true,
+  "gov.ck": true,
+  "net.ck": true,
+  "gen.ck": true,
+  "biz.ck": true,
+  "info.ck": true,
+  "ac.cn": true,
+  "com.cn": true,
+  "edu.cn": true,
+  "gov.cn": true,
+  "mil.cn": true,
+  "net.cn": true,
+  "org.cn": true,
+  "ah.cn": true,
+  "bj.cn": true,
+  "cq.cn": true,
+  "fj.cn": true,
+  "gd.cn": true,
+  "gs.cn": true,
+  "gz.cn": true,
+  "gx.cn": true,
+  "ha.cn": true,
+  "hb.cn": true,
+  "he.cn": true,
+  "hi.cn": true,
+  "hl.cn": true,
+  "hn.cn": true,
+  "jl.cn": true,
+  "js.cn": true,
+  "jx.cn": true,
+  "ln.cn": true,
+  "nm.cn": true,
+  "nx.cn": true,
+  "qh.cn": true,
+  "sc.cn": true,
+  "sd.cn": true,
+  "sh.cn": true,
+  "sn.cn": true,
+  "sx.cn": true,
+  "tj.cn": true,
+  "tw.cn": true,
+  "xj.cn": true,
+  "xz.cn": true,
+  "yn.cn": true,
+  "zj.cn": true,
+  "com.co": true,
+  "org.co": true,
+  "edu.co": true,
+  "gov.co": true,
+  "net.co": true,
+  "mil.co": true,
+  "nom.co": true,
+  "ac.cr": true,
+  "co.cr": true,
+  "ed.cr": true,
+  "fi.cr": true,
+  "go.cr": true,
+  "or.cr": true,
+  "sa.cr": true,
+  "cr": true,
+  "ac.cy": true,
+  "net.cy": true,
+  "gov.cy": true,
+  "org.cy": true,
+  "pro.cy": true,
+  "name.cy": true,
+  "ekloges.cy": true,
+  "tm.cy": true,
+  "ltd.cy": true,
+  "biz.cy": true,
+  "press.cy": true,
+  "parliament.cy": true,
+  "com.cy": true,
+  "edu.do": true,
+  "gob.do": true,
+  "gov.do": true,
+  "com.do": true,
+  "sld.do": true,
+  "org.do": true,
+  "net.do": true,
+  "web.do": true,
+  "mil.do": true,
+  "art.do": true,
+  "com.dz": true,
+  "org.dz": true,
+  "net.dz": true,
+  "gov.dz": true,
+  "edu.dz": true,
+  "asso.dz": true,
+  "pol.dz": true,
+  "art.dz": true,
+  "com.ec": true,
+  "info.ec": true,
+  "net.ec": true,
+  "fin.ec": true,
+  "med.ec": true,
+  "pro.ec": true,
+  "org.ec": true,
+  "edu.ec": true,
+  "gov.ec": true,
+  "mil.ec": true,
+  "com.eg": true,
+  "edu.eg": true,
+  "eun.eg": true,
+  "gov.eg": true,
+  "mil.eg": true,
+  "name.eg": true,
+  "net.eg": true,
+  "org.eg": true,
+  "sci.eg": true,
+  "com.er": true,
+  "edu.er": true,
+  "gov.er": true,
+  "mil.er": true,
+  "net.er": true,
+  "org.er": true,
+  "ind.er": true,
+  "rochest.er": true,
+  "w.er": true,
+  "com.es": true,
+  "nom.es": true,
+  "org.es": true,
+  "gob.es": true,
+  "edu.es": true,
+  "com.et": true,
+  "gov.et": true,
+  "org.et": true,
+  "edu.et": true,
+  "net.et": true,
+  "biz.et": true,
+  "name.et": true,
+  "info.et": true,
+  "ac.fj": true,
+  "biz.fj": true,
+  "com.fj": true,
+  "info.fj": true,
+  "mil.fj": true,
+  "name.fj": true,
+  "net.fj": true,
+  "org.fj": true,
+  "pro.fj": true,
+  "co.fk": true,
+  "org.fk": true,
+  "gov.fk": true,
+  "ac.fk": true,
+  "nom.fk": true,
+  "net.fk": true,
+  "fr": true,
+  "tm.fr": true,
+  "asso.fr": true,
+  "nom.fr": true,
+  "prd.fr": true,
+  "presse.fr": true,
+  "com.fr": true,
+  "gouv.fr": true,
+  "co.gg": true,
+  "net.gg": true,
+  "org.gg": true,
+  "com.gh": true,
+  "edu.gh": true,
+  "gov.gh": true,
+  "org.gh": true,
+  "mil.gh": true,
+  "co.gl": true,
+  "com.gl": true,
+  "edu.gl": true,
+  "net.gl": true,
+  "org.gl": true,
+  "com.gn": true,
+  "ac.gn": true,
+  "gov.gn": true,
+  "org.gn": true,
+  "net.gn": true,
+  "com.gr": true,
+  "edu.gr": true,
+  "net.gr": true,
+  "org.gr": true,
+  "gov.gr": true,
+  "mil.gr": true,
+  "com.gt": true,
+  "edu.gt": true,
+  "net.gt": true,
+  "gob.gt": true,
+  "org.gt": true,
+  "mil.gt": true,
+  "ind.gt": true,
+  "com.gu": true,
+  "net.gu": true,
+  "gov.gu": true,
+  "org.gu": true,
+  "edu.gu": true,
+  "com.hk": true,
+  "edu.hk": true,
+  "gov.hk": true,
+  "idv.hk": true,
+  "net.hk": true,
+  "org.hk": true,
+  "2000.hu": true,
+  "agrar.hu": true,
+  "bolt.hu": true,
+  "casino.hu": true,
+  "city.hu": true,
+  "co.hu": true,
+  "erotica.hu": true,
+  "erotika.hu": true,
+  "film.hu": true,
+  "forum.hu": true,
+  "games.hu": true,
+  "hotel.hu": true,
+  "info.hu": true,
+  "ingatlan.hu": true,
+  "jogasz.hu": true,
+  "konyvelo.hu": true,
+  "lakas.hu": true,
+  "media.hu": true,
+  "news.hu": true,
+  "org.hu": true,
+  "priv.hu": true,
+  "reklam.hu": true,
+  "sex.hu": true,
+  "shop.hu": true,
+  "sport.hu": true,
+  "suli.huv": true,
+  "szex.hu": true,
+  "tm.hu": true,
+  "tozsde.hu": true,
+  "utazas.hu": true,
+  "video.hu": true,
+  "ac.id": true,
+  "co.id": true,
+  "net.id": true,
+  "or.id": true,
+  "web.id": true,
+  "sch.id": true,
+  "mil.id": true,
+  "go.id": true,
+  "war.net.id": true,
+  "my.id": true,
+  "biz.id": true,
+  "ac.il": true,
+  "co.il": true,
+  "org.il": true,
+  "net.il": true,
+  "k12.il": true,
+  "gov.il": true,
+  "muni.il": true,
+  "idf.il": true,
+  "in": true,
+  "4fd.in": true,
+  "co.in": true,
+  "firm.in": true,
+  "net.in": true,
+  "org.in": true,
+  "gen.in": true,
+  "ind.in": true,
+  "ac.in": true,
+  "edu.in": true,
+  "res.in": true,
+  "ernet.in": true,
+  "gov.in": true,
+  "mil.in": true,
+  "nic.in": true,
+  "iq": true,
+  "gov.iq": true,
+  "edu.iq": true,
+  "com.iq": true,
+  "mil.iq": true,
+  "org.iq": true,
+  "net.iq": true,
+  "ir": true,
+  "ac.ir": true,
+  "co.ir": true,
+  "gov.ir": true,
+  "id.ir": true,
+  "net.ir": true,
+  "org.ir": true,
+  "sch.ir": true,
+  "dnssec.ir": true,
+  "gov.it": true,
+  "edu.it": true,
+  "co.je": true,
+  "net.je": true,
+  "org.je": true,
+  "com.jo": true,
+  "net.jo": true,
+  "gov.jo": true,
+  "edu.jo": true,
+  "org.jo": true,
+  "mil.jo": true,
+  "name.jo": true,
+  "sch.jo": true,
+  "ac.jp": true,
+  "ad.jp": true,
+  "co.jp": true,
+  "ed.jp": true,
+  "go.jp": true,
+  "gr.jp": true,
+  "lg.jp": true,
+  "ne.jp": true,
+  "or.jp": true,
+  "co.ke": true,
+  "or.ke": true,
+  "ne.ke": true,
+  "go.ke": true,
+  "ac.ke": true,
+  "sc.ke": true,
+  "me.ke": true,
+  "mobi.ke": true,
+  "info.ke": true,
+  "per.kh": true,
+  "com.kh": true,
+  "edu.kh": true,
+  "gov.kh": true,
+  "mil.kh": true,
+  "net.kh": true,
+  "org.kh": true,
+  "com.ki": true,
+  "biz.ki": true,
+  "de.ki": true,
+  "net.ki": true,
+  "info.ki": true,
+  "org.ki": true,
+  "gov.ki": true,
+  "edu.ki": true,
+  "mob.ki": true,
+  "tel.ki": true,
+  "km": true,
+  "com.km": true,
+  "coop.km": true,
+  "asso.km": true,
+  "nom.km": true,
+  "presse.km": true,
+  "tm.km": true,
+  "medecin.km": true,
+  "notaires.km": true,
+  "pharmaciens.km": true,
+  "veterinaire.km": true,
+  "edu.km": true,
+  "gouv.km": true,
+  "mil.km": true,
+  "net.kn": true,
+  "org.kn": true,
+  "edu.kn": true,
+  "gov.kn": true,
+  "kr": true,
+  "co.kr": true,
+  "ne.kr": true,
+  "or.kr": true,
+  "re.kr": true,
+  "pe.kr": true,
+  "go.kr": true,
+  "mil.kr": true,
+  "ac.kr": true,
+  "hs.kr": true,
+  "ms.kr": true,
+  "es.kr": true,
+  "sc.kr": true,
+  "kg.kr": true,
+  "seoul.kr": true,
+  "busan.kr": true,
+  "daegu.kr": true,
+  "incheon.kr": true,
+  "gwangju.kr": true,
+  "daejeon.kr": true,
+  "ulsan.kr": true,
+  "gyeonggi.kr": true,
+  "gangwon.kr": true,
+  "chungbuk.kr": true,
+  "chungnam.kr": true,
+  "jeonbuk.kr": true,
+  "jeonnam.kr": true,
+  "gyeongbuk.kr": true,
+  "gyeongnam.kr": true,
+  "jeju.kr": true,
+  "edu.kw": true,
+  "com.kw": true,
+  "net.kw": true,
+  "org.kw": true,
+  "gov.kw": true,
+  "com.ky": true,
+  "org.ky": true,
+  "net.ky": true,
+  "edu.ky": true,
+  "gov.ky": true,
+  "com.kz": true,
+  "edu.kz": true,
+  "gov.kz": true,
+  "mil.kz": true,
+  "net.kz": true,
+  "org.kz": true,
+  "com.lb": true,
+  "edu.lb": true,
+  "gov.lb": true,
+  "net.lb": true,
+  "org.lb": true,
+  "gov.lk": true,
+  "sch.lk": true,
+  "net.lk": true,
+  "int.lk": true,
+  "com.lk": true,
+  "org.lk": true,
+  "edu.lk": true,
+  "ngo.lk": true,
+  "soc.lk": true,
+  "web.lk": true,
+  "ltd.lk": true,
+  "assn.lk": true,
+  "grp.lk": true,
+  "hotel.lk": true,
+  "com.lr": true,
+  "edu.lr": true,
+  "gov.lr": true,
+  "org.lr": true,
+  "net.lr": true,
+  "com.lv": true,
+  "edu.lv": true,
+  "gov.lv": true,
+  "org.lv": true,
+  "mil.lv": true,
+  "id.lv": true,
+  "net.lv": true,
+  "asn.lv": true,
+  "conf.lv": true,
+  "com.ly": true,
+  "net.ly": true,
+  "gov.ly": true,
+  "plc.ly": true,
+  "edu.ly": true,
+  "sch.ly": true,
+  "med.ly": true,
+  "org.ly": true,
+  "id.ly": true,
+  "ma": true,
+  "net.ma": true,
+  "ac.ma": true,
+  "org.ma": true,
+  "gov.ma": true,
+  "press.ma": true,
+  "co.ma": true,
+  "tm.mc": true,
+  "asso.mc": true,
+  "co.me": true,
+  "net.me": true,
+  "org.me": true,
+  "edu.me": true,
+  "ac.me": true,
+  "gov.me": true,
+  "its.me": true,
+  "priv.me": true,
+  "org.mg": true,
+  "nom.mg": true,
+  "gov.mg": true,
+  "prd.mg": true,
+  "tm.mg": true,
+  "edu.mg": true,
+  "mil.mg": true,
+  "com.mg": true,
+  "com.mk": true,
+  "org.mk": true,
+  "net.mk": true,
+  "edu.mk": true,
+  "gov.mk": true,
+  "inf.mk": true,
+  "name.mk": true,
+  "pro.mk": true,
+  "com.ml": true,
+  "net.ml": true,
+  "org.ml": true,
+  "edu.ml": true,
+  "gov.ml": true,
+  "presse.ml": true,
+  "gov.mn": true,
+  "edu.mn": true,
+  "org.mn": true,
+  "com.mo": true,
+  "edu.mo": true,
+  "gov.mo": true,
+  "net.mo": true,
+  "org.mo": true,
+  "com.mt": true,
+  "org.mt": true,
+  "net.mt": true,
+  "edu.mt": true,
+  "gov.mt": true,
+  "aero.mv": true,
+  "biz.mv": true,
+  "com.mv": true,
+  "coop.mv": true,
+  "edu.mv": true,
+  "gov.mv": true,
+  "info.mv": true,
+  "int.mv": true,
+  "mil.mv": true,
+  "museum.mv": true,
+  "name.mv": true,
+  "net.mv": true,
+  "org.mv": true,
+  "pro.mv": true,
+  "ac.mw": true,
+  "co.mw": true,
+  "com.mw": true,
+  "coop.mw": true,
+  "edu.mw": true,
+  "gov.mw": true,
+  "int.mw": true,
+  "museum.mw": true,
+  "net.mw": true,
+  "org.mw": true,
+  "com.mx": true,
+  "net.mx": true,
+  "org.mx": true,
+  "edu.mx": true,
+  "gob.mx": true,
+  "com.my": true,
+  "net.my": true,
+  "org.my": true,
+  "gov.my": true,
+  "edu.my": true,
+  "sch.my": true,
+  "mil.my": true,
+  "name.my": true,
+  "com.nf": true,
+  "net.nf": true,
+  "arts.nf": true,
+  "store.nf": true,
+  "web.nf": true,
+  "firm.nf": true,
+  "info.nf": true,
+  "other.nf": true,
+  "per.nf": true,
+  "rec.nf": true,
+  "com.ng": true,
+  "org.ng": true,
+  "gov.ng": true,
+  "edu.ng": true,
+  "net.ng": true,
+  "sch.ng": true,
+  "name.ng": true,
+  "mobi.ng": true,
+  "biz.ng": true,
+  "mil.ng": true,
+  "gob.ni": true,
+  "co.ni": true,
+  "com.ni": true,
+  "ac.ni": true,
+  "edu.ni": true,
+  "org.ni": true,
+  "nom.ni": true,
+  "net.ni": true,
+  "mil.ni": true,
+  "com.np": true,
+  "edu.np": true,
+  "gov.np": true,
+  "org.np": true,
+  "mil.np": true,
+  "net.np": true,
+  "edu.nr": true,
+  "gov.nr": true,
+  "biz.nr": true,
+  "info.nr": true,
+  "net.nr": true,
+  "org.nr": true,
+  "com.nr": true,
+  "com.om": true,
+  "co.om": true,
+  "edu.om": true,
+  "ac.om": true,
+  "sch.om": true,
+  "gov.om": true,
+  "net.om": true,
+  "org.om": true,
+  "mil.om": true,
+  "museum.om": true,
+  "biz.om": true,
+  "pro.om": true,
+  "med.om": true,
+  "edu.pe": true,
+  "gob.pe": true,
+  "nom.pe": true,
+  "mil.pe": true,
+  "sld.pe": true,
+  "org.pe": true,
+  "com.pe": true,
+  "net.pe": true,
+  "com.ph": true,
+  "net.ph": true,
+  "org.ph": true,
+  "mil.ph": true,
+  "ngo.ph": true,
+  "i.ph": true,
+  "gov.ph": true,
+  "edu.ph": true,
+  "com.pk": true,
+  "net.pk": true,
+  "edu.pk": true,
+  "org.pk": true,
+  "fam.pk": true,
+  "biz.pk": true,
+  "web.pk": true,
+  "gov.pk": true,
+  "gob.pk": true,
+  "gok.pk": true,
+  "gon.pk": true,
+  "gop.pk": true,
+  "gos.pk": true,
+  "pwr.pl": true,
+  "com.pl": true,
+  "biz.pl": true,
+  "net.pl": true,
+  "art.pl": true,
+  "edu.pl": true,
+  "org.pl": true,
+  "ngo.pl": true,
+  "gov.pl": true,
+  "info.pl": true,
+  "mil.pl": true,
+  "waw.pl": true,
+  "warszawa.pl": true,
+  "wroc.pl": true,
+  "wroclaw.pl": true,
+  "krakow.pl": true,
+  "katowice.pl": true,
+  "poznan.pl": true,
+  "lodz.pl": true,
+  "gda.pl": true,
+  "gdansk.pl": true,
+  "slupsk.pl": true,
+  "radom.pl": true,
+  "szczecin.pl": true,
+  "lublin.pl": true,
+  "bialystok.pl": true,
+  "olsztyn.pl": true,
+  "torun.pl": true,
+  "gorzow.pl": true,
+  "zgora.pl": true,
+  "biz.pr": true,
+  "com.pr": true,
+  "edu.pr": true,
+  "gov.pr": true,
+  "info.pr": true,
+  "isla.pr": true,
+  "name.pr": true,
+  "net.pr": true,
+  "org.pr": true,
+  "pro.pr": true,
+  "est.pr": true,
+  "prof.pr": true,
+  "ac.pr": true,
+  "com.ps": true,
+  "net.ps": true,
+  "org.ps": true,
+  "edu.ps": true,
+  "gov.ps": true,
+  "plo.ps": true,
+  "sec.ps": true,
+  "co.pw": true,
+  "ne.pw": true,
+  "or.pw": true,
+  "ed.pw": true,
+  "go.pw": true,
+  "belau.pw": true,
+  "arts.ro": true,
+  "com.ro": true,
+  "firm.ro": true,
+  "info.ro": true,
+  "nom.ro": true,
+  "nt.ro": true,
+  "org.ro": true,
+  "rec.ro": true,
+  "store.ro": true,
+  "tm.ro": true,
+  "www.ro": true,
+  "co.rs": true,
+  "org.rs": true,
+  "edu.rs": true,
+  "ac.rs": true,
+  "gov.rs": true,
+  "in.rs": true,
+  "com.sb": true,
+  "net.sb": true,
+  "edu.sb": true,
+  "org.sb": true,
+  "gov.sb": true,
+  "com.sc": true,
+  "net.sc": true,
+  "edu.sc": true,
+  "gov.sc": true,
+  "org.sc": true,
+  "co.sh": true,
+  "com.sh": true,
+  "org.sh": true,
+  "gov.sh": true,
+  "edu.sh": true,
+  "net.sh": true,
+  "nom.sh": true,
+  "com.sl": true,
+  "net.sl": true,
+  "org.sl": true,
+  "edu.sl": true,
+  "gov.sl": true,
+  "gov.st": true,
+  "saotome.st": true,
+  "principe.st": true,
+  "consulado.st": true,
+  "embaixada.st": true,
+  "org.st": true,
+  "edu.st": true,
+  "net.st": true,
+  "com.st": true,
+  "store.st": true,
+  "mil.st": true,
+  "co.st": true,
+  "edu.sv": true,
+  "gob.sv": true,
+  "com.sv": true,
+  "org.sv": true,
+  "red.sv": true,
+  "co.sz": true,
+  "ac.sz": true,
+  "org.sz": true,
+  "com.tr": true,
+  "gen.tr": true,
+  "org.tr": true,
+  "biz.tr": true,
+  "info.tr": true,
+  "av.tr": true,
+  "dr.tr": true,
+  "pol.tr": true,
+  "bel.tr": true,
+  "tsk.tr": true,
+  "bbs.tr": true,
+  "k12.tr": true,
+  "edu.tr": true,
+  "name.tr": true,
+  "net.tr": true,
+  "gov.tr": true,
+  "web.tr": true,
+  "tel.tr": true,
+  "tv.tr": true,
+  "co.tt": true,
+  "com.tt": true,
+  "org.tt": true,
+  "net.tt": true,
+  "biz.tt": true,
+  "info.tt": true,
+  "pro.tt": true,
+  "int.tt": true,
+  "coop.tt": true,
+  "jobs.tt": true,
+  "mobi.tt": true,
+  "travel.tt": true,
+  "museum.tt": true,
+  "aero.tt": true,
+  "cat.tt": true,
+  "tel.tt": true,
+  "name.tt": true,
+  "mil.tt": true,
+  "edu.tt": true,
+  "gov.tt": true,
+  "edu.tw": true,
+  "gov.tw": true,
+  "mil.tw": true,
+  "com.tw": true,
+  "net.tw": true,
+  "org.tw": true,
+  "idv.tw": true,
+  "game.tw": true,
+  "ebiz.tw": true,
+  "club.tw": true,
+  "com.mu": true,
+  "gov.mu": true,
+  "net.mu": true,
+  "org.mu": true,
+  "ac.mu": true,
+  "co.mu": true,
+  "or.mu": true,
+  "ac.mz": true,
+  "co.mz": true,
+  "edu.mz": true,
+  "org.mz": true,
+  "gov.mz": true,
+  "com.na": true,
+  "co.na": true,
+  "ac.nz": true,
+  "co.nz": true,
+  "cri.nz": true,
+  "geek.nz": true,
+  "gen.nz": true,
+  "govt.nz": true,
+  "health.nz": true,
+  "iwi.nz": true,
+  "maori.nz": true,
+  "mil.nz": true,
+  "net.nz": true,
+  "org.nz": true,
+  "parliament.nz": true,
+  "school.nz": true,
+  "abo.pa": true,
+  "ac.pa": true,
+  "com.pa": true,
+  "edu.pa": true,
+  "gob.pa": true,
+  "ing.pa": true,
+  "med.pa": true,
+  "net.pa": true,
+  "nom.pa": true,
+  "org.pa": true,
+  "sld.pa": true,
+  "com.pt": true,
+  "edu.pt": true,
+  "gov.pt": true,
+  "int.pt": true,
+  "net.pt": true,
+  "nome.pt": true,
+  "org.pt": true,
+  "publ.pt": true,
+  "com.py": true,
+  "edu.py": true,
+  "gov.py": true,
+  "mil.py": true,
+  "net.py": true,
+  "org.py": true,
+  "com.qa": true,
+  "edu.qa": true,
+  "gov.qa": true,
+  "mil.qa": true,
+  "net.qa": true,
+  "org.qa": true,
+  "asso.re": true,
+  "com.re": true,
+  "nom.re": true,
+  "ac.ru": true,
+  "adygeya.ru": true,
+  "altai.ru": true,
+  "amur.ru": true,
+  "arkhangelsk.ru": true,
+  "astrakhan.ru": true,
+  "bashkiria.ru": true,
+  "belgorod.ru": true,
+  "bir.ru": true,
+  "bryansk.ru": true,
+  "buryatia.ru": true,
+  "cbg.ru": true,
+  "chel.ru": true,
+  "chelyabinsk.ru": true,
+  "chita.ru": true,
+  "chukotka.ru": true,
+  "chuvashia.ru": true,
+  "com.ru": true,
+  "dagestan.ru": true,
+  "e-burg.ru": true,
+  "edu.ru": true,
+  "gov.ru": true,
+  "grozny.ru": true,
+  "int.ru": true,
+  "irkutsk.ru": true,
+  "ivanovo.ru": true,
+  "izhevsk.ru": true,
+  "jar.ru": true,
+  "joshkar-ola.ru": true,
+  "kalmykia.ru": true,
+  "kaluga.ru": true,
+  "kamchatka.ru": true,
+  "karelia.ru": true,
+  "kazan.ru": true,
+  "kchr.ru": true,
+  "kemerovo.ru": true,
+  "khabarovsk.ru": true,
+  "khakassia.ru": true,
+  "khv.ru": true,
+  "kirov.ru": true,
+  "koenig.ru": true,
+  "komi.ru": true,
+  "kostroma.ru": true,
+  "kranoyarsk.ru": true,
+  "kuban.ru": true,
+  "kurgan.ru": true,
+  "kursk.ru": true,
+  "lipetsk.ru": true,
+  "magadan.ru": true,
+  "mari.ru": true,
+  "mari-el.ru": true,
+  "marine.ru": true,
+  "mil.ru": true,
+  "mordovia.ru": true,
+  "mosreg.ru": true,
+  "msk.ru": true,
+  "murmansk.ru": true,
+  "nalchik.ru": true,
+  "net.ru": true,
+  "nnov.ru": true,
+  "nov.ru": true,
+  "novosibirsk.ru": true,
+  "nsk.ru": true,
+  "omsk.ru": true,
+  "orenburg.ru": true,
+  "org.ru": true,
+  "oryol.ru": true,
+  "penza.ru": true,
+  "perm.ru": true,
+  "pp.ru": true,
+  "pskov.ru": true,
+  "ptz.ru": true,
+  "rnd.ru": true,
+  "ryazan.ru": true,
+  "sakhalin.ru": true,
+  "samara.ru": true,
+  "saratov.ru": true,
+  "simbirsk.ru": true,
+  "smolensk.ru": true,
+  "spb.ru": true,
+  "stavropol.ru": true,
+  "stv.ru": true,
+  "surgut.ru": true,
+  "tambov.ru": true,
+  "tatarstan.ru": true,
+  "tom.ru": true,
+  "tomsk.ru": true,
+  "tsaritsyn.ru": true,
+  "tsk.ru": true,
+  "tula.ru": true,
+  "tuva.ru": true,
+  "tver.ru": true,
+  "tyumen.ru": true,
+  "udm.ru": true,
+  "udmurtia.ru": true,
+  "ulan-ude.ru": true,
+  "vladikavkaz.ru": true,
+  "vladimir.ru": true,
+  "vladivostok.ru": true,
+  "volgograd.ru": true,
+  "vologda.ru": true,
+  "voronezh.ru": true,
+  "vrn.ru": true,
+  "vyatka.ru": true,
+  "yakutia.ru": true,
+  "yamal.ru": true,
+  "yekaterinburg.ru": true,
+  "yuzhno-sakhalinsk.ru": true,
+  "ac.rw": true,
+  "co.rw": true,
+  "com.rw": true,
+  "edu.rw": true,
+  "gouv.rw": true,
+  "gov.rw": true,
+  "int.rw": true,
+  "mil.rw": true,
+  "net.rw": true,
+  "com.sa": true,
+  "edu.sa": true,
+  "gov.sa": true,
+  "med.sa": true,
+  "net.sa": true,
+  "org.sa": true,
+  "pub.sa": true,
+  "sch.sa": true,
+  "com.sd": true,
+  "edu.sd": true,
+  "gov.sd": true,
+  "info.sd": true,
+  "med.sd": true,
+  "net.sd": true,
+  "org.sd": true,
+  "tv.sd": true,
+  "a.se": true,
+  "ac.se": true,
+  "b.se": true,
+  "bd.se": true,
+  "c.se": true,
+  "d.se": true,
+  "e.se": true,
+  "f.se": true,
+  "g.se": true,
+  "h.se": true,
+  "i.se": true,
+  "k.se": true,
+  "l.se": true,
+  "m.se": true,
+  "n.se": true,
+  "o.se": true,
+  "org.se": true,
+  "p.se": true,
+  "parti.se": true,
+  "pp.se": true,
+  "press.se": true,
+  "r.se": true,
+  "s.se": true,
+  "t.se": true,
+  "tm.se": true,
+  "u.se": true,
+  "w.se": true,
+  "x.se": true,
+  "y.se": true,
+  "z.se": true,
+  "com.sg": true,
+  "edu.sg": true,
+  "gov.sg": true,
+  "idn.sg": true,
+  "net.sg": true,
+  "org.sg": true,
+  "per.sg": true,
+  "art.sn": true,
+  "com.sn": true,
+  "edu.sn": true,
+  "gouv.sn": true,
+  "org.sn": true,
+  "perso.sn": true,
+  "univ.sn": true,
+  "com.sy": true,
+  "edu.sy": true,
+  "gov.sy": true,
+  "mil.sy": true,
+  "net.sy": true,
+  "news.sy": true,
+  "org.sy": true,
+  "ac.th": true,
+  "co.th": true,
+  "go.th": true,
+  "in.th": true,
+  "mi.th": true,
+  "net.th": true,
+  "or.th": true,
+  "ac.tj": true,
+  "biz.tj": true,
+  "co.tj": true,
+  "com.tj": true,
+  "edu.tj": true,
+  "go.tj": true,
+  "gov.tj": true,
+  "info.tj": true,
+  "int.tj": true,
+  "mil.tj": true,
+  "name.tj": true,
+  "net.tj": true,
+  "nic.tj": true,
+  "org.tj": true,
+  "test.tj": true,
+  "web.tj": true,
+  "agrinet.tn": true,
+  "com.tn": true,
+  "defense.tn": true,
+  "edunet.tn": true,
+  "ens.tn": true,
+  "fin.tn": true,
+  "gov.tn": true,
+  "ind.tn": true,
+  "info.tn": true,
+  "intl.tn": true,
+  "mincom.tn": true,
+  "nat.tn": true,
+  "net.tn": true,
+  "org.tn": true,
+  "perso.tn": true,
+  "rnrt.tn": true,
+  "rns.tn": true,
+  "rnu.tn": true,
+  "tourism.tn": true,
+  "ac.tz": true,
+  "co.tz": true,
+  "go.tz": true,
+  "ne.tz": true,
+  "or.tz": true,
+  "biz.ua": true,
+  "cherkassy.ua": true,
+  "chernigov.ua": true,
+  "chernovtsy.ua": true,
+  "ck.ua": true,
+  "cn.ua": true,
+  "co.ua": true,
+  "com.ua": true,
+  "crimea.ua": true,
+  "cv.ua": true,
+  "dn.ua": true,
+  "dnepropetrovsk.ua": true,
+  "donetsk.ua": true,
+  "dp.ua": true,
+  "edu.ua": true,
+  "gov.ua": true,
+  "if.ua": true,
+  "in.ua": true,
+  "ivano-frankivsk.ua": true,
+  "kh.ua": true,
+  "kharkov.ua": true,
+  "kherson.ua": true,
+  "khmelnitskiy.ua": true,
+  "kiev.ua": true,
+  "kirovograd.ua": true,
+  "km.ua": true,
+  "kr.ua": true,
+  "ks.ua": true,
+  "kv.ua": true,
+  "lg.ua": true,
+  "lugansk.ua": true,
+  "lutsk.ua": true,
+  "lviv.ua": true,
+  "me.ua": true,
+  "mk.ua": true,
+  "net.ua": true,
+  "nikolaev.ua": true,
+  "od.ua": true,
+  "odessa.ua": true,
+  "org.ua": true,
+  "pl.ua": true,
+  "poltava.ua": true,
+  "pp.ua": true,
+  "rovno.ua": true,
+  "rv.ua": true,
+  "sebastopol.ua": true,
+  "sumy.ua": true,
+  "te.ua": true,
+  "ternopil.ua": true,
+  "uzhgorod.ua": true,
+  "vinnica.ua": true,
+  "vn.ua": true,
+  "zaporizhzhe.ua": true,
+  "zhitomir.ua": true,
+  "zp.ua": true,
+  "zt.ua": true,
+  "ac.ug": true,
+  "co.ug": true,
+  "go.ug": true,
+  "ne.ug": true,
+  "or.ug": true,
+  "org.ug": true,
+  "sc.ug": true,
+  "ac.uk": true,
+  "bl.uk": true,
+  "british-library.uk": true,
+  "co.uk": true,
+  "cym.uk": true,
+  "gov.uk": true,
+  "govt.uk": true,
+  "icnet.uk": true,
+  "jet.uk": true,
+  "lea.uk": true,
+  "ltd.uk": true,
+  "me.uk": true,
+  "mil.uk": true,
+  "mod.uk": true,
+  "national-library-scotland.uk": true,
+  "nel.uk": true,
+  "net.uk": true,
+  "nhs.uk": true,
+  "nic.uk": true,
+  "nls.uk": true,
+  "org.uk": true,
+  "orgn.uk": true,
+  "parliament.uk": true,
+  "plc.uk": true,
+  "police.uk": true,
+  "sch.uk": true,
+  "scot.uk": true,
+  "soc.uk": true,
+  "4fd.us": true,
+  "dni.us": true,
+  "fed.us": true,
+  "isa.us": true,
+  "kids.us": true,
+  "nsn.us": true,
+  "com.uy": true,
+  "edu.uy": true,
+  "gub.uy": true,
+  "mil.uy": true,
+  "net.uy": true,
+  "org.uy": true,
+  "co.ve": true,
+  "com.ve": true,
+  "edu.ve": true,
+  "gob.ve": true,
+  "info.ve": true,
+  "mil.ve": true,
+  "net.ve": true,
+  "org.ve": true,
+  "web.ve": true,
+  "co.vi": true,
+  "com.vi": true,
+  "k12.vi": true,
+  "net.vi": true,
+  "org.vi": true,
+  "ac.vn": true,
+  "biz.vn": true,
+  "com.vn": true,
+  "edu.vn": true,
+  "gov.vn": true,
+  "health.vn": true,
+  "info.vn": true,
+  "int.vn": true,
+  "name.vn": true,
+  "net.vn": true,
+  "org.vn": true,
+  "pro.vn": true,
+  "co.ye": true,
+  "com.ye": true,
+  "gov.ye": true,
+  "ltd.ye": true,
+  "me.ye": true,
+  "net.ye": true,
+  "org.ye": true,
+  "plc.ye": true,
+  "ac.yu": true,
+  "co.yu": true,
+  "edu.yu": true,
+  "gov.yu": true,
+  "org.yu": true,
+  "ac.za": true,
+  "agric.za": true,
+  "alt.za": true,
+  "bourse.za": true,
+  "city.za": true,
+  "co.za": true,
+  "cybernet.za": true,
+  "db.za": true,
+  "ecape.school.za": true,
+  "edu.za": true,
+  "fs.school.za": true,
+  "gov.za": true,
+  "gp.school.za": true,
+  "grondar.za": true,
+  "iaccess.za": true,
+  "imt.za": true,
+  "inca.za": true,
+  "kzn.school.za": true,
+  "landesign.za": true,
+  "law.za": true,
+  "lp.school.za": true,
+  "mil.za": true,
+  "mpm.school.za": true,
+  "ncape.school.za": true,
+  "net.za": true,
+  "ngo.za": true,
+  "nis.za": true,
+  "nom.za": true,
+  "nw.school.za": true,
+  "olivetti.za": true,
+  "org.za": true,
+  "pix.za": true,
+  "school.za": true,
+  "tm.za": true,
+  "wcape.school.za": true,
+  "web.za": true,
+  "ac.zm": true,
+  "co.zm": true,
+  "com.zm": true,
+  "edu.zm": true,
+  "gov.zm": true,
+  "net.zm": true,
+  "org.zm": true,
+  "sch.zm": true
+};
+},{}],"../../node_modules/is-valid-domain/index.js":[function(require,module,exports) {
+const sldMap = require('./data/sldMap.json')
+
+module.exports = function isValidDomain (value, opts) {
+  if (typeof value !== 'string') return false
+  if (!(opts instanceof Object)) opts = {}
+  value = value.toLowerCase()
+
+  if (value.endsWith('.')) {
+    value = value.slice(0, value.length - 1)
+  }
+
+  if (value.length > 253) {
+    return false
+  }
+
+  const validChars = /^([a-z0-9-._*]+)$/g
+  if (!validChars.test(value)) {
+    return false
+  }
+
+  const sldRegex = /(.*)\.(([a-z0-9]+)(\.[a-z0-9]+))/
+  const matches = value.match(sldRegex)
+  var tld = null
+  var labels = null
+  if (matches && matches.length > 2) {
+    if (sldMap[matches[2]]) {
+      tld = matches[2]
+      labels = matches[1].split('.')
+    }
+  }
+
+  if (!labels) {
+    labels = value.split('.')
+    if (labels.length <= 1) return false
+
+    tld = labels.pop()
+    const tldRegex = /^(?:xn--)?(?!^\d+$)[a-z0-9]+$/gi
+
+    if (!tldRegex.test(tld)) return false
+  }
+
+  if (opts.subdomain === false && labels.length > 1) return false
+
+  const isValid = labels.every(function (label, index) {
+    if (opts.wildcard && index === 0 && label === '*' && labels.length > 1) {
+      return true
+    }
+
+    let validLabelChars = /^([a-zA-Z0-9-_]+)$/g
+    if (index === labels.length - 1) {
+      validLabelChars = /^([a-zA-Z0-9-]+)$/g
+    }
+
+    const doubleDashCount = (label.match(/--/g) || []).length
+    const xnDashCount = (label.match(/xn--/g) || []).length
+    if (doubleDashCount !== xnDashCount) {
+      return false
+    }
+
+    const isValid = (
+      validLabelChars.test(label) &&
+      label.length < 64 &&
+      !label.startsWith('-') &&
+      !label.endsWith('-')
+    )
+
+    return isValid
+  })
+
+  return isValid
+}
+
+},{"./data/sldMap.json":"../../node_modules/is-valid-domain/data/sldMap.json"}],"checkDomain.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkDomain = void 0;
+
+var _isValidDomain = _interopRequireDefault(require("is-valid-domain"));
+
+var _alerts = require("./alerts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var checkDomain = function checkDomain(domain) {
+  var res = (0, _isValidDomain.default)(domain);
+
+  if (res === true) {
+    return true;
+  } else {
+    (0, _alerts.showAlert)('error', 'Sorry, the domain name is not valid.');
+    return false;
+  }
+};
+
+exports.checkDomain = checkDomain;
+},{"is-valid-domain":"../../node_modules/is-valid-domain/index.js","./alerts":"alerts.js"}],"../../node_modules/email-validator/index.js":[function(require,module,exports) {
+"use strict";
+
+var tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/; // Thanks to:
+// http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+// http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx
+// http://stackoverflow.com/questions/201323/what-is-the-best-regular-expression-for-validating-email-addresses/201378#201378
+
+exports.validate = function (email) {
+  if (!email) return false;
+  if (email.length > 254) return false;
+  var valid = tester.test(email);
+  if (!valid) return false; // Further checking of some things regex can't handle
+
+  var parts = email.split("@");
+  if (parts[0].length > 64) return false;
+  var domainParts = parts[1].split(".");
+  if (domainParts.some(function (part) {
+    return part.length > 63;
+  })) return false;
+  return true;
+};
+},{}],"checkEmail.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkEmail = void 0;
+
+var _emailValidator = _interopRequireDefault(require("email-validator"));
+
+var _alerts = require("./alerts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var checkEmail = function checkEmail(email) {
+  var res = _emailValidator.default.validate(email);
+
+  if (res === true) {
+    return true;
+  } else {
+    (0, _alerts.showAlert)('error', "Sorry, can't register with this email.");
+    return false;
+  }
+};
+
+exports.checkEmail = checkEmail;
+},{"email-validator":"../../node_modules/email-validator/index.js","./alerts":"alerts.js"}],"register.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.register = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("./alerts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var register = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(regUser) {
+    var res, user_id;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://127.0.0.1:3000/api/v1/users/signup',
+              data: regUser
+            });
+
+          case 3:
+            res = _context.sent;
+
+            // console.log(res.data);
+            if (res.data.status === 'success') {
+              user_id = res.data.data.user._id;
+              processFurther(regUser, user_id);
+            }
+
+            _context.next = 10;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+
+            if (_context.t0.response.data.message.includes('. ')) {
+              (0, _alerts.showAlert)('error', _context.t0.response.data.message.split('. ')[1]);
+            } else {
+              (0, _alerts.showAlert)('error', _context.t0.response.data.message);
+            }
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function register(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.register = register;
+
+var processFurther = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(regUser, user_id) {
+    var domain_id, competitorSites, domainData, res, result, _res, justAnotherAsyncFunction, _res4;
+
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            //user lai update garna lai chaine yo duita
+            domain_id = '';
+            competitorSites = []; //domain save garna lai chaine yo euta
+
+            domainData = {}; //Check if regUser.domain already exists in db, if so get that domain, save to a variable and update domain_id field''
+            //else
+            //Search for the domain, save to a variable
+            //save domain to database and update domain_id''
+
+            _context3.prev = 3;
+            _context3.next = 6;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://127.0.0.1:3000/api/v1/domains/find',
+              data: {
+                name: regUser.domainName
+              }
+            });
+
+          case 6:
+            res = _context3.sent;
+
+            if (res.data.status === 'success') {
+              domain_id = res.data.data._id;
+              domainData = res.data.data;
+            }
+
+            _context3.next = 27;
+            break;
+
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](3);
+            console.log(_context3.t0); // get data from scraping and 3rd party api
+
+            _context3.next = 15;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://127.0.0.1:3000/api/v1/domains/search',
+              data: {
+                domain: regUser.domainName
+              }
+            });
+
+          case 15:
+            result = _context3.sent;
+            domainData = result.data.data; //saving domainData to database and updating domain_id''
+
+            _context3.prev = 17;
+            _context3.next = 20;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://127.0.0.1:3000/api/v1/domains/save',
+              data: domainData
+            });
+
+          case 20:
+            _res = _context3.sent;
+
+            if (_res.data.status === 'success') {
+              domain_id = _res.data.data.data._id; // console.log(domain_id, domainData);
+            }
+
+            _context3.next = 27;
+            break;
+
+          case 24:
+            _context3.prev = 24;
+            _context3.t1 = _context3["catch"](17);
+            (0, _alerts.showAlert)('error', 'Sorry, something went wrong while saving your data. Please try again..');
+
+          case 27:
+            //loop the variable for each similarSites
+            //check if each site exists in db, if so push id to competitorSites[] and skip that loop;
+            //else
+            //search/save each site to db and push id to competitorSites[]
+            justAnotherAsyncFunction = /*#__PURE__*/function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(domainData) {
+                var _iterator, _step, site, _res2, _result, _res3;
+
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        _iterator = _createForOfIteratorHelper(domainData.similarSites.siteName);
+                        _context2.prev = 1;
+
+                        _iterator.s();
+
+                      case 3:
+                        if ((_step = _iterator.n()).done) {
+                          _context2.next = 30;
+                          break;
+                        }
+
+                        site = _step.value;
+                        _context2.prev = 5;
+                        _context2.next = 8;
+                        return (0, _axios.default)({
+                          method: 'POST',
+                          url: 'http://127.0.0.1:3000/api/v1/domains/find',
+                          data: {
+                            name: site
+                          }
+                        });
+
+                      case 8:
+                        _res2 = _context2.sent;
+
+                        if (_res2.data.status === 'success') {
+                          competitorSites.push(_res2.data.data._id); // console.log(competitorSites);
+                        }
+
+                        _context2.next = 28;
+                        break;
+
+                      case 12:
+                        _context2.prev = 12;
+                        _context2.t0 = _context2["catch"](5);
+                        _context2.next = 16;
+                        return (0, _axios.default)({
+                          method: 'POST',
+                          url: 'http://127.0.0.1:3000/api/v1/domains/search',
+                          data: {
+                            domain: site
+                          }
+                        });
+
+                      case 16:
+                        _result = _context2.sent;
+                        domainData = _result.data.data; //save each domainData to database and push id to competitorSites[]
+
+                        _context2.prev = 18;
+                        _context2.next = 21;
+                        return (0, _axios.default)({
+                          method: 'POST',
+                          url: 'http://127.0.0.1:3000/api/v1/domains/save',
+                          data: domainData
+                        });
+
+                      case 21:
+                        _res3 = _context2.sent;
+
+                        if (_res3.data.status === 'success') {
+                          competitorSites.push(_res3.data.data.data._id); // console.log(competitorSites);
+                        }
+
+                        _context2.next = 28;
+                        break;
+
+                      case 25:
+                        _context2.prev = 25;
+                        _context2.t1 = _context2["catch"](18);
+                        (0, _alerts.showAlert)('error', 'Some data of your competition could not be processed.');
+
+                      case 28:
+                        _context2.next = 3;
+                        break;
+
+                      case 30:
+                        _context2.next = 35;
+                        break;
+
+                      case 32:
+                        _context2.prev = 32;
+                        _context2.t2 = _context2["catch"](1);
+
+                        _iterator.e(_context2.t2);
+
+                      case 35:
+                        _context2.prev = 35;
+
+                        _iterator.f();
+
+                        return _context2.finish(35);
+
+                      case 38:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2, null, [[1, 32, 35, 38], [5, 12], [18, 25]]);
+              }));
+
+              return function justAnotherAsyncFunction(_x4) {
+                return _ref3.apply(this, arguments);
+              };
+            }();
+
+            _context3.next = 30;
+            return justAnotherAsyncFunction(domainData);
+
+          case 30:
+            _context3.prev = 30;
+            _context3.next = 33;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: "http://127.0.0.1:3000/api/v1/users/update/".concat(user_id),
+              data: {
+                domain_id: domain_id,
+                competitorSites: competitorSites
+              }
+            });
+
+          case 33:
+            _res4 = _context3.sent;
+
+            if (_res4.data.status === 'success') {
+              // Finally log in
+              window.location.assign('/overview');
+            }
+
+            _context3.next = 41;
+            break;
+
+          case 37:
+            _context3.prev = 37;
+            _context3.t2 = _context3["catch"](30);
+            console.log(_context3.t2);
+            (0, _alerts.showAlert)('error', 'Sorry, something went very wrong while saving your data. Please try again later.');
+
+          case 41:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[3, 10], [17, 24], [30, 37]]);
+  }));
+
+  return function processFurther(_x2, _x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -9281,13 +11197,21 @@ var _forgotPass = require("./forgotPass");
 
 var _resetPass = require("./resetPass");
 
+var _checkDomain = require("./checkDomain");
+
+var _checkEmail = require("./checkEmail");
+
+var _register = require("./register");
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// import { getDomainData } from './getDomainData';
 // DOM ELEMENTS
 var year = document.getElementById('year');
 var loginForm = document.querySelector('.form--login');
+var registerForm = document.querySelector('.form--register');
 var forgotForm = document.querySelector('.form--forgot');
 var resetForm = document.querySelector('.form--reset');
 var logoutBtn = document.getElementById('logout_Btn');
@@ -9332,10 +11256,16 @@ if (document.getElementById('organicVsPaidFifth')) {
   (0, _charts.organicVsPaidChart)('organicVsPaidFifth', _graphs4);
 }
 
-if (document.getElementById('organicComparison')) {
-  var _graphs5 = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
+if (document.getElementById('organicVsPaidSixth')) {
+  var _graphs5 = JSON.parse(document.getElementById('organicVsPaidSixth').dataset.graphs);
 
-  (0, _charts.organicComparison)('organicComparison', _graphs5);
+  (0, _charts.organicVsPaidChart)('organicVsPaidSixth', _graphs5);
+}
+
+if (document.getElementById('organicComparison')) {
+  var _graphs6 = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
+
+  (0, _charts.organicComparison)('organicComparison', _graphs6);
 }
 
 if (loginForm) {
@@ -9345,6 +11275,70 @@ if (loginForm) {
     var password = document.getElementById('password').value;
     (0, _login.login)(email, password);
   });
+}
+
+if (registerForm) {
+  registerForm.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+      var fullName, userName, email, password, confirmPassword, domainName;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              event.preventDefault();
+              document.getElementById('btn--register').textContent = 'Processing...';
+              document.getElementById('btn--register').disabled = true;
+              fullName = document.getElementById('fullName').value;
+              userName = document.getElementById('userName').value;
+              email = document.getElementById('email').value;
+              password = document.getElementById('password').value;
+              confirmPassword = document.getElementById('confirmPassword').value;
+              domainName = document.getElementById('domainName').value;
+              if (userName === '') userName = undefined; //Check if email exists
+
+              if (!((0, _checkEmail.checkEmail)(email) === false)) {
+                _context.next = 12;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 12:
+              if (!((0, _checkDomain.checkDomain)(domainName) === false)) {
+                _context.next = 14;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 14:
+              _context.next = 16;
+              return (0, _register.register)({
+                fullName: fullName,
+                userName: userName,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                domainName: domainName
+              });
+
+            case 16:
+              //domain_id, competitorSites
+              document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
+              document.getElementById('btn--register').disabled = false;
+
+            case 18:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
 }
 
 if (forgotForm) {
@@ -9371,14 +11365,15 @@ if (logoutBtn) {
 
 if (profileForm) {
   addEventListener('submit', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(event) {
       var form, currentPassword, newPassword, confirmPassword;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               event.preventDefault();
               document.getElementById('btn--save').textContent = 'Saving...';
+              document.getElementById('btn--save').disabled = true;
               form = new FormData();
               form.append('fullName', document.getElementById('fullName').value);
               form.append('userName', document.getElementById('userName').value);
@@ -9388,40 +11383,41 @@ if (profileForm) {
               confirmPassword = document.getElementById('confirmpassword').value;
 
               if (!(currentPassword === '' || newPassword === '' || confirmPassword === '')) {
-                _context.next = 14;
+                _context2.next = 15;
                 break;
               }
 
-              _context.next = 12;
+              _context2.next = 13;
               return (0, _updateUser.updateProfile)(form);
 
-            case 12:
-              _context.next = 19;
+            case 13:
+              _context2.next = 20;
               break;
 
-            case 14:
+            case 15:
               form.append('currentPassword', currentPassword);
               form.append('newPassword', newPassword);
               form.append('confirmPassword', confirmPassword);
-              _context.next = 19;
+              _context2.next = 20;
               return (0, _updateUser.updateProfile)(form);
 
-            case 19:
+            case 20:
               document.getElementById('btn--save').textContent = 'Save Profile';
+              document.getElementById('btn--save').disabled = false;
               document.getElementById('currentpassword').value = '';
               document.getElementById('newpassword').value = '';
               document.getElementById('confirmpassword').value = '';
 
-            case 23:
+            case 25:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }());
 }
@@ -9500,14 +11496,15 @@ if (btnCompliment) {
 
 if (feedbackForm) {
   addEventListener('submit', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(event) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(event) {
       var rating, category, message;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               event.preventDefault();
               document.getElementById('btn--send').textContent = 'Sending...';
+              document.getElementById('btn--send').disabled = true;
 
               if (document.querySelector('input[name="rate"]:checked')) {
                 rating = document.querySelector('input[name="rate"]:checked').value;
@@ -9527,30 +11524,31 @@ if (feedbackForm) {
                 message = undefined;
               }
 
-              _context2.next = 8;
+              _context3.next = 9;
               return (0, _sendFeedback.sendFeedback)({
                 rating: rating,
                 category: category,
                 message: message
               });
 
-            case 8:
-              document.getElementById('btn--send').textContent = 'Send';
-
             case 9:
+              document.getElementById('btn--send').textContent = 'Send';
+              document.getElementById('btn--save').disabled = false;
+
+            case 11:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
     };
   }());
 }
-},{"core-js/modules/es6.array.copy-within.js":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill.js":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find.js":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index.js":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map.js":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from.js":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes.js":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator.js":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of.js":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort.js":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species.js":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive.js":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance.js":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name.js":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map.js":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh.js":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh.js":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh.js":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt.js":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32.js":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh.js":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1.js":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround.js":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot.js":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul.js":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p.js":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10.js":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2.js":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign.js":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh.js":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh.js":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc.js":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor.js":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon.js":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite.js":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer.js":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan.js":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer.js":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer.js":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer.js":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float.js":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int.js":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign.js":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter.js":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter.js":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries.js":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze.js":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors.js":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names.js":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of.js":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter.js":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter.js":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions.js":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string.js":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is.js":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen.js":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed.js":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible.js":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys.js":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal.js":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values.js":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise.js":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally.js":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply.js":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct.js":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property.js":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property.js":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get.js":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has.js":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible.js":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys.js":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions.js":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set.js":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor.js":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags.js":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match.js":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace.js":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split.js":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search.js":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string.js":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set.js":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol.js":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator.js":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor.js":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big.js":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink.js":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold.js":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at.js":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with.js":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed.js":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor.js":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize.js":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point.js":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes.js":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics.js":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator.js":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link.js":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start.js":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end.js":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw.js":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat.js":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small.js":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with.js":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike.js":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub.js":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup.js":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left.js":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right.js":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer.js":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array.js":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array.js":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array.js":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array.js":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array.js":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array.js":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array.js":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map.js":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set.js":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers.js":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate.js":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable.js":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime.js":"../../node_modules/regenerator-runtime/runtime.js","./charts":"charts.js","./login":"login.js","./updateUser":"updateUser.js","./sendFeedback":"sendFeedback.js","./forgotPass":"forgotPass.js","./resetPass":"resetPass.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"core-js/modules/es6.array.copy-within.js":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill.js":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find.js":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index.js":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map.js":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from.js":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes.js":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator.js":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of.js":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort.js":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species.js":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive.js":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance.js":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name.js":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map.js":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh.js":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh.js":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh.js":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt.js":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32.js":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh.js":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1.js":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround.js":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot.js":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul.js":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p.js":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10.js":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2.js":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign.js":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh.js":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh.js":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc.js":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor.js":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon.js":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite.js":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer.js":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan.js":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer.js":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer.js":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer.js":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float.js":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int.js":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign.js":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter.js":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter.js":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries.js":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze.js":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors.js":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names.js":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of.js":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter.js":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter.js":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions.js":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string.js":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is.js":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen.js":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed.js":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible.js":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys.js":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal.js":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values.js":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise.js":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally.js":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply.js":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct.js":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property.js":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property.js":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get.js":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has.js":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible.js":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys.js":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions.js":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set.js":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor.js":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags.js":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match.js":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace.js":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split.js":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search.js":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string.js":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set.js":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol.js":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator.js":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor.js":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big.js":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink.js":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold.js":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at.js":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with.js":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed.js":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor.js":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize.js":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point.js":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes.js":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics.js":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator.js":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link.js":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start.js":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end.js":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw.js":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat.js":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small.js":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with.js":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike.js":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub.js":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup.js":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left.js":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right.js":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer.js":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array.js":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array.js":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array.js":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array.js":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array.js":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array.js":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array.js":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map.js":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set.js":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers.js":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate.js":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable.js":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime.js":"../../node_modules/regenerator-runtime/runtime.js","./charts":"charts.js","./login":"login.js","./updateUser":"updateUser.js","./sendFeedback":"sendFeedback.js","./forgotPass":"forgotPass.js","./resetPass":"resetPass.js","./checkDomain":"checkDomain.js","./checkEmail":"checkEmail.js","./register":"register.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -9578,7 +11576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,48 +1,49 @@
 //API calls to Spyfu
 const axios = require('axios');
 
-const website = 'sastodeal.com'; //okdam.com thulo.com
-let domainID;
 
 //all data are stored in these objects
-let overviewData = {
-  searchKeywordsCount: 0,
+let data = {
+  noOrganicSearchKeyword: 0,
   estMonthlySeoClick: 0,
-  estMonthlySeoClicksValue: 0
-}
-let organicVsPaidData = {
-  allCategories: [],
-  allOrganicClicks: [],
-  allPaidClicks: []
-}
-let keywordsData = {
-  allTypes: [],
-  allKeywords: [],
-  allUrls: [],
-  allSeoClicks: [],
-  allSearchVolumes: [],
-  allRanks: [],
-  allMonthlyClicks: []
-}
-let topPagesData = {
-  allTitles: [],
-  allTopKeywords: [],
-  allUrls: [],
-  allKeywordCounts: [],
-  allEstMonthlySeoClicks: []
-}
-let backlinksData = {
-  allBacklinkDomains: [],
-  allBacklinks: [],
-  allDomainMonthlyOrganicClicks: [],
-  allPageMonthlyOrganicClicks: [],
-  allDomainStrengths: [],
-  allRankedKeywords: [],
-  allOutboundLinks: []
+  estMonthlySeoClickValue: 0,
+  clicks: {
+    categories: [],
+    organicClicks: [],
+    paidClicks: []
+  },
+  topPages: {
+    pageTitle: [],
+    topKeyword: [],
+    pageUrl: [],
+    keywordCount: [],
+    estMonthlySeoClicks: []
+  },
+  backlinks: {
+    backlinkDomain: [],
+    backlinkUrl: [],
+    domainMonthlyOrganicClicks: [],
+    pageMonthlyOrganicClicks: [],
+    domainStrength: [],
+    rankedKeywords: [],
+    outboundLinks: []
+  },
+  keywords: {
+    allTypes: [],
+    allKeywords: [],
+    allUrls: [],
+    allSeoClicks: [],
+    allSearchVolumes: [],
+    allRanks: [],
+    allMonthlyClicks: []
+  }
 }
 
+const domain = 'sastodeal.com'; //okdam.com thulo.com
+let domainID;
+
 async function getDomainID() {
-  const URL = `https://www.spyfu.com/Endpoints/Search/JsonSearch?query=${website}&tryAsTermFirst=false&isSiteQuery=true`;
+  const URL = `https://www.spyfu.com/Endpoints/Search/JsonSearch?query=${domain}&tryAsTermFirst=false&isSiteQuery=true`;
   try {
     const res = await axios.get(URL);
     console.log(res.status, res.statusText);
@@ -55,24 +56,24 @@ async function getDomainID() {
         console.log(res.status, res.statusText);
         const result = res.data;
 
-        let searchKeywordsCount, estMonthlySeoClick, estMonthlySeoClicksValue;
+        let noOrganicSearchKeyword, estMonthlySeoClick, estMonthlySeoClickValue;
 
-        searchKeywordsCount = result.CurrentTotalCount;
-        overviewData.searchKeywordsCount = searchKeywordsCount;
+        noOrganicSearchKeyword = result.CurrentTotalCount;
+        data.noOrganicSearchKeyword = noOrganicSearchKeyword;
 
         estMonthlySeoClick = result.CurrentMonthlyClicks;
-        overviewData.estMonthlySeoClick = estMonthlySeoClick;
+        data.estMonthlySeoClick = estMonthlySeoClick;
 
-        estMonthlySeoClicksValue = result.CurrentMonthlyValue;
-        overviewData.estMonthlySeoClicksValue = estMonthlySeoClicksValue;
+        estMonthlySeoClickValue = result.CurrentMonthlyValue;
+        data.estMonthlySeoClickValue = estMonthlySeoClickValue;
 
-        console.log(overviewData);
+        console.log(data);
       } catch(error) {
         console.log(error);
       }
     }
 
-    async function getOrganicVsPaidData() {
+    async function getClicks() {
       const URL = `https://www.spyfu.com/NsaApi/Domain/ChartOrganicVsPaidClicks?domainId=${domainID}&numberOfMonths=12`;
       
       try {
@@ -84,42 +85,41 @@ async function getDomainID() {
     
         for(let i=0; i < result.Categories.length; i++) {
           category = result.Categories[i];
-          organicVsPaidData.allCategories.push(category);
+          data.clicks.categories.push(category);
 
           organicClick = result.Organic_Clicks[i];
-          organicVsPaidData.allOrganicClicks.push(organicClick);
+          data.clicks.organicClicks.push(organicClick);
 
           paidClick = result.Paid_Clicks[i];
-          organicVsPaidData.allPaidClicks.push(paidClick);
+          data.clicks.paidClicks.push(paidClick);
         }
 
-        console.log(organicVsPaidData);
       } catch (error) {
         console.error(error);
       }
     }
 
-    // getOverview();
-    getOrganicVsPaidData();
+    getOverview();
+    getClicks();
 
   } catch (error) {
     console.error(error);
   }
 }
 
-async function getKeywordsData() {
-  const URL = `https://www.spyfu.com/NsaApi/Serp/GetAllOrganicKeywordLists?query=${website}`;
+async function getKeywords() {
+  const URL = `https://www.spyfu.com/NsaApi/Serp/GetAllOrganicKeywordLists?query=${domain}`;
   try {
     const res = await axios.get(URL);
     console.log(res.status, res.statusText);
     const result = res.data;
-    console.log(res.data);
+
     let keyword, url, seoClick, searchVolume, rank, monthlyClick;
     let temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
 
     result.forEach(el => {
       if (el.searchType == 'MostValuable') {
-        keywordsData.allTypes.push('Top Keywords');
+        data.keywords.allTypes.push('Top Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -141,18 +141,18 @@ async function getKeywordsData() {
           temp_monthlyClicks.push(monthlyClick);
         })
 
-        keywordsData.allKeywords.push(temp_keywords);
-        keywordsData.allUrls.push(temp_urls);
-        keywordsData.allSeoClicks.push(temp_seoClicks);
-        keywordsData.allSearchVolumes.push(temp_searchVolumes);
-        keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
+        data.keywords.allKeywords.push(temp_keywords);
+        data.keywords.allUrls.push(temp_urls);
+        data.keywords.allSeoClicks.push(temp_seoClicks);
+        data.keywords.allSearchVolumes.push(temp_searchVolumes);
+        data.keywords.allRanks.push(temp_ranks);
+        data.keywords.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'NewlyRanked') {
-        keywordsData.allTypes.push('New Keywords');
+        data.keywords.allTypes.push('New Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -174,18 +174,18 @@ async function getKeywordsData() {
           temp_monthlyClicks.push(monthlyClick);
         })
 
-        keywordsData.allKeywords.push(temp_keywords);
-        keywordsData.allUrls.push(temp_urls);
-        keywordsData.allSeoClicks.push(temp_seoClicks);
-        keywordsData.allSearchVolumes.push(temp_searchVolumes);
-        keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
+        data.keywords.allKeywords.push(temp_keywords);
+        data.keywords.allUrls.push(temp_urls);
+        data.keywords.allSeoClicks.push(temp_seoClicks);
+        data.keywords.allSearchVolumes.push(temp_searchVolumes);
+        data.keywords.allRanks.push(temp_ranks);
+        data.keywords.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'GainedClicks') {
-        keywordsData.allTypes.push('Clicks Gaining Keywords');
+        data.keywords.allTypes.push('Clicks Gaining Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -207,18 +207,18 @@ async function getKeywordsData() {
           temp_monthlyClicks.push(monthlyClick);
         })
 
-        keywordsData.allKeywords.push(temp_keywords);
-        keywordsData.allUrls.push(temp_urls);
-        keywordsData.allSeoClicks.push(temp_seoClicks);
-        keywordsData.allSearchVolumes.push(temp_searchVolumes);
-        keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
+        data.keywords.allKeywords.push(temp_keywords);
+        data.keywords.allUrls.push(temp_urls);
+        data.keywords.allSeoClicks.push(temp_seoClicks);
+        data.keywords.allSearchVolumes.push(temp_searchVolumes);
+        data.keywords.allRanks.push(temp_ranks);
+        data.keywords.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'LostClicks') {
-        keywordsData.allTypes.push('Clicks Losing Keywords');
+        data.keywords.allTypes.push('Clicks Losing Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -240,18 +240,18 @@ async function getKeywordsData() {
           temp_monthlyClicks.push(monthlyClick);
         })
 
-        keywordsData.allKeywords.push(temp_keywords);
-        keywordsData.allUrls.push(temp_urls);
-        keywordsData.allSeoClicks.push(temp_seoClicks);
-        keywordsData.allSearchVolumes.push(temp_searchVolumes);
-        keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
+        data.keywords.allKeywords.push(temp_keywords);
+        data.keywords.allUrls.push(temp_urls);
+        data.keywords.allSeoClicks.push(temp_seoClicks);
+        data.keywords.allSearchVolumes.push(temp_searchVolumes);
+        data.keywords.allRanks.push(temp_ranks);
+        data.keywords.allMonthlyClicks.push(temp_monthlyClicks);
 
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
 
       if (el.searchType == 'PageOne') {
-        keywordsData.allTypes.push('First Page Keywords');
+        data.keywords.allTypes.push('First Page Keywords');
 
         el.keywords.forEach(ele => {
           keyword = ele.keyword;
@@ -273,25 +273,24 @@ async function getKeywordsData() {
           temp_monthlyClicks.push(monthlyClick);
         })
 
-        keywordsData.allKeywords.push(temp_keywords);
-        keywordsData.allUrls.push(temp_urls);
-        keywordsData.allSeoClicks.push(temp_seoClicks);
-        keywordsData.allSearchVolumes.push(temp_searchVolumes);
-        keywordsData.allRanks.push(temp_ranks);
-        keywordsData.allMonthlyClicks.push(temp_monthlyClicks);
+        data.keywords.allKeywords.push(temp_keywords);
+        data.keywords.allUrls.push(temp_urls);
+        data.keywords.allSeoClicks.push(temp_seoClicks);
+        data.keywords.allSearchVolumes.push(temp_searchVolumes);
+        data.keywords.allRanks.push(temp_ranks);
+        data.keywords.allMonthlyClicks.push(temp_monthlyClicks);
         
         temp_keywords=[], temp_urls=[], temp_seoClicks=[], temp_searchVolumes=[], temp_ranks=[], temp_monthlyClicks=[];
       }
     })
-    console.log(keywordsData);
   } 
   catch (error) {
     console.error(error);
   }
 }
 
-async function getTopPagesData() {
-  const URL = `https://www.spyfu.com/NsaApi/Serp/GetTopPages?domain=${website}&pageSize=5&sortOrder=descending&sortBy=estMonthlySeoClicks&filter=&startingRow=1&isOverview=true`;
+async function getTopPages() {
+  const URL = `https://www.spyfu.com/NsaApi/Serp/GetTopPages?domain=${domain}&pageSize=5&sortOrder=descending&sortBy=estMonthlySeoClicks&filter=&startingRow=1&isOverview=true`;
 
   try {
     const res = await axios.get(URL);
@@ -302,29 +301,28 @@ async function getTopPagesData() {
 
     result.topPages.forEach(el => {
       title = el.title;
-      topPagesData.allTitles.push(title);
+      data.topPages.pageTitle.push(title);
 
       topKeyword = el.topKeyword;
-      topPagesData.allTopKeywords.push(topKeyword);
+      data.topPages.topKeyword.push(topKeyword);
 
       url = el.url;
-      topPagesData.allUrls.push(url);
+      data.topPages.pageUrl.push(url);
 
       keywordCount = el.keywordCount;
-      topPagesData.allKeywordCounts.push(keywordCount);
+      data.topPages.keywordCount.push(keywordCount);
 
       estMonthlySeoClick = el.estMonthlySeoClicks;
-      topPagesData.allEstMonthlySeoClicks.push(estMonthlySeoClick);
+      data.topPages.estMonthlySeoClicks.push(estMonthlySeoClick);
     });
 
-    console.log(topPagesData);
   } catch (error) {
     console.error(error);
   }
 }
 
-async function getBacklinksData() {
-  const URL = `https://www.spyfu.com/NsaApi/Backlink/GetUrlSearch?filteredBacklinkDomainsCsv=&filteredKeywordsCsv=&filteredUrlDomainsCsv=&linkTypesCsv=&requiredUrlDomainsCsv=&query=${website}&rowsPerPage=5&startingRow=1`;
+async function getBacklinks() {
+  const URL = `https://www.spyfu.com/NsaApi/Backlink/GetUrlSearch?filteredBacklinkDomainsCsv=&filteredKeywordsCsv=&filteredUrlDomainsCsv=&linkTypesCsv=&requiredUrlDomainsCsv=&query=${domain}&rowsPerPage=5&startingRow=1`;
 
   try {
     const res = await axios.get(URL);
@@ -335,34 +333,33 @@ async function getBacklinksData() {
 
     result.results.forEach(el => {
       backlinkDomain = el.backlinkDomain;
-      backlinksData.allBacklinkDomains.push(backlinkDomain);
+      data.backlinks.backlinkDomain.push(backlinkDomain);
 
       backlink = el.backlink;
-      backlinksData.allBacklinks.push(backlink);
+      data.backlinks.backlinkUrl.push(backlink);
 
       domainMonthlyOrganicClick = el.domainMonthlyOrganicClicks;
-      backlinksData.allDomainMonthlyOrganicClicks.push(domainMonthlyOrganicClick);
+      data.backlinks.domainMonthlyOrganicClicks.push(domainMonthlyOrganicClick);
 
       pageMonthlyOrganicClick = el.pageMonthlyOrganicClicks;
-      backlinksData.allPageMonthlyOrganicClicks.push(pageMonthlyOrganicClick);
+      data.backlinks.pageMonthlyOrganicClicks.push(pageMonthlyOrganicClick);
 
       domainStrength = el.domainStrength;
-      backlinksData.allDomainStrengths.push(domainStrength);
+      data.backlinks.domainStrength.push(domainStrength);
 
       rankedKeyword = el.rankedKeywords;
-      backlinksData.allRankedKeywords.push(rankedKeyword);
+      data.backlinks.rankedKeywords.push(rankedKeyword);
 
       outboundLink = el.numOutboundLinks;
-      backlinksData.allOutboundLinks.push(outboundLink);
+      data.backlinks.outboundLinks.push(outboundLink);
     });
 
-    console.log(backlinksData);
   } catch (error) {
     console.error(error);
   }
 }
 
 // getDomainID();
-getKeywordsData();
-// getTopPagesData();
-// getBacklinksData();
+// getKeywords();
+// getTopPages();
+// getBacklinks();

@@ -10,6 +10,7 @@ router.post('/login', login);
 router.get('/logout', logout);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
+router.route('/update/:id').post(updateUser);
 
 //This will protect all routes after this middleware
 router.use(protect); 

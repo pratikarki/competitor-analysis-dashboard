@@ -64,7 +64,7 @@ block content
                     i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Rank
                   each site, i in competitors
-                    td= `#${site.overallRank}`
+                    td= site.overallRank
                 tr
                   td.align-lt
                     i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
@@ -133,12 +133,14 @@ block content
                   -if(i==1) i='three';
                   -if(i==2) i='four';
                   -if(i==3) i='five';
+                  -if(i==4) i='six'
                   .row.border-bottom(class=`graph-box-${i}`)
                     p.m-0.p-3= site.name
                   -if(i=='two') i=0;
                   -if(i=='three') i=1;
                   -if(i=='four') i=2;
                   -if(i=='five') i=3;
+                  -if(i=='six') i=4
                   
               .col-lg-9.col-23
                 -let dataArray = [];
@@ -186,6 +188,7 @@ block content
                   -if(i==1) i='info';
                   -if(i==2) i='warning';
                   -if(i==3) i='secondary';
+                  -if(i==4) i='success';
                   .row.px-4
                     .col-sm-2.pe-0
                       p.m-0.py-3= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
@@ -196,6 +199,7 @@ block content
                   -if(i=='info') i=1;
                   -if(i=='warning') i=2;
                   -if(i=='secondary') i=3;
+                  -if(i=='success') i=4;
           // end of third row
         // end of card body
       // end of card

@@ -19,7 +19,7 @@ body {
 }
 
 .home-pad {
-	padding-top: 10.91rem;
+	padding-top: 10rem;
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -177,6 +177,9 @@ body {
 .graph-box-five {
 	border-left: 5px solid rgba(75, 192, 192, 1);
 }
+.graph-box-six {
+	border-left: 5px solid rgba(128, 128, 128, 1);
+}
 
 /* end of graph */
 
@@ -191,6 +194,10 @@ body {
 
 .card-form {
 	width: 27rem;
+}
+
+.form-text {
+	font-weight: lighter;
 }
 
 .card-common {

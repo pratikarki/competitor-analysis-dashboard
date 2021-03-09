@@ -12,14 +12,14 @@ block content
           p.lead.my-4 Where you can analyze and compare your competitor's metrics, perform research on keywords and find valuable insights, all in one place.
 
         .col-lg-5.px-3.d-flex.justify-content-center(style='margin-bottom: 6rem;')
-          .card.card-form.p-3.card-border
+          .card.p-3.card-border
             .card-body.px-2.pb-0
 
               .text-center 
                 h3.display-5(style='font-size: 2.6rem') Create an Account
-                small Enter your details below.
+                small Enter your details below to get started.
               
-              form.p-4.pb-2(action='') 
+              form.form.form--register.p-4.pb-2
 
                 .form-group 
                   label(for='fullName') Full Name *
@@ -33,14 +33,14 @@ block content
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-at
-                    input(type='text' class='form-control' id='userName' placeholder='Username')
+                    input(type='text' class='form-control' id='userName' placeholder='Username' onChange='userNameIsValid();')
 
                 .form-group.pt-4
                   label(for='email') Email Address *
                   .input-group
                     .input-group-prepend
                       i.input-group-text.far.fa-envelope
-                    input(type='email' class='form-control' id='email' placeholder='Email' required)
+                    input(type='email' class='form-control' id='email' placeholder='Email' required onChange='emailIsValid();')
                   small.form-text.text-dark Your email will not be shared with anyone.
 
                 .form-group.pt-4
@@ -48,16 +48,17 @@ block content
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-key
-                    input(type='password' class='form-control' id='password' placeholder='Password' required)
+                    input(type='password' class='form-control' id='password' placeholder='Password' required onChange="checkPass();" pattern='(?=.*\\d).{8,}')
                     button.input-group-text.pwToggle 
                       i.far.fa-eye-slash
+                  small.form-text.text-dark Password must be atleast 8 characters including numbers.
 
                 .form-group.pt-4
                 label(for='confirmPassword') Confirm Password *
                 .input-group
                   .input-group-prepend
                     i.input-group-text.fas.fa-key
-                  input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required)
+                  input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required onChange="checkPass();")
                   button.input-group-text.pwToggleConfirm 
                     i.far.fa-eye-slash
 
@@ -70,7 +71,7 @@ block content
                 
                 .d-flex.flex-row.justify-content-around.mt-2.pt-4
                   .flex-column.my-auto
-                    button.btn.btn-dark 
+                    button#btn--register.btn.btn-dark(type='submit') 
                       i.fas.fa-user-plus.me-2
                       | Sign Up
                   .flex-column.my-auto OR 
@@ -82,3 +83,31 @@ block content
                         br
                         | with Google
                  
+  script.
+    function userNameIsValid() {
+      const userName = document.getElementById('userName');
+      if (/^\S+$/.test(userName.value)) {
+        userName.setCustomValidity('');
+      } else {
+        userName.setCustomValidity('Username can not contain spaces');
+      }
+    }
+
+    function checkPass() {
+      const password = document.getElementById('password');
+      const confirmPassword = document.getElementById('confirmPassword');
+      if (password.value === confirmPassword.value) {
+        confirmPassword.setCustomValidity('');
+      } else {
+        confirmPassword.setCustomValidity('Passwords does not match');
+      }
+    }
+
+    function emailIsValid() {
+      const email = document.getElementById('email');
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.setCustomValidity('');
+      } else {
+        email.setCustomValidity('Seems like this email is not valid');
+      }
+    }

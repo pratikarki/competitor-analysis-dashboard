@@ -5,11 +5,16 @@ import { updateProfile } from './updateUser';
 import { sendFeedback } from './sendFeedback';
 import { forgotPass } from './forgotPass';
 import { resetPass } from './resetPass';
+import { checkDomain } from './checkDomain';
+import { checkEmail } from './checkEmail';
+import { register } from './register';
+// import { getDomainData } from './getDomainData';
 
 
 // DOM ELEMENTS
 const year = document.getElementById('year');
 const loginForm = document.querySelector('.form--login');
+const registerForm = document.querySelector('.form--register');
 const forgotForm = document.querySelector('.form--forgot');
 const resetForm = document.querySelector('.form--reset');
 const logoutBtn = document.getElementById('logout_Btn');
@@ -45,6 +50,10 @@ if (document.getElementById('organicVsPaidFifth')) {
   const graphs = JSON.parse(document.getElementById('organicVsPaidFifth').dataset.graphs);
   organicVsPaidChart('organicVsPaidFifth', graphs);
 }
+if (document.getElementById('organicVsPaidSixth')) {
+  const graphs = JSON.parse(document.getElementById('organicVsPaidSixth').dataset.graphs);
+  organicVsPaidChart('organicVsPaidSixth', graphs);
+}
 
 if (document.getElementById('organicComparison')) {
   const graphs = JSON.parse(document.getElementById('organicComparison').dataset.graphs);
@@ -59,6 +68,33 @@ if (loginForm) {
     const password = document.getElementById('password').value;
 
     login(email, password)
+  })
+}
+
+if (registerForm) {
+  registerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    document.getElementById('btn--register').textContent = 'Processing...';
+    document.getElementById('btn--register').disabled = true;
+
+    const fullName = document.getElementById('fullName').value;
+    let userName = document.getElementById('userName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const domainName = document.getElementById('domainName').value;
+
+    if (userName === '') userName = undefined;
+
+    //Check if email exists
+    if (checkEmail(email) === false) return;
+
+    //Check if domain is valid
+    if (checkDomain(domainName) === false) return;
+
+    await register({ fullName, userName, email, password, confirmPassword, domainName }); //domain_id, competitorSites
+    document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
+    document.getElementById('btn--register').disabled = false;
   })
 }
 
@@ -90,6 +126,7 @@ if (profileForm) {
   addEventListener('submit', async (event) => {
     event.preventDefault();
     document.getElementById('btn--save').textContent = 'Saving...';
+    document.getElementById('btn--save').disabled = true;
 
     const form = new FormData();
     form.append('fullName', document.getElementById('fullName').value);
@@ -111,6 +148,7 @@ if (profileForm) {
     }
 
     document.getElementById('btn--save').textContent = 'Save Profile';
+    document.getElementById('btn--save').disabled = false;
     document.getElementById('currentpassword').value = '';
     document.getElementById('newpassword').value = '';
     document.getElementById('confirmpassword').value = '';
@@ -193,6 +231,7 @@ if (feedbackForm) {
   addEventListener('submit', async (event) => {
     event.preventDefault();
     document.getElementById('btn--send').textContent = 'Sending...';
+    document.getElementById('btn--send').disabled = true;
 
     let rating;
     if (document.querySelector('input[name="rate"]:checked')) {
@@ -209,5 +248,6 @@ if (feedbackForm) {
 
     await sendFeedback({ rating, category, message });
     document.getElementById('btn--send').textContent = 'Send';
+    document.getElementById('btn--save').disabled = false;
   })
 }

@@ -88,6 +88,7 @@ export const organicComparison = (selector, graphs) => {
     if(i==2) { bgColor='rgba(255, 206, 86, 0.2)', bdColor='rgba(255, 206, 86, 1)'};
     if(i==3) { bgColor='rgba(153, 102, 255, 0.2)', bdColor='rgba(153, 102, 255, 1)'};
     if(i==4) { bgColor='rgba(75, 192, 192, 0.2)', bdColor='rgba(75, 192, 192, 1)'};
+    if(i==5) { bgColor='rgba(135, 135, 135, 0.2)', bdColor='rgba(128, 128, 128, 1)'};
     
     const anObject = {
       label: graphs[i].name,

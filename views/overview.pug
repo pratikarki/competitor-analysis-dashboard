@@ -68,12 +68,14 @@ block content
                 -if(i==1) i='third';
                 -if(i==2) i='fourth';
                 -if(i==3) i='fifth';
+                -if(i==4) i='sixth';
                 a.nav-item.nav-link.bg-custom(id=`${i}-nav-tab` data-toggle='tab' href=`#${i}-nav` role='tab' aria-controls=`${i}-nav` aria-selected='false')= site.name
                   i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
                 -if(i=='second') i=0;
                 -if(i=='third') i=1;
                 -if(i=='fourth') i=2;
                 -if(i=='fifth') i=3;
+                -if(i=='sixth') i=4;
 
               span.p-2.ms-2
                 i.fal.fa-plus.fa-lg.cross(data-toggle='modal' data-target='#add_modal')
@@ -144,8 +146,8 @@ block content
                                 tr.text-muted
                                   th
                                   th.align-lt
-                                  th Site&apos;s Rank
                                   th Visitor&apos;s Percent
+                                  th Site&apos;s Rank
                               tbody
                                 each key, i in domain.countries.countryCode 
                                   tr
@@ -253,6 +255,7 @@ block content
                 -if(i==1) i='third';
                 -if(i==2) i='fourth';
                 -if(i==3) i='fifth';
+                -if(i==4) i='sixth';
                 .tab-pane.fade(id=`${i}-nav` role='tabpanel' aria-labelledby=`${i}-nav-tab`)
                   //- first row of loop
                   .row.my-3.justify-content-around
@@ -318,8 +321,8 @@ block content
                                   tr.text-muted
                                     th
                                     th.align-lt
-                                    th Site&apos;s Rank
                                     th Visitor&apos;s Percent
+                                    th Site&apos;s Rank
                                 tbody
                                   each key, i in site.countries.countryCode 
                                     tr
@@ -335,11 +338,13 @@ block content
                         -if(i=='third') i='organicVsPaidThird';
                         -if(i=='fourth') i='organicVsPaidFourth';
                         -if(i=='fifth') i='organicVsPaidFifth';
+                        -if(i=='sixth') i='organicVsPaidSixth';
                         canvas(id=`${i}` data-graphs = `${JSON.stringify(site.clicks)}` style='height: 160px; width: 250px;')
                         -if(i=='organicVsPaidSecond') i='second';
                         -if(i=='organicVsPaidThird') i='third';
                         -if(i=='organicVsPaidFourth') i='fourth';
                         -if(i=='organicVsPaidFifth') i='fifth';
+                        -if(i=='organicVsPaidSixth') i='sixth';
                   //- end of third row of loop
                   //- fourth row of loop
                   .row.py-4.justify-content-center.px-2.px-sm-0
@@ -433,6 +438,7 @@ block content
                 -if(i=='third') i=1;
                 -if(i=='fourth') i=2;
                 -if(i=='fifth') i=3;
+                -if(i=='sixth') i=4;
               
           // end of card-body
           
