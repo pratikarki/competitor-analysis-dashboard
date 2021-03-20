@@ -363,3 +363,25 @@ input:checked ~ label {
 	margin: 0 auto;
 	color: #616161;
 }
+
+.table-sortable th.tablesorter-header {
+	cursor: pointer;
+	outline: none;
+}
+.table-sortable th.tablesorter-headerAsc,
+.table-sortable th.tablesorter-headerDesc {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.table-sortable th.tablesorter-headerAsc::after,
+.table-sortable th.tablesorter-headerDesc::after {
+	margin-left: 10px;
+}
+.table-sortable th.tablesorter-headerAsc::after {
+	content: '\25b2';
+}
+.table-sortable th.tablesorter-headerDesc::after {
+	content: '\25bc';
+}
+.tablesorter-header-inner {
+	display: inline !important;
+}

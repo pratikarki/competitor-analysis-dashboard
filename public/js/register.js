@@ -29,11 +29,11 @@ export const register = async (regUser) => {
 
 const processFurther = async (regUser, user_id) => {
 
-  //user lai update garna lai chaine yo duita
+  //these objects are needed to update user
   let domain_id = '';
   let competitorSites = [];
 
-  //domain save garna lai chaine yo euta
+  //this object is needed to save domain
   let domainData = {};
 
 

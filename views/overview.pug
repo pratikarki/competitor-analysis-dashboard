@@ -169,7 +169,7 @@ block content
 
                     each val, i in domain.keywords.allTypes
                       .pt-4.table-responsive
-                        table.table.table-hover.text-center.bg-light.card-common
+                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
                           thead
                             tr.text-muted
                               th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
@@ -177,8 +177,6 @@ block content
                               th SEO Clicks
                               th Rank
                               th Clicks
-                              th
-                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                           tbody
                             each key, j in domain.keywords.allSeoClicks[i]
                               tr
@@ -187,8 +185,6 @@ block content
                                 td= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
                                 td= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
                                 td= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
-                                td.text-muted
-                                  i.fal.fa-times.cross(onclick='')
                               -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
                 //- end of fourth row of 1st tab
                 //- fifth row of 1st tab
@@ -196,15 +192,13 @@ block content
                   .col-11
                     h3.text-muted.pt-4.m-0 Top Pages
                     .pt-4.table-responsive
-                      table.table.table-hover.text-center.bg-light.card-common
+                      table.table.table-hover.table-sortable.text-center.bg-light.card-common
                         thead
                           tr.text-muted
                             th.col-4.ps-5.align-lt Page
                             th.col-3 Keyword
                             th Est Monthly SEO Clicks
                             th Keyword Count
-                            th
-                              i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                         tbody
                           each key, i in domain.topPages.pageTitle 
                             tr
@@ -213,15 +207,13 @@ block content
                               td= domain.topPages.topKeyword[i]
                               td= domain.topPages.estMonthlySeoClicks[i]
                               td= domain.topPages.keywordCount[i]
-                              td.text-muted
-                                i.fal.fa-times.cross(onclick='')
                 //- end of fifth row of 1st tab
                 //- sixth row of 1st tab
                 .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
                   .col-11
                     h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
                     .pt-4.table-responsive
-                      table.table.table-hover.text-center.bg-light.card-common
+                      table.table.table-hover.table-sortable.text-center.bg-light.card-common
                         thead
                           tr.text-muted
                             th.col-4.ps-5.align-lt Link
@@ -235,8 +227,6 @@ block content
                               | Organic Clicks
                             th Domain Strength
                             th Outbound Links
-                            th
-                              i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                         tbody
                           each key, i in domain.backlinks.backlinkDomain 
                             tr
@@ -246,8 +236,6 @@ block content
                               td= domain.backlinks.pageMonthlyOrganicClicks[i]
                               td= domain.backlinks.domainStrength[i]
                               td= domain.backlinks.outboundLinks[i]
-                              td.text-muted
-                                i.fal.fa-times.cross(onclick='')
                 //- end of sixth row of 1st tab
 
               each site, i in competitors
@@ -353,7 +341,7 @@ block content
 
                       each val, i in site.keywords.allTypes
                         .pt-4.table-responsive
-                          table.table.table-hover.text-center.bg-light.card-common
+                          table.table.table-hover.table-sortable.text-center.bg-light.card-common
                             thead
                               tr.text-muted
                                 th.col-4.ps-5.align-lt= site.keywords.allTypes[i]
@@ -361,8 +349,6 @@ block content
                                 th SEO Clicks
                                 th Rank
                                 th Clicks
-                                th
-                                  i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                             tbody
                               each key, j in site.keywords.allSeoClicks[i]
                                 tr
@@ -371,8 +357,6 @@ block content
                                   td= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
                                   td= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
                                   td= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
-                                  td.text-muted
-                                    i.fal.fa-times.cross(onclick='')
                                 -if (j > site.keywords.allSeoClicks[i].length-2) { break };
                   //- end of fourth row of loop
                   //- fifth row of loop
@@ -380,15 +364,13 @@ block content
                     .col-11
                       h3.text-muted.pt-4.m-0 Top Pages
                       .pt-4.table-responsive
-                        table.table.table-hover.text-center.bg-light.card-common
+                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
                           thead
                             tr.text-muted
                               th.col-4.ps-5.align-lt Page
                               th.col-3 Keyword
                               th Est Monthly SEO Clicks
                               th Keyword Count
-                              th
-                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                           tbody
                             each key, i in site.topPages.pageTitle 
                               tr
@@ -397,15 +379,13 @@ block content
                                 td= site.topPages.topKeyword[i]
                                 td= site.topPages.estMonthlySeoClicks[i]
                                 td= site.topPages.keywordCount[i]
-                                td.text-muted
-                                  i.fal.fa-times.cross(onclick='')
                   //- end of fifth row of loop
                   //- sixth row of loop
                   .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
                     .col-11
                       h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
                       .pt-4.table-responsive
-                        table.table.table-hover.text-center.bg-light.card-common
+                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
                           thead
                             tr.text-muted
                               th.col-4.ps-5.align-lt Link
@@ -419,8 +399,6 @@ block content
                                 | Organic Clicks
                               th Domain Strength
                               th Outbound Links
-                              th
-                                i.far.fa-times.fa-lg.cross(data-toggle='modal' data-target='#remove_table_modal')
                           tbody
                             each key, i in site.backlinks.backlinkDomain 
                               tr
@@ -430,8 +408,6 @@ block content
                                 td= site.backlinks.pageMonthlyOrganicClicks[i]
                                 td= site.backlinks.domainStrength[i]
                                 td= site.backlinks.outboundLinks[i]
-                                td.text-muted
-                                  i.fal.fa-times.cross(onclick='')
                   //- end of sixth row of loop
 
                 -if(i=='second') i=0;

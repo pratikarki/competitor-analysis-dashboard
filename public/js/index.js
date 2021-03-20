@@ -251,3 +251,7 @@ if (feedbackForm) {
     document.getElementById('btn--save').disabled = false;
   })
 }
+
+$(document).ready( function () {
+  $(".table-sortable").tablesorter({ sortList: [[0,0]] });
+})
