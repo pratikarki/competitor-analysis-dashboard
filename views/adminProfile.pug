@@ -14,8 +14,8 @@ block header
               br
               | Analysis
             .text-center
-              img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
-              p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
+              img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(currentUser.userName) ? currentUser.userName : currentUser.fullName}`
             .text-center.bottom-border
               .pb-3
                 button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
@@ -23,19 +23,15 @@ block header
                   | Logout
             ul.navbar-nav.flex-column.mt-3
               li.nav-item.text-center
-                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/overview') Overview
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminOverview') Overview
               li.nav-item.text-center
-                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/metrics') Compare Metrics
-              li.nav-item.text-center
-                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/keywords') Compare Keyword
-              li.nav-item.text-center
-                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
           // end of sidebar
           // top-nav
           nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
             .row.align-items-center
               .col.text-center
-                h4.text-light.text-uppercase.mb-0 Profile
+                h4.text-light.text-uppercase.mb-0 Admin Profile
           // end of top-nav
 
 
@@ -51,7 +47,7 @@ block content
                 h4.text-uppercase.mt-3.mb-2 Edit Information
                 .row.my-5.p-0
                   .col-xl-5.text-center
-                    img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='230px' width='230px' alt='User Image')
+                    img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='230px' width='230px' alt='User Image')
                   .col-xl-7.align-self-center(style='padding-right: 22px')
                     label.mb-2(for='photo') Upload an Image
                     input#photo.form-control.mb-2(type='file', name='photo', accept='image/*')
@@ -68,12 +64,10 @@ block content
                     p.mb-4.pt-2.pb-2 Full Name:
                     p.mb-4.pt-1.pb-2 Username:
                     p.mb-4.pt-2.pb-2 Email:
-                    p.pt-2 Domain:
                   .col-7.align-self-around.pe-5
-                    input#fullName.form-control.mb-4(type='text' value=`${user.fullName}`)
-                    input#userName.form-control.mb-4(type='text' value=`${(user.userName) ? user.userName : ''}`)
-                    input#email.form-control.mb-4.text-muted(type='text' value=`${user.email}` readonly='')
-                    input#domain.form-control.mb-4.text-muted(type='text' value=`${domain.name}` readonly='')
+                    input#fullName.form-control.mb-4(type='text' value=`${currentUser.fullName}`)
+                    input#userName.form-control.mb-4(type='text' value=`${(currentUser.userName) ? currentUser.userName : ''}`)
+                    input#email.form-control.mb-4.text-muted(type='text' value=`${currentUser.email}` readonly='')
               // end of second row
               // third row
               .row.mx-2.justify-content-around.card-no-bg.profile-row

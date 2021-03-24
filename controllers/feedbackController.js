@@ -9,7 +9,7 @@ exports.setUserId = (req, res, next) => {
   next();
 }
 
-exports.getAllFeedbacks = factory.getAll(Feedback);
+exports.getAllFeedbacks = factory.getAll(Feedback, { path: 'from', select: 'fullName email' });
 
 exports.createNewFeedback = factory.createOne(Feedback);
 

@@ -1,0 +1,142 @@
+extends base_2 
+
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/adminOverview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(currentUser.userName) ? currentUser.userName : currentUser.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/adminProfile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminOverview') Overview
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/adminFeedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+            .row.align-items-center
+              .col.text-center
+                h4.text-light.text-uppercase.mb-0 Feedbacks
+          //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .card
+      .row
+        .col-xl-10.col-md-9.ms-auto.ps-0
+          // tabs
+          .card-body.card-bg.py-0.ps-2.pe-0
+            .tab-content.p-4.custom-border(style='min-height: 37rem;')
+              .tab-pane.show.active
+                // first row of card body
+                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                  .col-12
+                    h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') Feedback Details:
+                    .pt-3.table-responsive
+                      table#adminFeedback-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.card-common
+                        thead
+                          tr.text-muted
+                            th(style='min-width: 110px;')
+                              | Feedback
+                              br
+                              | Date
+                            th(style='min-width: 140px;')
+                              | Feedback
+                              br
+                              | From
+                            th(style='min-width: 200px;') Email
+                            th Rating
+                            th Category
+                            th(style='width: 280px; min-width: 250px;') Message
+                            th(style='min-width: 175px; pointer-events: none;') Action
+                        tbody
+                          each el in allFeedbacks
+                            tr(id=`${el._id}`)
+                              td(value=`${el.createdAt.toString().substring(0, 10)}`)= `${el.createdAt.toString().substring(0, 10)}`
+                              td(value=`${(el.from !== null)? el.from.fullName: '(user deleted)'}`)= `${(el.from !== null)? el.from.fullName: '(user deleted)'}`
+                              td(value=`${(el.from !== null)? el.from.email: '(user deleted)'}`)= `${(el.from !== null)? el.from.email: '(user deleted)'}`
+                              td(value=`${el.rating}`)= el.rating
+                              td(value=`${el.category}`)= el.category
+                              td(value=`${el.message}`)= `${el.message.length > 59 ? el.message.substring(0, 56) + '...' : el.message}`
+                              td.pt-2(value='buttons')
+                                button.btn.btn-sm.btn-outline-dark.btn-view.me-1(onclick='viewRow(this)')
+                                  i.fal.fa-comment-alt-lines
+                                  |  View
+                                button.btn.btn-sm.btn-outline-danger.btn-delete(data-toggle='modal' data-target='#delete_feedback_modal')
+                                  i.fal.fa-trash-alt
+                                  |  Delete
+                // end of first row of card body
+                // second row of card body
+                .row.pt-2.pb-5.justify-content-center.px-2.px-sm-0.feedback-view
+                  .col-11
+                    h3.text-muted.pt-4.ps-3.pb-3.m-0(style='font-size: 1.5rem;') Feedback View:
+                    .card.card-common
+                      .card-body
+                        .px-4.py-3.text-muted.mb-3
+                          p
+                            | From: 
+                            span(id='view-name' style='font-weight: 600;') -
+                            span(style='float: right;')
+                              | Date: 
+                              span(id='view-date' style='font-weight: 600;') -
+                          p
+                            | Email: 
+                            span(id='view-email' style='font-weight: 600;') -
+                          p
+                            | Rating: 
+                            span(id='view-rating' style='font-weight: 600;') -
+                          p
+                            | Category: 
+                            span(id='view-category' style='font-weight: 600;') -
+                          p.mb-2.pb-1 Message: 
+                          textarea.form-control.text-muted(name='' id='view-message' cols='30' rows='10' disabled='' style='background-color: inherit; font-weight: 600;' )
+                // end of second row of card body
+          // end of card-body
+          // footer
+          include _footer_2
+          // end of footer
+        // end of col-xl-10 col-md-9 ms-auto
+      // end of row
+    // end of card
+
+  script.
+    function viewRow(el) {
+      $('html,body').animate({
+        scrollTop: $(".feedback-view").offset().top - 85
+      },'fast');
+        
+      let rowValues = [];
+      const row = el.parentNode.parentNode;
+      row.childNodes.forEach(el => {
+        rowValues.push(el.getAttribute('value'));
+      })
+      // console.log(rowValues);
+
+      document.getElementById('view-date').textContent = rowValues[0];
+      document.getElementById('view-name').textContent = rowValues[1];
+      document.getElementById('view-email').textContent = rowValues[2];
+      document.getElementById('view-rating').textContent = rowValues[3];
+      document.getElementById('view-category').textContent = rowValues[4];
+      document.getElementById('view-message').textContent = rowValues[5];
+    }

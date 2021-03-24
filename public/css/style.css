@@ -231,9 +231,13 @@ body {
 /* end of cards */
 
 /* table */
+table td {
+	line-height: 1;
+}
+
 .align-lt {
 	text-align: left;
-	/* padding-left: 3rem; */
+	padding-left: 20px !important;
 }
 
 .td-pad {

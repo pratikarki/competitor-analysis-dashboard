@@ -54,56 +54,48 @@ block content
             table.table.table-striped.table-hover.bg-light.text-center.mb-5
               thead
                 tr.text-muted
-                  th.col-4.ps-5.align-lt.vertical-border #
+                  th.col-4.align-lt.vertical-border #
                   each site in competitors
                     th.vertical-border= site.name
 
               tbody
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Rank
                   each site, i in competitors
                     td= site.overallRank
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Bounce Rate
                   each site, i in competitors
                     td= site.bounceRate
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Search Traffic
                   each site, i in competitors
                     td= site.searchTrafficPercent
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Visit Duration
                   each site, i in competitors
                     td= site.avgTimeOnSite
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Average Page View
                   each site, i in competitors
                     td= site.avgPageView
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Search Keywords
                   each site, i in competitors
                     td= site.noOrganicSearchKeyword
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Est Monthly Seo Clicks
                   each site, i in competitors
-                    td= site.estMonthlySeoClick
+                    td= `${site.estMonthlySeoClick}`
                 tr
                   td.align-lt
-                    i.ms-1.me-4.text-muted.fal.fa-times.cross(onclick='')
                     | Est Monthly Seo Clicks Value
                   each site, i in competitors
                     td= site.estMonthlySeoClickValue
@@ -169,13 +161,13 @@ block content
               .col-lg-3.vertical-border
                 .row.border-bottom
                   p.m-0.p-3= domain.name
-                    span(style='float: right;')
-                      i.text-muted.fal.fa-times.cross(onclick='')
+                    //- span(style='float: right;')
+                    //-   i.text-muted.fal.fa-times.cross(onclick='')
                 each site in competitors 
                   .row.border-bottom
                     p.m-0.p-3= site.name
-                      span(style='float: right;')
-                        i.text-muted.fal.fa-times.cross(onclick='')
+                      //- span(style='float: right;')
+                      //-   i.text-muted.fal.fa-times.cross(onclick='')
               .col-lg-9
                 .row.px-4
                   .col-sm-2.pe-0
@@ -208,3 +200,15 @@ block content
       // end of footer
     // end of col-xl-10 col-md-9 ms-auto
 
+
+  script.
+    function trimValue(value) {
+      if (value.includes('.')) {
+        const firstHalf = value.split('.')[0];
+        const secondHalf = value.split('.')[1].substring(0,2);
+        return `${firstHalf}.${secondHalf}`;
+      }
+      else {
+        return value;
+      }
+    }

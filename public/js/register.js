@@ -1,33 +1,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const register = async (regUser) => {
-
-  //first, save User data to check if email and username is unique 
-  try {
-    const res = await axios({
-      method: 'POST',
-      url: 'http://127.0.0.1:3000/api/v1/users/signup',
-      data: regUser
-    })
-
-    // console.log(res.data);
-    if (res.data.status === 'success') {
-      const user_id = res.data.data.user._id;
-      processFurther(regUser, user_id);
-    }
-  }
-  catch (err) {
-    if (err.response.data.message.includes('. ')) {
-      showAlert('error', err.response.data.message.split('. ')[1]);
-    }
-    else {
-      showAlert('error', err.response.data.message);
-    }
-  }
-}
-
-const processFurther = async (regUser, user_id) => {
+export const register = async (regUser, user_id) => {
 
   //these objects are needed to update user
   let domain_id = '';
@@ -43,6 +17,7 @@ const processFurther = async (regUser, user_id) => {
     //save domain to database and update domain_id''
 
   try {
+    console.log(regUser.domainName);
     const res = await axios({
       method: 'POST',
       url: 'http://127.0.0.1:3000/api/v1/domains/find',
@@ -52,8 +27,10 @@ const processFurther = async (regUser, user_id) => {
     })
   
     if (res.data.status === 'success') {
+      //console.log(res.data.data._id, res.data.data);
       domain_id = res.data.data._id;
       domainData = res.data.data;
+      //console.log(`this iz domainID${domain_id}, this iz domainData ${domainData}`);
     }
   }
   catch(err) {

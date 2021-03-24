@@ -61,7 +61,7 @@ html(lang='en')
             a.btn.btn-white(type='button' data-dismiss='modal') Cancel
             a.btn.btn-outline-danger(type='button' onclick='') Yes, remove
 
-    .modal.fade#remove_table_modal
+    //-.modal.fade#remove_table_modal
       .modal-dialog
         .modal-content
           .modal-header
@@ -72,6 +72,31 @@ html(lang='en')
           .modal-footer
             a.btn.btn-white(type='button' data-dismiss='modal') Cancel
             a.btn.btn-outline-danger(type='button' onclick='') Yes, remove
+
+    .modal.fade#delete_user_modal
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title
+              small(style='font-size: .85em;') Are your sure you want to delete this user?
+            .p-2(data-dismiss='modal')
+              i.far.fa-times.cross
+          .modal-footer
+            button.btn.btn-white(type='button' data-dismiss='modal') Cancel
+            button.btn.btn-outline-danger#confirmUserDelete(type='button' data-dismiss='modal') Yes, delete
+
+    .modal.fade#delete_feedback_modal
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title
+              small(style='font-size: .85em;') Are your sure you want to delete this feedback?
+            .p-2(data-dismiss='modal')
+              i.far.fa-times.cross
+          .modal-footer
+            button.btn.btn-white(type='button' data-dismiss='modal') Cancel
+            button.btn.btn-outline-danger#confirmFeedbackDelete(type='button' data-dismiss='modal') Yes, delete
+
 
     //HEADER
     block header

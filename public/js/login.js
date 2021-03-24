@@ -14,9 +14,17 @@ export const login = async (email, password) => {
 
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully!');
-      window.setTimeout(() => {
-        location.assign('/overview');
-      }, 500);
+      
+      if (res.data.data.user.role == 'user') {
+        window.setTimeout(() => {
+          location.assign('/overview');
+        }, 500);
+      }
+      else if (res.data.data.user.role == 'admin') {
+        window.setTimeout(() => {
+          location.assign('/adminOverview');
+        }, 500);
+      }
     }
   }
   catch (err) {

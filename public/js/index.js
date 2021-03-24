@@ -8,6 +8,9 @@ import { resetPass } from './resetPass';
 import { checkDomain } from './checkDomain';
 import { checkEmail } from './checkEmail';
 import { register } from './register';
+import { createUser } from './createUser';
+import { deleteUser } from './deleteUser';
+import { deleteFeedback } from './deleteFeedback';
 // import { getDomainData } from './getDomainData';
 
 
@@ -25,6 +28,9 @@ const btnSuggestion = document.getElementById('suggestion');
 const btnSomethingWrong = document.getElementById('somethingWrong');
 const btnCompliment = document.getElementById('compliment');
 const feedbackForm = document.querySelector('.form--feedback');
+const adminFeedbackTable = document.getElementById('adminFeedback-table');
+const adminOverviewTable = document.getElementById('adminOverview-table');
+
 
 if (year) {
   year.innerHTML = ` ${new Date().getFullYear()}`;
@@ -92,7 +98,12 @@ if (registerForm) {
     //Check if domain is valid
     if (checkDomain(domainName) === false) return;
 
-    await register({ fullName, userName, email, password, confirmPassword, domainName }); //domain_id, competitorSites
+    const user_id = await createUser({ fullName, userName, email, password, confirmPassword, domainName });
+    if (!user_id) return;
+
+    //window.location.replace('/loading');
+
+    await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id); //domain_id, competitorSites
     document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
     document.getElementById('btn--register').disabled = false;
   })
@@ -248,7 +259,50 @@ if (feedbackForm) {
 
     await sendFeedback({ rating, category, message });
     document.getElementById('btn--send').textContent = 'Send';
-    document.getElementById('btn--save').disabled = false;
+    document.getElementById('btn--send').disabled = false;
+  })
+}
+
+if (adminOverviewTable) {
+  document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', event => {
+      // let email
+      //console.log(event.target.parentNode.parentNode.childNodes[2].getAttribute('value'));
+      let user_id = event.target.parentNode.parentNode.getAttribute('id');
+
+      document.getElementById('confirmUserDelete').addEventListener('click', async e => {
+        const status = await deleteUser(user_id);
+        
+        if (status == 'success') {
+          //update table and userCount
+          document.getElementById(`${user_id}`).remove();
+          let userCount = parseInt(document.getElementById('userCount').textContent);
+          document.getElementById('userCount').textContent = userCount - 1;
+        }
+      })
+
+    })
+  })
+}
+
+if (adminFeedbackTable) {
+  document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', event => {
+      // let email
+      //console.log(event.target.parentNode.parentNode.childNodes[2].getAttribute('value'));
+      let feedback_id = event.target.parentNode.parentNode.getAttribute('id');
+
+      document.getElementById('confirmFeedbackDelete').addEventListener('click', async e => {
+        // e.preventDefault();
+        const status = await deleteFeedback(feedback_id);
+        
+        if (status == 'success') {
+          //update table
+          document.getElementById(`${feedback_id}`).remove();
+        }
+      })
+
+    })
   })
 }
 

@@ -1,0 +1,162 @@
+extends base_2 
+
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/adminOverview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(currentUser.userName) ? currentUser.userName : currentUser.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/adminProfile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/adminOverview') Overview
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
+          //- end of sidebar
+          //- top-nav
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+            .row.align-items-center
+              .col.text-center
+                h4.text-light.text-uppercase.mb-0 Admin Overview
+          //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .card
+      .row
+        .col-xl-10.col-md-9.ms-auto.ps-0
+          .card-body.card-bg.py-0.ps-2.pe-0
+            .tab-content.p-4.custom-border(style='min-height: 37rem;')
+              .tab-pane.show.active
+                // first row of card body
+                .row.my-3.justify-content-around
+                  .col-xl-2.col-sm-4.col-6.p-2
+                    .card.card-common
+                      .card-body
+                        .text-center
+                          h2#userCount= userCount
+                      .card-footer.text-center.text-secondary
+                        span Users
+                  .col-xl-2.col-sm-4.col-6.p-2
+                    .card.card-common
+                      .card-body
+                        .text-center
+                          h2= domainCount
+                      .card-footer.text-center.text-secondary
+                        span Domains
+                  .col-xl-2.col-sm-4.col-6.p-2
+                    .card.card-common
+                      .card-body
+                        .text-center
+                          h2= feedbackCount
+                      .card-footer.text-center.text-secondary
+                        span Feedbacks
+                  .col-xl-2.col-sm-4.col-6.p-2
+                    .card.card-common
+                      .card-body
+                        .text-center
+                          h2= adminCount
+                      .card-footer.text-center.text-secondary
+                        span Admins
+
+                // second row of card body
+                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                  .col-12
+                    h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') User Details:
+                    .pt-3.table-responsive
+                      table#adminOverview-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.card-common
+                        thead
+                          tr.text-muted
+                            th(style='min-width: 150px;') Full Name
+                            th Email
+                            th Website
+                            th Competitors
+                            th Feedbacks
+                            th(style='min-width: 130px;') Created At
+                            th(style='min-width: 100px; pointer-events: none;') Action
+                        tbody
+                          each user in allUsers
+                            -if (user.role == 'user')
+                              tr(id=`${user._id}`)
+                                td= user.fullName
+                                td= user.email
+                                td= (user.domain_id)? user.domain_id.name: `-`
+                                td
+                                  -if (user.competitorSites.length !== 0 ) 
+                                    each site, i in user.competitorSites
+                                      if (i == 3)
+                                        br
+                                      span(style='padding: 0px 7px;')= site.name
+                                  -else 
+                                    = `-`
+                                td= `${user.feedbacks.length}`
+                                td= `${user.registeredDate.toString().substring(0, 10)}`
+                                td.pt-2
+                                  button.btn.btn-sm.btn-outline-danger.btn-delete(data-toggle='modal' data-target='#delete_user_modal')
+                                    i.fal.fa-trash-alt
+                                    |  Delete
+                // end of second row of card body
+
+                // third row of card body
+                //.row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                  .col-11
+                    h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') Admin Details:
+                    .pt-3.table-responsive
+                      table.table.table-hover.table-bordered.text-center.bg-light.card-common
+                        thead
+                          tr.text-muted
+                            th Full Name
+                            th Email
+                            th Website
+                            th Competitors
+                            th Feedbacks
+                            th(style='min-width: 100px;') Action
+                        tbody
+                          each user in allUsers
+                            -if (user.role == 'user')
+                              tr
+                                td= user.fullName
+                                td= user.email
+                                td= (user.domain_id)? user.domain_id.name: `-`
+                                td
+                                  -if (user.competitorSites.length !== 0 ) 
+                                    each site, i in user.competitorSites
+                                      if (i == 3)
+                                        br
+                                      span(style='padding: 0px 7px;')= site.name
+                                  -else 
+                                    = `-`
+                                td= `${user.feedbacks.length}`
+                                td.pt-3
+                                  button.btn.btn-sm.btn-outline-danger(data-toggle='modal' data-target='#delete_user_modal')
+                                    i.fal.fa-trash-alt
+                                    |  Delete
+                // end of third row of card body
+
+          // end of card-body
+          // footer
+          include _footer_2
+          // end of footer
+        // end of col-xl-10 col-md-9 ms-auto
+      // end of row
+    // end of card

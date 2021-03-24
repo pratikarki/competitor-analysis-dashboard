@@ -12,11 +12,11 @@ router.route('/search').post(searchDomain);
 router.route('/save').post(createNewDomain);
 
 
-router.use(protect); 
-
 router.route('/') //root of subrouter
-  .get(restrictTo('admin'), getAllDomains)
+  .get(getAllDomains)
   .post(restrictTo('user'), createNewDomain);
+
+router.use(protect); 
 
 router.route('/:id')
   .get(getDomain)

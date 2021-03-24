@@ -12,6 +12,9 @@ router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
 router.route('/update/:id').post(updateUser);
 
+router.route('/').get(getAllUsers); //root of subrouter
+  // .post(createNewUser);
+
 //This will protect all routes after this middleware
 router.use(protect); 
 
@@ -22,9 +25,7 @@ router.delete('/deleteMe', deleteMe);
 //This will restrict all routes only to admin, after this middleware
 router.use(restrictTo('admin'));
 
-router.route('/') //root of subrouter
-  .get(getAllUsers)
-  .post(createNewUser);
+
 
 router.route('/:id')
   .get(getUser)

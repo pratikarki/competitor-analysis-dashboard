@@ -14,7 +14,7 @@ const feedbackSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['suggestion', 'something wrong', 'compliment'],
+        enum: ['Suggestion', 'Something Wrong', 'Compliment'],
         required: [true, 'Select a category about your feedback']
     },
     message: {
