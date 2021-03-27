@@ -10930,7 +10930,7 @@ var createUser = /*#__PURE__*/function () {
             return _context.abrupt("return", user_id);
 
           case 7:
-            _context.next = 12;
+            _context.next = 14;
             break;
 
           case 9:
@@ -10943,7 +10943,10 @@ var createUser = /*#__PURE__*/function () {
               (0, _alerts.showAlert)('error', _context.t0.response.data.message);
             }
 
-          case 12:
+            document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
+            document.getElementById('btn--register').disabled = false;
+
+          case 14:
           case "end":
             return _context.stop();
         }
@@ -11405,6 +11408,7 @@ var btnCompliment = document.getElementById('compliment');
 var feedbackForm = document.querySelector('.form--feedback');
 var adminFeedbackTable = document.getElementById('adminFeedback-table');
 var adminOverviewTable = document.getElementById('adminOverview-table');
+var trimValue = document.querySelector('.trimValue');
 
 if (year) {
   year.innerHTML = " ".concat(new Date().getFullYear());
@@ -11516,7 +11520,12 @@ if (registerForm) {
               return _context.abrupt("return");
 
             case 19:
-              _context.next = 21;
+              //window.location.replace('/loading');
+              //window.location.assign(`/loading/domain/${domainName}/id/${user_id}`);
+              document.querySelector('.loading-message').classList.add("loading-message--show");
+              document.getElementById('headerSection').style.display = "none";
+              document.getElementById('footerSection').style.display = "none";
+              _context.next = 24;
               return (0, _register.register)({
                 fullName: fullName,
                 userName: userName,
@@ -11526,12 +11535,12 @@ if (registerForm) {
                 domainName: domainName
               }, user_id);
 
-            case 21:
+            case 24:
               //domain_id, competitorSites
               document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
               document.getElementById('btn--register').disabled = false;
 
-            case 23:
+            case 26:
             case "end":
               return _context.stop();
           }
@@ -11835,6 +11844,20 @@ if (adminFeedbackTable) {
   });
 }
 
+if (trimValue) {
+  document.querySelectorAll('.trimValue').forEach(function (el) {
+    var value = el.textContent;
+
+    if (value !== '-') {
+      // remove values after dot
+      value = value.split('.')[0]; // insert commas between numbers
+
+      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      el.textContent = value;
+    }
+  });
+}
+
 $(document).ready(function () {
   $(".table-sortable").tablesorter({
     sortList: [[0, 0]]
@@ -11868,7 +11891,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56963" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51965" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

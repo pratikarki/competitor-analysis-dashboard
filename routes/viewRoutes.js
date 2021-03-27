@@ -11,6 +11,8 @@ router.get('/forgotPassword', getPasswordForgotPage);
 router.get('/resetPassword/:token', getPasswordResetPage);
 
 router.get('/loading', getLoadingPage);
+// router.get('/loading/domain/:domainName/id/:user_id', getLoadingPage, getAllData)
+
 router.get('/profile', protect, getProfilePage);
 
 // router.use();
@@ -21,8 +23,8 @@ router.get('/feedback', isLoggedIn, getFeedbackPage);
 
 
 router.get('/adminOverview', protect, getAdminOverviewPage);
-router.get('/adminFeedback', isLoggedIn, getAdminFeedbackPage);
-router.get('/adminProfile', isLoggedIn, getAdminProfilePage);
+router.get('/adminFeedback', protect, getAdminFeedbackPage);
+router.get('/adminProfile', protect, getAdminProfilePage);
 
 
 

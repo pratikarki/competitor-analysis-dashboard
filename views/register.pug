@@ -82,14 +82,21 @@ block content
                         | Sign Up 
                         br
                         | with Google
-                 
+      .loading-message
+        div(style='padding-top: 220px;')
+          h2(style='margin-bottom: 15px;').heading-secondary.px-4
+            | Please wait while we gather information for you...
+          div(style='color: inherit; letter-spacing: 0.5px;').error__msg.text-center This won&apos;t take long and it only happens once.
+          #loader-wrapper
+            #loader
+              
   script.
     function userNameIsValid() {
       const userName = document.getElementById('userName');
-      if (/^\S+$/.test(userName.value)) {
-        userName.setCustomValidity('');
-      } else {
+      if (userName.value && !(/^\S+$/.test(userName.value))) {
         userName.setCustomValidity('Username can not contain spaces');
+      } else {
+        userName.setCustomValidity('');
       }
     }
 

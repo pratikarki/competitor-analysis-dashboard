@@ -24,5 +24,7 @@ export const createUser = async (regUser) => {
     else {
       showAlert('error', err.response.data.message);
     }
+    document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
+    document.getElementById('btn--register').disabled = false;
   }
 }

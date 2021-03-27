@@ -17,7 +17,7 @@ block header
       .container-fluid
         .row
           //- sidebar
-          .col-xl-2.col-md-3.sidebar.fixed-to-top
+          .col-xl-2.col-md-3.sidebar.fixed-to-top.box-shadow
             a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
               | Competitor&apos;s
               br
@@ -45,7 +45,7 @@ block header
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
           //- end of sidebar
           //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+          nav.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
             .row.align-items-center
               .col.text-center
                 h4.text-light.text-uppercase.mb-0 Overview
@@ -99,15 +99,15 @@ block content
                       .col.text-center.py-4.card-common-sm.vertical-border
                         p Search Keywords
                         h4
-                          strong #{domain.noOrganicSearchKeyword}
+                          strong.trimValue #{domain.noOrganicSearchKeyword}
                       .col.text-center.py-4.card-common-sm
                         p Est Monthly Seo Clicks
                         h4
-                          strong #{Math.trunc(domain.estMonthlySeoClick)}
+                          strong.trimValue #{domain.estMonthlySeoClick}
                     .row.py-4.text-center
                       h5.m-0
                         | Est Monthly Seo Clicks Value: 
-                        strong= `$ ${domain.estMonthlySeoClickValue}`
+                        strong.trimValue= `$ ${domain.estMonthlySeoClickValue}`
                   .col-lg-6.col-sm-9.p-0
                     table.table.table-bordered.text-center.m-0.card-common.card-no-bg
                       thead
@@ -180,11 +180,11 @@ block content
                           tbody
                             each key, j in domain.keywords.allSeoClicks[i]
                               tr
-                                td.ps-5.align-lt= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
-                                td= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
-                                td= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
-                                td= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
-                                td= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                                td.trimValue.ps-5.align-lt= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
+                                td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                                td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                                td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                                td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
                               -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
                 //- end of fourth row of 1st tab
                 //- fifth row of 1st tab
@@ -205,8 +205,8 @@ block content
                               td.ps-5.align-lt
                                 a.text-dark(href=`${domain.topPages.pageUrl[i]}`)= domain.topPages.pageTitle[i]
                               td= domain.topPages.topKeyword[i]
-                              td= domain.topPages.estMonthlySeoClicks[i]
-                              td= domain.topPages.keywordCount[i]
+                              td.trimValue= domain.topPages.estMonthlySeoClicks[i]
+                              td.trimValue= domain.topPages.keywordCount[i]
                 //- end of fifth row of 1st tab
                 //- sixth row of 1st tab
                 .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
@@ -232,10 +232,10 @@ block content
                             tr
                               td.ps-5.align-lt
                                 a.text-dark(href=`${domain.backlinks.backlinkUrl[i]}`)= domain.backlinks.backlinkDomain[i]
-                              td= domain.backlinks.domainMonthlyOrganicClicks[i]
-                              td= domain.backlinks.pageMonthlyOrganicClicks[i]
-                              td= domain.backlinks.domainStrength[i]
-                              td= domain.backlinks.outboundLinks[i]
+                              td.trimValue= domain.backlinks.domainMonthlyOrganicClicks[i]
+                              td.trimValue= domain.backlinks.pageMonthlyOrganicClicks[i]
+                              td.trimValue= domain.backlinks.domainStrength[i]
+                              td.trimValue= domain.backlinks.outboundLinks[i]
                 //- end of sixth row of 1st tab
 
               each site, i in competitors
@@ -262,15 +262,15 @@ block content
                         .col.text-center.py-4.card-common-sm.vertical-border
                           p Search Keywords
                           h4
-                            strong #{site.noOrganicSearchKeyword}
+                            strong.trimValue #{site.noOrganicSearchKeyword}
                         .col.text-center.py-4.card-common-sm
                           p Est Monthly Seo Clicks
                           h4
-                            strong #{Math.trunc(site.estMonthlySeoClick)}
+                            strong.trimValue #{site.estMonthlySeoClick}
                       .row.py-4.text-center
                         h5.m-0
                           | Est Monthly Seo Clicks Value: 
-                          strong= `$ ${site.estMonthlySeoClickValue}`
+                          strong.trimValue= `$ ${site.estMonthlySeoClickValue}`
                     .col-lg-6.col-sm-9.p-0
                       table.table.table-bordered.text-center.m-0.card-common.card-no-bg
                         thead
@@ -352,11 +352,11 @@ block content
                             tbody
                               each key, j in site.keywords.allSeoClicks[i]
                                 tr
-                                  td.ps-5.align-lt= `${site.keywords.allKeywords[i][j] ? site.keywords.allKeywords[i][j] : '-'}`
-                                  td= `${site.keywords.allSeoClicks[i][j] ? site.keywords.allSeoClicks[i][j] : '-'}`
-                                  td= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
-                                  td= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
-                                  td= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
+                                  td.trimValue.ps-5.align-lt= `${site.keywords.allKeywords[i][j] ? site.keywords.allKeywords[i][j] : '-'}`
+                                  td.trimValue= `${site.keywords.allSeoClicks[i][j] ? site.keywords.allSeoClicks[i][j] : '-'}`
+                                  td.trimValue= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
+                                  td.trimValue= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
+                                  td.trimValue= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
                                 -if (j > site.keywords.allSeoClicks[i].length-2) { break };
                   //- end of fourth row of loop
                   //- fifth row of loop
@@ -377,8 +377,8 @@ block content
                                 td.ps-5.align-lt
                                   a.text-dark(href=`${site.topPages.pageUrl[i]}`)= site.topPages.pageTitle[i]
                                 td= site.topPages.topKeyword[i]
-                                td= site.topPages.estMonthlySeoClicks[i]
-                                td= site.topPages.keywordCount[i]
+                                td.trimValue= site.topPages.estMonthlySeoClicks[i]
+                                td.trimValue= site.topPages.keywordCount[i]
                   //- end of fifth row of loop
                   //- sixth row of loop
                   .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
@@ -404,10 +404,10 @@ block content
                               tr
                                 td.ps-5.align-lt
                                   a.text-dark(href=`${site.backlinks.backlinkUrl[i]}`)= site.backlinks.backlinkDomain[i]
-                                td= site.backlinks.domainMonthlyOrganicClicks[i]
-                                td= site.backlinks.pageMonthlyOrganicClicks[i]
-                                td= site.backlinks.domainStrength[i]
-                                td= site.backlinks.outboundLinks[i]
+                                td.trimValue= site.backlinks.domainMonthlyOrganicClicks[i]
+                                td.trimValue= site.backlinks.pageMonthlyOrganicClicks[i]
+                                td.trimValue= site.backlinks.domainStrength[i]
+                                td.trimValue= site.backlinks.outboundLinks[i]
                   //- end of sixth row of loop
 
                 -if(i=='second') i=0;

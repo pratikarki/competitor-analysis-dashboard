@@ -81,6 +81,10 @@ exports.getProfilePage = (req, res) => {
 };
 
 exports.getFeedbackPage = (req, res) => {
+	if (!req.user) {
+		const err = new AppError('You are not logged in to view this dashboard. Please login to proceed.', 403);
+		return next(err);
+	}
 	const user = req.user;
 	res.status(200).render('feedback', {
 		title: `Feedback`,

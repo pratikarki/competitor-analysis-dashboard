@@ -30,6 +30,7 @@ const btnCompliment = document.getElementById('compliment');
 const feedbackForm = document.querySelector('.form--feedback');
 const adminFeedbackTable = document.getElementById('adminFeedback-table');
 const adminOverviewTable = document.getElementById('adminOverview-table');
+const trimValue = document.querySelector('.trimValue');
 
 
 if (year) {
@@ -102,6 +103,10 @@ if (registerForm) {
     if (!user_id) return;
 
     //window.location.replace('/loading');
+    //window.location.assign(`/loading/domain/${domainName}/id/${user_id}`);
+    document.querySelector('.loading-message').classList.add("loading-message--show");
+    document.getElementById('headerSection').style.display = "none";
+    document.getElementById('footerSection').style.display = "none";
 
     await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id); //domain_id, competitorSites
     document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
@@ -306,6 +311,21 @@ if (adminFeedbackTable) {
   })
 }
 
+if (trimValue) {
+  document.querySelectorAll('.trimValue').forEach(el => {
+    let value = el.textContent;
+    if (value !== '-') {
+      // remove values after dot
+      value = value.split('.')[0];
+      // insert commas between numbers
+      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+      el.textContent = value;
+    }
+  })
+}
+
 $(document).ready( function () {
   $(".table-sortable").tablesorter({ sortList: [[0,0]] });
 })
+

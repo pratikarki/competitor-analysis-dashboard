@@ -9,7 +9,7 @@ block header
       .container-fluid
         .row
           //- sidebar
-          .col-xl-2.col-md-3.sidebar.fixed-to-top
+          .col-xl-2.col-md-3.sidebar.fixed-to-top.box-shadow
             a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/overview')
               | Competitor&apos;s
               br
@@ -37,7 +37,7 @@ block header
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
           //- end of sidebar
           //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3
+          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
             .row.align-items-center
               .col.text-center
                 h4.text-light.text-uppercase.mb-0 Keywords Comparison
@@ -55,43 +55,43 @@ block content
               h3.text-muted.pb-3.m-0.text-uppercase= domain.keywords.allTypes[i]
               .row.mb-5.card-common.card-no-bg
                 .col-2.text-center.thead-pad
-                  .row.align-items-center.border-top(style='height: 204px;')
+                  .row.align-items-center.border-top(style='height: 164px;')
                     // 1row=40.8px , 5rows=204px
                     strong= domain.name
                   each site in competitors 
-                    .row.align-items-center.border-top(style='height: 204px;')
+                    .row.align-items-center.border-top(style='height: 164px;')
                       strong= site.name
-                .col-10.p-0(style='border: 0.5px solid black;')
+                .col-10.p-0.table-responsive(style='border: 0.5px solid black;')
                   table.table.table-hover.table-sortable.bg-light.text-center.m-0
                     thead
                       tr.text-muted
-                        th.col-5.ps-4.align-lt= domain.keywords.allTypes[i]
-                        th Search Volume
-                        th Seo Clicks
+                        th(style='min-width: 255px;').col-5.ps-4.align-lt= domain.keywords.allTypes[i]
+                        th(style='min-width: 165px;') Search Volume
+                        th(style='min-width: 125px;') Seo Clicks
                         th Rank
                         th Clicks
                     tbody
                       each key, j in domain.keywords.allSeoClicks[i]
                         tr
-                          td.align-lt.ps-4.vertical-border-dark= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
+                          td.trimValue.align-lt.ps-4.vertical-border-dark= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
                             span(style='float: right;')
                               i.text-muted.fal.fa-times.cross(onclick='')
-                          td= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
-                          td= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
-                          td= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
-                          td= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                          td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                          td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                          td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                          td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
                     
                     each site in competitors
                       tbody
                         each key, k in site.keywords.allSeoClicks[i]
                           tr
-                            td.align-lt.ps-4.vertical-border-dark= `${site.keywords.allKeywords[i][k] ? site.keywords.allKeywords[i][k] : '-'}`
+                            td.trimValue.align-lt.ps-4.vertical-border-dark= `${site.keywords.allKeywords[i][k] ? site.keywords.allKeywords[i][k] : '-'}`
                               span(style='float: right;')
                                 i.text-muted.fal.fa-times.cross(onclick='')
-                            td= `${site.keywords.allSearchVolumes[i][k] ? site.keywords.allSearchVolumes[i][k] : '-'}`
-                            td= `${site.keywords.allSeoClicks[i][k] ? site.keywords.allSeoClicks[i][k] : '-'}`
-                            td= `${site.keywords.allRanks[i][k] ? site.keywords.allRanks[i][k] : '-'}`
-                            td= `${site.keywords.allMonthlyClicks[i][k] ? site.keywords.allMonthlyClicks[i][k] : '-'}`
+                            td.trimValue= `${site.keywords.allSearchVolumes[i][k] ? site.keywords.allSearchVolumes[i][k] : '-'}`
+                            td.trimValue= `${site.keywords.allSeoClicks[i][k] ? site.keywords.allSeoClicks[i][k] : '-'}`
+                            td.trimValue= `${site.keywords.allRanks[i][k] ? site.keywords.allRanks[i][k] : '-'}`
+                            td.trimValue= `${site.keywords.allMonthlyClicks[i][k] ? site.keywords.allMonthlyClicks[i][k] : '-'}`
 
           // end of first row
         // end of card body
