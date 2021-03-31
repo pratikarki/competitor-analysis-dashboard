@@ -64,42 +64,42 @@ block content
                     td.align-lt
                       | Rank
                     each site, i in competitors
-                      td= site.overallRank
+                      td= `${site.overallRank? site.overallRank: '-'}`
                   tr
                     td.align-lt
                       | Bounce Rate
                     each site, i in competitors
-                      td= site.bounceRate
+                      td= `${site.bounceRate? site.bounceRate: '-'}`
                   tr
                     td.align-lt
                       | Search Traffic
                     each site, i in competitors
-                      td= site.searchTrafficPercent
+                      td= `${site.searchTrafficPercent? site.searchTrafficPercent: '-'}`
                   tr
                     td.align-lt
                       | Visit Duration
                     each site, i in competitors
-                      td= site.avgTimeOnSite
+                      td= `${site.avgTimeOnSite? site.avgTimeOnSite: '-'}`
                   tr
                     td.align-lt
                       | Average Page View
                     each site, i in competitors
-                      td= site.avgPageView
+                      td= `${site.avgPageView? site.avgPageView: '-'}`
                   tr
                     td.align-lt
                       | Search Keywords
                     each site, i in competitors
-                      td.trimValue= site.noOrganicSearchKeyword
+                      td.trimValue= `${site.noOrganicSearchKeyword? site.noOrganicSearchKeyword: '-'}`
                   tr
                     td.align-lt
                       | Est Monthly Seo Clicks
                     each site, i in competitors
-                      td.trimValue= site.estMonthlySeoClick
+                      td.trimValue= `${site.estMonthlySeoClick? site.estMonthlySeoClick: '-'}`
                   tr
                     td.align-lt
                       | Est Monthly Seo Clicks Value
                     each site, i in competitors
-                      td.trimValue= site.estMonthlySeoClickValue
+                      td.trimValue= `${site.estMonthlySeoClickValue? site.estMonthlySeoClickValue: '-'}`
 
           // end of first row
           // second row

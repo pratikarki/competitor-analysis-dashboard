@@ -49,8 +49,8 @@ block content
                     .input-group-prepend
                       i.input-group-text.fas.fa-key
                     input(type='password' class='form-control' id='password' placeholder='Password' required onChange="checkPass();" pattern='(?=.*\\d).{8,}')
-                    button.input-group-text.pwToggle 
-                      i.far.fa-eye-slash
+                    button(style='width: 45px;').input-group-text.pwToggle 
+                      i.far.fa-eye-slash.mx-auto
                   small.form-text.text-dark Password must be atleast 8 characters including numbers.
 
                 .form-group.pt-4
@@ -59,8 +59,8 @@ block content
                   .input-group-prepend
                     i.input-group-text.fas.fa-key
                   input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required onChange="checkPass();")
-                  button.input-group-text.pwToggleConfirm 
-                    i.far.fa-eye-slash
+                  button(style='width: 45px;').input-group-text.pwToggleConfirm
+                    i.far.fa-eye-slash.mx-auto
 
                 .form-group.pt-4
                   label(for='domain') Domain Name *
@@ -83,7 +83,7 @@ block content
                         br
                         | with Google
       .loading-message
-        div(style='padding-top: 220px;')
+        div(style='padding-top: 250px;')
           h2(style='margin-bottom: 15px;').heading-secondary.px-4
             | Please wait while we gather information for you...
           div(style='color: inherit; letter-spacing: 0.5px;').error__msg.text-center This won&apos;t take long and it only happens once.

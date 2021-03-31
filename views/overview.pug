@@ -3,9 +3,9 @@ extends base_2
 mixin overviewBox(data, text)
   .col-xl-2.col-sm-4.col-6.p-2
     .card.card-common
-      .card-body
+      .card-body(style='padding: 1rem 0.99rem !important;')
         .text-center
-          h2 #{data}
+          h2= `${data ? data : '-'}`
       .card-footer.text-center.text-secondary
         span= text
 
@@ -128,7 +128,7 @@ block content
                                   tr
                                     td.ps-5.align-lt= domain.similarSites.siteName[i]
                                     td= domain.similarSites.overlapScore[i]
-                                    td= domain.similarSites.rank[i]
+                                    td= `${domain.similarSites.rank[i] == '#-'? '-': domain.similarSites.rank[i]}`
                 //- end of second row of 1st tab
                 //- third row of 1st tab
                 .row.py-4.justify-content-around.px-2.px-sm-0
@@ -149,13 +149,21 @@ block content
                                   th Visitor&apos;s Percent
                                   th Site&apos;s Rank
                               tbody
-                                each key, i in domain.countries.countryCode 
+                                -if (domain.countries.countryCode.length == 0)
                                   tr
                                     td
-                                      small= domain.countries.countryCode[i]
-                                    td.align-lt= domain.countries.countryName[i]
-                                    td= domain.countries.visitorPercent[i]
-                                    td= domain.countries.siteCountryRank[i]
+                                      small= ``
+                                    td.align-lt= `No Data`
+                                    td= `-`
+                                    td= `-`
+                                -else
+                                  each key, i in domain.countries.countryCode 
+                                    tr
+                                      td
+                                        small= domain.countries.countryCode[i]
+                                      td.align-lt= domain.countries.countryName[i]
+                                      td= domain.countries.visitorPercent[i]
+                                      td= domain.countries.siteCountryRank[i]
                   .col-lg-6.col-sm-10.p-0
                     .card-common.card-no-bg
                       //- CHART GRAPH
@@ -168,24 +176,25 @@ block content
                     h3.text-muted.pt-4.m-0 Keywords
 
                     each val, i in domain.keywords.allTypes
-                      .pt-4.table-responsive
-                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
-                          thead
-                            tr.text-muted
-                              th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
-                              th Search Volume
-                              th SEO Clicks
-                              th Rank
-                              th Clicks
-                          tbody
-                            each key, j in domain.keywords.allSeoClicks[i]
-                              tr
-                                td.trimValue.ps-5.align-lt= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
-                                td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
-                                td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
-                                td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
-                                td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
-                              -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
+                      -if (domain.keywords.allSeoClicks[i].length !== 0)
+                        .pt-4.table-responsive
+                          table.table.table-hover.table-sortable.text-center.bg-light.card-common
+                            thead
+                              tr.text-muted
+                                th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
+                                th Search Volume
+                                th SEO Clicks
+                                th Rank
+                                th Clicks
+                            tbody
+                              each key, j in domain.keywords.allSeoClicks[i]
+                                tr
+                                  td.trimValue.ps-5.align-lt= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
+                                  td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                                  td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                                  td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                                  td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                                -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
                 //- end of fourth row of 1st tab
                 //- fifth row of 1st tab
                 .row.py-4.justify-content-center.px-2.px-sm-0
@@ -209,33 +218,34 @@ block content
                               td.trimValue= domain.topPages.keywordCount[i]
                 //- end of fifth row of 1st tab
                 //- sixth row of 1st tab
-                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
-                  .col-11
-                    h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
-                    .pt-4.table-responsive
-                      table.table.table-hover.table-sortable.text-center.bg-light.card-common
-                        thead
-                          tr.text-muted
-                            th.col-4.ps-5.align-lt Link
-                            th
-                              | Domain Monthly
-                              br
-                              | Organic Clicks
-                            th
-                              | Page Monthly
-                              br
-                              | Organic Clicks
-                            th Domain Strength
-                            th Outbound Links
-                        tbody
-                          each key, i in domain.backlinks.backlinkDomain 
-                            tr
-                              td.ps-5.align-lt
-                                a.text-dark(href=`${domain.backlinks.backlinkUrl[i]}`)= domain.backlinks.backlinkDomain[i]
-                              td.trimValue= domain.backlinks.domainMonthlyOrganicClicks[i]
-                              td.trimValue= domain.backlinks.pageMonthlyOrganicClicks[i]
-                              td.trimValue= domain.backlinks.domainStrength[i]
-                              td.trimValue= domain.backlinks.outboundLinks[i]
+                .row.pt-4.justify-content-center.px-2.px-sm-0
+                  -if (domain.backlinks.backlinkDomain.length !== 0)
+                    .col-11.pb-5
+                      h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                      .pt-4.table-responsive
+                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
+                          thead
+                            tr.text-muted
+                              th.col-4.ps-5.align-lt Link
+                              th
+                                | Domain Monthly
+                                br
+                                | Organic Clicks
+                              th
+                                | Page Monthly
+                                br
+                                | Organic Clicks
+                              th Domain Strength
+                              th Outbound Links
+                          tbody
+                            each key, i in domain.backlinks.backlinkDomain 
+                              tr
+                                td.ps-5.align-lt
+                                  a.text-dark(href=`${domain.backlinks.backlinkUrl[i]}`)= domain.backlinks.backlinkDomain[i]
+                                td.trimValue= domain.backlinks.domainMonthlyOrganicClicks[i]
+                                td.trimValue= domain.backlinks.pageMonthlyOrganicClicks[i]
+                                td.trimValue= domain.backlinks.domainStrength[i]
+                                td.trimValue= domain.backlinks.outboundLinks[i]
                 //- end of sixth row of 1st tab
 
               each site, i in competitors
@@ -291,7 +301,7 @@ block content
                                     tr
                                       td.ps-5.align-lt= site.similarSites.siteName[i]
                                       td= site.similarSites.overlapScore[i]
-                                      td= site.similarSites.rank[i]
+                                      td= `${site.similarSites.rank[i] == '#-'? '-': site.similarSites.rank[i]}`
                   //- end of second row of loop
                   //- third row of loop
                   .row.py-4.justify-content-around.px-2.px-sm-0
@@ -312,13 +322,21 @@ block content
                                     th Visitor&apos;s Percent
                                     th Site&apos;s Rank
                                 tbody
-                                  each key, i in site.countries.countryCode 
+                                  -if (site.countries.countryCode.length == 0)
                                     tr
                                       td
-                                        small= site.countries.countryCode[i]
-                                      td.align-lt= site.countries.countryName[i]
-                                      td= site.countries.visitorPercent[i]
-                                      td= site.countries.siteCountryRank[i]
+                                        small= ``
+                                      td.align-lt= `No Data`
+                                      td= `-`
+                                      td= `-`
+                                  -else
+                                    each key, i in site.countries.countryCode 
+                                      tr
+                                        td
+                                          small= site.countries.countryCode[i]
+                                        td.align-lt= site.countries.countryName[i]
+                                        td= site.countries.visitorPercent[i]
+                                        td= site.countries.siteCountryRank[i]
                     .col-lg-6.col-sm-10.p-0
                       .card-common.card-no-bg
                         //- CHART GRAPH
@@ -340,24 +358,25 @@ block content
                       h3.text-muted.pt-4.m-0 Keywords
 
                       each val, i in site.keywords.allTypes
-                        .pt-4.table-responsive
-                          table.table.table-hover.table-sortable.text-center.bg-light.card-common
-                            thead
-                              tr.text-muted
-                                th.col-4.ps-5.align-lt= site.keywords.allTypes[i]
-                                th Search Volume
-                                th SEO Clicks
-                                th Rank
-                                th Clicks
-                            tbody
-                              each key, j in site.keywords.allSeoClicks[i]
-                                tr
-                                  td.trimValue.ps-5.align-lt= `${site.keywords.allKeywords[i][j] ? site.keywords.allKeywords[i][j] : '-'}`
-                                  td.trimValue= `${site.keywords.allSeoClicks[i][j] ? site.keywords.allSeoClicks[i][j] : '-'}`
-                                  td.trimValue= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
-                                  td.trimValue= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
-                                  td.trimValue= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
-                                -if (j > site.keywords.allSeoClicks[i].length-2) { break };
+                        -if (site.keywords.allSeoClicks[i].length !== 0)
+                          .pt-4.table-responsive
+                            table.table.table-hover.table-sortable.text-center.bg-light.card-common
+                              thead
+                                tr.text-muted
+                                  th.col-4.ps-5.align-lt= site.keywords.allTypes[i]
+                                  th Search Volume
+                                  th SEO Clicks
+                                  th Rank
+                                  th Clicks
+                              tbody
+                                each key, j in site.keywords.allSeoClicks[i]
+                                  tr
+                                    td.trimValue.ps-5.align-lt= `${site.keywords.allKeywords[i][j] ? site.keywords.allKeywords[i][j] : '-'}`
+                                    td.trimValue= `${site.keywords.allSeoClicks[i][j] ? site.keywords.allSeoClicks[i][j] : '-'}`
+                                    td.trimValue= `${site.keywords.allSearchVolumes[i][j] ? site.keywords.allSearchVolumes[i][j] : '-'}`
+                                    td.trimValue= `${site.keywords.allRanks[i][j] ? site.keywords.allRanks[i][j] : '-'}`
+                                    td.trimValue= `${site.keywords.allMonthlyClicks[i][j] ? site.keywords.allMonthlyClicks[i][j] : '-'}`
+                                  -if (j > site.keywords.allSeoClicks[i].length-2) { break };
                   //- end of fourth row of loop
                   //- fifth row of loop
                   .row.py-4.justify-content-center.px-2.px-sm-0
@@ -381,33 +400,34 @@ block content
                                 td.trimValue= site.topPages.keywordCount[i]
                   //- end of fifth row of loop
                   //- sixth row of loop
-                  .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
-                    .col-11
-                      h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
-                      .pt-4.table-responsive
-                        table.table.table-hover.table-sortable.text-center.bg-light.card-common
-                          thead
-                            tr.text-muted
-                              th.col-4.ps-5.align-lt Link
-                              th
-                                | Domain Monthly
-                                br
-                                | Organic Clicks
-                              th
-                                | Page Monthly
-                                br
-                                | Organic Clicks
-                              th Domain Strength
-                              th Outbound Links
-                          tbody
-                            each key, i in site.backlinks.backlinkDomain 
-                              tr
-                                td.ps-5.align-lt
-                                  a.text-dark(href=`${site.backlinks.backlinkUrl[i]}`)= site.backlinks.backlinkDomain[i]
-                                td.trimValue= site.backlinks.domainMonthlyOrganicClicks[i]
-                                td.trimValue= site.backlinks.pageMonthlyOrganicClicks[i]
-                                td.trimValue= site.backlinks.domainStrength[i]
-                                td.trimValue= site.backlinks.outboundLinks[i]
+                  .row.pt-4.justify-content-center.px-2.px-sm-0
+                    -if (site.backlinks.backlinkDomain.length !== 0)
+                      .col-11.pb-5
+                        h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                        .pt-4.table-responsive
+                          table.table.table-hover.table-sortable.text-center.bg-light.card-common
+                            thead
+                              tr.text-muted
+                                th.col-4.ps-5.align-lt Link
+                                th
+                                  | Domain Monthly
+                                  br
+                                  | Organic Clicks
+                                th
+                                  | Page Monthly
+                                  br
+                                  | Organic Clicks
+                                th Domain Strength
+                                th Outbound Links
+                            tbody
+                              each key, i in site.backlinks.backlinkDomain 
+                                tr
+                                  td.ps-5.align-lt
+                                    a.text-dark(href=`${site.backlinks.backlinkUrl[i]}`)= site.backlinks.backlinkDomain[i]
+                                  td.trimValue= site.backlinks.domainMonthlyOrganicClicks[i]
+                                  td.trimValue= site.backlinks.pageMonthlyOrganicClicks[i]
+                                  td.trimValue= site.backlinks.domainStrength[i]
+                                  td.trimValue= site.backlinks.outboundLinks[i]
                   //- end of sixth row of loop
 
                 -if(i=='second') i=0;
