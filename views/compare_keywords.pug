@@ -3,7 +3,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -36,18 +36,18 @@ block header
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
           //- end of sidebar
-          //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Keywords Comparison
-          //- end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Keywords Comparison
+    //- end of top-nav
 
 
 block content 
   section.overview-pad.container-fluid
     .col-xl-10.col-md-9.ms-auto
-      .card.card-bg.m-4
+      .card.card-bg.m-2.m-md-4
         .card-body.mx-3.p-0
           // first row
           each val, i in domain.keywords.allTypes
@@ -56,19 +56,19 @@ block content
               .row.mb-5.card-common.card-no-bg
                 .col-2.text-center.thead-pad
                   -if (domain.keywords.allKeywords[i].length !== 0)
-                    .row.align-items-center.border-top(style=`height: ${domain.keywords.allKeywords[i].length*32.8}px;`)
+                    .row.keyword-box.align-items-top.border-top(style=`height: ${domain.keywords.allKeywords[i].length*32.8}px;`)
                       // 1row=32.8px , 5rows=164px
-                      strong= domain.name
+                      strong.keyword-text= domain.name
                   each site in competitors 
                     -if (site.keywords.allKeywords[i].length !== 0)
-                      .row.align-items-center.border-top(style=`height: ${site.keywords.allKeywords[i].length*32.8}px;`)
-                        strong= site.name
+                      .row.keyword-box.align-items-top.border-top(style=`height: ${site.keywords.allKeywords[i].length*32.8}px;`)
+                        strong.keyword-text= site.name
                 .col-10.p-0.table-responsive(style='border: 0.5px solid black;')
                   table.table.table-hover.table-sortable.bg-light.text-center.m-0
                     thead
                       tr.text-muted
                         th(style='min-width: 255px;').col-5.ps-4.align-lt= domain.keywords.allTypes[i]
-                        th(style='min-width: 165px;') Search Volume
+                        th(style='min-width: 140px;') Search Volume
                         th(style='min-width: 125px;') Seo Clicks
                         th Rank
                         th Clicks

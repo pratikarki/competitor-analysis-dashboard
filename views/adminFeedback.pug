@@ -3,7 +3,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -32,12 +32,12 @@ block header
               li.nav-item.text-center
                 a.nav-link.current.text-light.p-3.mb-1(href='/adminFeedback') Feedback
           //- end of sidebar
-          //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Feedbacks
-          //- end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Feedbacks
+    //- end of top-nav
 
 
 block content 
@@ -47,14 +47,14 @@ block content
         .col-xl-10.col-md-9.ms-auto.ps-0
           // tabs
           .card-body.card-bg.py-0.ps-2.pe-0
-            .tab-content.p-4.custom-border(style='min-height: 37rem;')
+            .tab-content.p-0.p-sm-4.custom-border(style='min-height: 37rem;')
               .tab-pane.show.active
                 // first row of card body
-                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
+                .row.pt-0.pt-md-4.pb-4.pb-md-5.justify-content-center.px-2.px-sm-0
                   .col-12
                     h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') Feedback Details:
-                    .pt-3.table-responsive
-                      table#adminFeedback-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.card-common
+                    .mt-3.table-responsive.card-common.p-0
+                      table#adminFeedback-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.m-0
                         thead
                           tr.text-muted
                             th(style='min-width: 110px;')
@@ -89,11 +89,11 @@ block content
                 // end of first row of card body
                 // second row of card body
                 .row.pt-2.pb-5.justify-content-center.px-2.px-sm-0.feedback-view
-                  .col-11
+                  .col-11.p-0.p-md-2
                     h3.text-muted.pt-4.ps-3.pb-3.m-0(style='font-size: 1.5rem;') Feedback View:
                     .card.card-common
                       .card-body
-                        .px-4.py-3.text-muted.mb-3
+                        .px-0.px-md-4.py-1.py-md-3.text-muted.mb-0.mb-md-3
                           p
                             | From: 
                             span(id='view-name' style='font-weight: 600;') -

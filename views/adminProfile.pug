@@ -2,7 +2,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -27,28 +27,28 @@ block header
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
           // end of sidebar
-          // top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Admin Profile
-          // end of top-nav
+    // top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Admin Profile
+    // end of top-nav
 
 
 block content 
   section.overview-pad.container-fluid
     .col-xl-10.col-md-9.ms-auto
-      .mx-5.mb-5.mt-3
-        .card.card-bg.p-5
-          .card-body.p-4
+      .mx-1.mx-sm-5.mb-5.mt-3
+        .card.card-bg.p-sm-5
+          .card-body.p-3.p-md-4
             form.form.form--profile.col
               // first row
-              .row.mx-2.mb-5.justify-content-around.card-no-bg.profile-row
+              .row.mx-0.mx-md-2.mb-5.justify-content-around.card-no-bg.profile-row
                 h4.text-uppercase.mt-3.mb-2 Edit Information
-                .row.my-5.p-0
+                .row.py-5
                   .col-xl-5.text-center
                     img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='230px' width='230px' alt='User Image')
-                  .col-xl-7.align-self-center(style='padding-right: 22px')
+                  .col-xl-7.align-self-center.pt-3.pt-md-0(style='padding-right: 22px')
                     label.mb-2(for='photo') Upload an Image
                     input#photo.form-control.mb-2(type='file', name='photo', accept='image/*')
                     small#fileHelp.form-text.text-muted
@@ -59,12 +59,12 @@ block content
               // second row
               .row.mx-2.mb-5.justify-content-around.card-no-bg.profile-row
                 h4.text-uppercase.mt-3.mb-2 Account Information
-                .row.my-5.p-0
-                  .col-4.offset-1
+                .row.py-4.py-md-5.px-0
+                  .col-4.offset-md-1.ps-3.ps-md-2.pe-0.pe-md-2
                     p.mb-4.pt-2.pb-2 Full Name:
                     p.mb-4.pt-1.pb-2 Username:
                     p.mb-4.pt-2.pb-2 Email:
-                  .col-7.align-self-around.pe-5
+                  .col-7.align-self-around.pe-0.pe-md-5.ps-3.ps-md-2
                     input#fullName.form-control.mb-4(type='text' value=`${currentUser.fullName}`)
                     input#userName.form-control.mb-4(type='text' value=`${(currentUser.userName) ? currentUser.userName : ''}`)
                     input#email.form-control.mb-4.text-muted(type='text' value=`${currentUser.email}` readonly='')
@@ -72,14 +72,14 @@ block content
               // third row
               .row.mx-2.justify-content-around.card-no-bg.profile-row
                 h4.text-uppercase.mt-3.mb-2 Change Password
-                .row.mt-5.mb-4.p-0
-                  .col-4.offset-1
+                .row.pt-4.pt-md-5.pb-4.px-0
+                  .col-4.offset-md-1.ps-3.ps-md-2.pe-0.pe-md-2
                     p.mb-4.pt-2.pb-2 Current Password:
                     p.mb-4.pt-1.pb-2 New Password:
                     p.pt-2.pb-2 Confirm Password:
-                  .col-7.align-self-around.pe-5
-                    input#currentpassword.form-control.mb-4(type='password' placeholder='***********')
-                    input#newpassword.form-control.mb-4(type='password' placeholder='***********')
+                  .col-7.align-self-around.pe-0.pe-md-5.ps-3.ps-md-2
+                    input#currentpassword.form-control.mt-lg-0.mt-3.mb-lg-4.mb-5(type='password' placeholder='***********')
+                    input#newpassword.form-control.mb-lg-4.mb-5(type='password' placeholder='***********')
                     input#confirmpassword.form-control.mb-4.text-muted(type='password' placeholder='***********')
                     button#btn--save.btn.btn-outline-secondary.mt-3.card-common Save Profile
               // end of third row

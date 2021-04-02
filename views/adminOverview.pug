@@ -3,7 +3,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -32,12 +32,12 @@ block header
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
           //- end of sidebar
-          //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Admin Overview
-          //- end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Admin Overview
+    //- end of top-nav
 
 
 block content 
@@ -49,7 +49,7 @@ block content
             .tab-content.p-4.custom-border(style='min-height: 37rem;')
               .tab-pane.show.active
                 // first row of card body
-                .row.my-3.justify-content-around
+                .row.my-md-3.justify-content-around
                   .col-xl-2.col-sm-4.col-6.p-2
                     .card.card-common
                       .card-body
@@ -80,11 +80,11 @@ block content
                         span Admins
 
                 // second row of card body
-                .row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
-                  .col-12
+                .row.pt-4.pb-3.pb-lg-5.justify-content-center.px-0
+                  .col-12.p-0
                     h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') User Details:
-                    .pt-3.table-responsive
-                      table#adminOverview-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.card-common
+                    .mt-3.table-responsive.card-common.p-0
+                      table#adminOverview-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.m-0
                         thead
                           tr.text-muted
                             th(style='min-width: 150px;') Full Name

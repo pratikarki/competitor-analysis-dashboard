@@ -2,7 +2,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -31,19 +31,19 @@ block header
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
           // end of sidebar
-          // top-nav
-          nav.col-xl-10.col-md-9.ms-auto.bg-white.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Profile
-          // end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Profile
+    //- end of top-nav
 
 
 block content 
   section.overview-pad.container-fluid
     .col-xl-10.col-md-9.ms-auto
-      .mx-5.mb-5.mt-3
-        .card.card-bg.p-5
+      .mx-sm-5.mx-3.mb-5.mt-3
+        .card.card-bg.p-sm-5
           .card-body.p-4
             form.form.form--profile.col
               // first row
@@ -84,8 +84,8 @@ block content
                     p.mb-4.pt-1.pb-2 New Password:
                     p.pt-2.pb-2 Confirm Password:
                   .col-7.align-self-around.pe-5
-                    input#currentpassword.form-control.mb-4(type='password' placeholder='***********')
-                    input#newpassword.form-control.mb-4(type='password' placeholder='***********')
+                    input#currentpassword.form-control.mt-lg-0.mt-3.mb-lg-4.mb-5(type='password' placeholder='***********')
+                    input#newpassword.form-control.mb-lg-4.mb-5(type='password' placeholder='***********')
                     input#confirmpassword.form-control.mb-4.text-muted(type='password' placeholder='***********')
                     button#btn--save.btn.btn-outline-secondary.mt-3.card-common Save Profile
               // end of third row

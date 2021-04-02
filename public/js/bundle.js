@@ -11522,9 +11522,9 @@ if (registerForm) {
             case 19:
               //window.location.replace('/loading');
               //window.location.assign(`/loading/domain/${domainName}/id/${user_id}`);
-              document.querySelector('.loading-message').classList.add("loading-message--show");
-              document.getElementById('headerSection').style.display = "none";
-              document.getElementById('footerSection').style.display = "none";
+              document.querySelector('.loading-message').classList.add('loading-message--show');
+              document.getElementById('headerSection').style.display = 'none';
+              document.getElementById('footerSection').style.display = 'none';
               _context.next = 24;
               return (0, _register.register)({
                 fullName: fullName,
@@ -11852,14 +11852,14 @@ if (trimValue) {
       // remove values after dot
       value = value.split('.')[0]; // insert commas between numbers
 
-      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       el.textContent = value;
     }
   });
 }
 
 $(document).ready(function () {
-  $(".table-sortable").tablesorter({
+  $('.table-sortable').tablesorter({
     sortList: [[0, 0]]
   });
 });
@@ -11891,7 +11891,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59104" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63510" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

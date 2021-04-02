@@ -2,7 +2,7 @@ extends base_2
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -35,19 +35,19 @@ block header
               li.nav-item.text-center
                 a.nav-link.current.text-light.p-3.mb-1(href='/feedback') Feedback
           //- end of sidebar
-          //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Feedback
-          //- end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Feedback
+    //- end of top-nav
 
 
 block content 
   section.overview-pad.container-fluid
     .col-xl-10.col-md-9.ms-auto
-      form.form--feedback.m-5.mt-4
-        .card.card-b1.p-5
+      form.form--feedback.m-3.m-sm-5.mt-4
+        .card.card-b1.p-3.p-md-5
           .card-body.p-4.text-center
             p.lead We would appreciate your feedback to improve our website.
             p.pt-3.m-0 How would your rate this application?
@@ -65,7 +65,7 @@ block content
                 label.fas.fa-star.fa-2x(for='rate-1')
             hr.bottom-border.mx-4.my-5
             p Please select your feedback category below:
-            .py-4
+            .py-2.py-lg-4.px-2.px-lg-0
               button#suggestion.btn.btn-outline-secondary.my-xl-0.my-3.card-common.custom-hover(value='Suggestion') Suggestion
               button#somethingWrong.btn.btn-outline-secondary.mx-5.card-common.custom-hover(value='Something Wrong')
                 | Something isn&apos;t
@@ -73,7 +73,7 @@ block content
                 | quite right
               button#compliment.btn.btn-outline-secondary.my-xl-0.my-3.card-common.custom-hover(value='Compliment') Compliment
             hr.bottom-border.mx-4.my-3
-            .m-5
+            .my-5.mx-1.mx-lg-5
               p.pb-3 Please leave your feedback below:
               textarea#feedbackMessage.form-control(name='feedbackMessage' cols='0' rows='13' placeholder='Write a message..')
             button#btn--send.btn.btn-outline-secondary.card-common.custom-hoverTwo(type='submit' data-toggle='modal' data-target='#thanks_modal')

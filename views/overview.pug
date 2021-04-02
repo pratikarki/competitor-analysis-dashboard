@@ -11,7 +11,7 @@ mixin overviewBox(data, text)
 
 block header 
   header.nav.navbar-expand-md.navbar-light
-    button.navbar-toggler.ms-auto.mb-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
       span.navbar-toggler-icon
     .navbar-collapse#dash_nav.collapse
       .container-fluid
@@ -44,12 +44,12 @@ block header
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/feedback') Feedback
           //- end of sidebar
-          //- top-nav
-          nav.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
-            .row.align-items-center
-              .col.text-center
-                h4.text-light.text-uppercase.mb-0 Overview
-          //- end of top-nav
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Overview
+    //- end of top-nav
 
 
 block content 
@@ -77,7 +77,7 @@ block content
                 -if(i=='fifth') i=3;
                 -if(i=='sixth') i=4;
 
-              span.p-2.ms-2
+              span.py-2.px-3
                 i.fal.fa-plus.fa-lg.cross(data-toggle='modal' data-target='#add_modal')
 
             #nav-tabContent.tab-content.p-4.custom-border
@@ -91,7 +91,7 @@ block content
                   +overviewBox(domain.avgPageView, 'Avg Page View')
                 //- end of first row of 1st tab
                 //- second row of 1st tab
-                .row.py-5.justify-content-around.px-2.px-sm-0
+                .row.py-5.justify-content-around.px-0.px-md-2
                   .col-lg-5.col-sm-9.card-common.align-self-center.mb-lg-0.mb-4.card-no-bg(style='height: auto;')
                     .row.py-4.text-center.border-bottom
                       h4.m-0 Organic Search
@@ -108,8 +108,8 @@ block content
                       h5.m-0
                         | Est Monthly Seo Clicks Value: 
                         strong.trimValue= `$ ${domain.estMonthlySeoClickValue}`
-                  .col-lg-6.col-sm-9.p-0
-                    table.table.table-bordered.text-center.m-0.card-common.card-no-bg
+                  .col-lg-6.col-sm-9.p-0.table-responsive.card-common.card-no-bg(style='height: min-content;')
+                    table.table.table-bordered.text-center.m-0
                       thead
                         tr
                           th.py-3
@@ -131,7 +131,7 @@ block content
                                     td= `${domain.similarSites.rank[i] == '#-'? '-': domain.similarSites.rank[i]}`
                 //- end of second row of 1st tab
                 //- third row of 1st tab
-                .row.py-4.justify-content-around.px-2.px-sm-0
+                .row.py-4.justify-content-around.px-0.px-md-2
                   .col-lg-5.col-sm-9.align-self-center.mb-lg-0.mb-4.p-0.card-no-bg
                     table.table.table-bordered.text-center.m-0.card-common
                       thead
@@ -171,9 +171,9 @@ block content
                       canvas#organicVsPaid(data-graphs = `${JSON.stringify(domain.clicks)}` style='height: 160px; width: 250px;')
                 //- end of third row of 1st tab
                 //- fourth row of 1st tab
-                .row.py-4.justify-content-center.px-2.px-sm-0
-                  .col-11
-                    h3.text-muted.pt-4.m-0 Keywords
+                .row.py-4.justify-content-center.px-0.px-md-2
+                  .col-12.col-md-11.p-0
+                    h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Keywords
 
                     each val, i in domain.keywords.allTypes
                       -if (domain.keywords.allSeoClicks[i].length !== 0)
@@ -181,11 +181,11 @@ block content
                           table.table.table-hover.table-sortable.text-center.bg-light.card-common
                             thead
                               tr.text-muted
-                                th.col-4.ps-5.align-lt= domain.keywords.allTypes[i]
-                                th Search Volume
-                                th SEO Clicks
-                                th Rank
-                                th Clicks
+                                th.col-4.ps-5.align-lt(style='min-width: 200px;')= domain.keywords.allTypes[i]
+                                th(style='min-width: 100px;') Search Volume
+                                th(style='min-width: 100px;') SEO Clicks
+                                th(style='min-width: 100px;') Rank
+                                th(style='min-width: 100px;') Clicks
                             tbody
                               each key, j in domain.keywords.allSeoClicks[i]
                                 tr
@@ -197,17 +197,17 @@ block content
                                 -if (j > domain.keywords.allSeoClicks[i].length-2) { break };
                 //- end of fourth row of 1st tab
                 //- fifth row of 1st tab
-                .row.py-4.justify-content-center.px-2.px-sm-0
-                  .col-11
-                    h3.text-muted.pt-4.m-0 Top Pages
+                .row.py-4.justify-content-center.px-0.px-md-2
+                  .col-12.col-md-11.p-0
+                    h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Top Pages
                     .pt-4.table-responsive
                       table.table.table-hover.table-sortable.text-center.bg-light.card-common
                         thead
                           tr.text-muted
-                            th.col-4.ps-5.align-lt Page
-                            th.col-3 Keyword
-                            th Est Monthly SEO Clicks
-                            th Keyword Count
+                            th.col-4.ps-5.align-lt(style='min-width: 260px;') Page
+                            th.col-3(style='min-width: 115px;') Keyword
+                            th(style='min-width: 115px;') Est Monthly SEO Clicks
+                            th(style='min-width: 115px;') Keyword Count
                         tbody
                           each key, i in domain.topPages.pageTitle 
                             tr
@@ -218,25 +218,25 @@ block content
                               td.trimValue= domain.topPages.keywordCount[i]
                 //- end of fifth row of 1st tab
                 //- sixth row of 1st tab
-                .row.pt-4.justify-content-center.px-2.px-sm-0
+                .row.pt-4.justify-content-center.px-0.px-md-2
                   -if (domain.backlinks.backlinkDomain.length !== 0)
-                    .col-11.pb-5
-                      h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                    .col-12.col-md-11.pb-5.px-0
+                      h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Backlinks (Imbound Links)
                       .pt-4.table-responsive
                         table.table.table-hover.table-sortable.text-center.bg-light.card-common
                           thead
                             tr.text-muted
                               th.col-4.ps-5.align-lt Link
-                              th
+                              th(style='min-width: 155px;')
                                 | Domain Monthly
                                 br
                                 | Organic Clicks
-                              th
+                              th(style='min-width: 155px;')
                                 | Page Monthly
                                 br
                                 | Organic Clicks
-                              th Domain Strength
-                              th Outbound Links
+                              th(style='min-width: 125px;') Domain Strength
+                              th(style='min-width: 125px;') Outbound Links
                           tbody
                             each key, i in domain.backlinks.backlinkDomain 
                               tr
@@ -264,7 +264,7 @@ block content
                     +overviewBox(site.avgPageView, 'Avg Page View')
                   //- end of first row of loop
                   //- second row of loop
-                  .row.py-5.justify-content-around.px-2.px-sm-0
+                  .row.py-5.justify-content-around.px-0.px-md-2
                     .col-lg-5.col-sm-9.card-common.align-self-center.mb-lg-0.mb-4.card-no-bg(style='height: auto;')
                       .row.py-4.text-center.border-bottom
                         h4.m-0 Organic Search
@@ -281,8 +281,8 @@ block content
                         h5.m-0
                           | Est Monthly Seo Clicks Value: 
                           strong.trimValue= `$ ${site.estMonthlySeoClickValue}`
-                    .col-lg-6.col-sm-9.p-0
-                      table.table.table-bordered.text-center.m-0.card-common.card-no-bg
+                    .col-lg-6.col-sm-9.p-0.table-responsive.card-common.card-no-bg(style='height: min-content;')
+                      table.table.table-bordered.text-center.m-0
                         thead
                           tr
                             th.py-3
@@ -304,7 +304,7 @@ block content
                                       td= `${site.similarSites.rank[i] == '#-'? '-': site.similarSites.rank[i]}`
                   //- end of second row of loop
                   //- third row of loop
-                  .row.py-4.justify-content-around.px-2.px-sm-0
+                  .row.py-4.justify-content-around.px-0.px-md-2
                     .col-lg-5.col-sm-9.align-self-center.mb-lg-0.mb-4.p-0.card-no-bg
                       table.table.table-bordered.text-center.m-0.card-common
                         thead
@@ -353,9 +353,9 @@ block content
                         -if(i=='organicVsPaidSixth') i='sixth';
                   //- end of third row of loop
                   //- fourth row of loop
-                  .row.py-4.justify-content-center.px-2.px-sm-0
-                    .col-11
-                      h3.text-muted.pt-4.m-0 Keywords
+                  .row.py-4.justify-content-center.px-0.px-md-2
+                    .col-12.col-md-11.p-0
+                      h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Keywords
 
                       each val, i in site.keywords.allTypes
                         -if (site.keywords.allSeoClicks[i].length !== 0)
@@ -363,11 +363,11 @@ block content
                             table.table.table-hover.table-sortable.text-center.bg-light.card-common
                               thead
                                 tr.text-muted
-                                  th.col-4.ps-5.align-lt= site.keywords.allTypes[i]
-                                  th Search Volume
-                                  th SEO Clicks
-                                  th Rank
-                                  th Clicks
+                                  th.col-4.ps-5.align-lt(style='min-width: 200px;')= site.keywords.allTypes[i]
+                                  th(style='min-width: 100px;') Search Volume
+                                  th(style='min-width: 100px;') SEO Clicks
+                                  th(style='min-width: 100px;') Rank
+                                  th(style='min-width: 100px;') Clicks
                               tbody
                                 each key, j in site.keywords.allSeoClicks[i]
                                   tr
@@ -379,17 +379,17 @@ block content
                                   -if (j > site.keywords.allSeoClicks[i].length-2) { break };
                   //- end of fourth row of loop
                   //- fifth row of loop
-                  .row.py-4.justify-content-center.px-2.px-sm-0
-                    .col-11
-                      h3.text-muted.pt-4.m-0 Top Pages
+                  .row.py-4.justify-content-center.px-0.px-md-2
+                    .col-12.col-md-11.p-0
+                      h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Top Pages
                       .pt-4.table-responsive
                         table.table.table-hover.table-sortable.text-center.bg-light.card-common
                           thead
                             tr.text-muted
-                              th.col-4.ps-5.align-lt Page
-                              th.col-3 Keyword
-                              th Est Monthly SEO Clicks
-                              th Keyword Count
+                              th.col-4.ps-5.align-lt(style='min-width: 260px;') Page
+                              th.col-3(style='min-width: 115px;') Keyword
+                              th(style='min-width: 115px;') Est Monthly SEO Clicks
+                              th(style='min-width: 115px;') Keyword Count
                           tbody
                             each key, i in site.topPages.pageTitle 
                               tr
@@ -400,25 +400,25 @@ block content
                                 td.trimValue= site.topPages.keywordCount[i]
                   //- end of fifth row of loop
                   //- sixth row of loop
-                  .row.pt-4.justify-content-center.px-2.px-sm-0
+                  .row.pt-4.justify-content-center.px-0.px-md-2
                     -if (site.backlinks.backlinkDomain.length !== 0)
-                      .col-11.pb-5
-                        h3.text-muted.pt-4.m-0 Backlinks (Imbound Links)
+                      .col-12.col-md-11.pb-5.px-0
+                        h3.text-muted.pt-4.m-0.ps-2.ps-md-0 Backlinks (Imbound Links)
                         .pt-4.table-responsive
                           table.table.table-hover.table-sortable.text-center.bg-light.card-common
                             thead
                               tr.text-muted
                                 th.col-4.ps-5.align-lt Link
-                                th
+                                th(style='min-width: 155px;')
                                   | Domain Monthly
                                   br
                                   | Organic Clicks
-                                th
+                                th(style='min-width: 155px;')
                                   | Page Monthly
                                   br
                                   | Organic Clicks
-                                th Domain Strength
-                                th Outbound Links
+                                th(style='min-width: 125px;') Domain Strength
+                                th(style='min-width: 125px;') Outbound Links
                             tbody
                               each key, i in site.backlinks.backlinkDomain 
                                 tr

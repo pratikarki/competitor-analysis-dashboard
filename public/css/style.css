@@ -34,6 +34,54 @@ body {
 	margin-top: 5rem;
 }
 
+@media only screen and (max-width: 768px) {
+	.overview-pad {
+		padding-top: 2rem !important;
+	}
+	.error {
+		padding-top: 16rem;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.home-pad {
+		padding-top: 5rem !important;
+	}
+	.keyword-box {
+		transform: rotate(-80deg);
+		width: 162px;
+		padding-top: 20px;
+	}
+	.keyword-text {
+		display: contents !important;
+	}
+	.border-top {
+		border-top: unset !important;
+	}
+}
+.keyword-text {
+	display: initial;
+	padding: 2px;
+}
+
+@media only screen and (max-width: 1450px) {
+	#nav-tab {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	#nav-tab::-webkit-scrollbar {
+		display: none;
+	}
+	.nav-item {
+		flex: 0 0 auto;
+	}
+	.nav-tabs {
+		border-bottom: unset !important;
+	}
+}
+
 /* navbar */
 .fixed-to-top {
 	position: fixed;
@@ -185,6 +233,25 @@ body {
 	border-left: 5px solid rgba(128, 128, 128, 1);
 }
 
+.searchTraffic-box-one {
+	border-left: 5px solid #0275d8;
+}
+.searchTraffic-box-two {
+	border-left: 5px solid #d9534f;
+}
+.searchTraffic-box-three {
+	border-left: 5px solid #5bc0de;
+}
+.searchTraffic-box-four {
+	border-left: 5px solid #f0ad4e;
+}
+.searchTraffic-box-five {
+	border-left: 5px solid #6c757d;
+}
+.searchTraffic-box-six {
+	border-left: 5px solid #198754;
+}
+
 /* end of graph */
 
 /* cards */
@@ -281,7 +348,7 @@ table td {
 }
 .star-widget label {
 	color: rgb(189, 189, 189);
-	padding: 7px;
+	padding: 6px;
 	transition: all 0.3s ease;
 	float: right;
 }
