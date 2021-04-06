@@ -11,7 +11,7 @@ import { register } from './register';
 import { createUser } from './createUser';
 import { deleteUser } from './deleteUser';
 import { deleteFeedback } from './deleteFeedback';
-// import { getDomainData } from './getDomainData';
+import { newAdmin } from './newAdmin';
 
 // DOM ELEMENTS
 const year = document.getElementById('year');
@@ -29,6 +29,8 @@ const btnCompliment = document.getElementById('compliment');
 const feedbackForm = document.querySelector('.form--feedback');
 const adminFeedbackTable = document.getElementById('adminFeedback-table');
 const adminOverviewTable = document.getElementById('adminOverview-table');
+const newAdminForm = document.querySelector('.form--newAdmin');
+
 const trimValue = document.querySelector('.trimValue');
 
 if (year) {
@@ -96,7 +98,7 @@ if (registerForm) {
 		//Check if domain is valid
 		if (checkDomain(domainName) === false) return;
 
-		const user_id = await createUser({ fullName, userName, email, password, confirmPassword, domainName });
+		const user_id = await createUser({ fullName, userName, email, password, confirmPassword, domainName }, 'signup');
 		if (!user_id) return;
 
 		//window.location.replace('/loading');
@@ -136,7 +138,7 @@ if (logoutBtn) {
 }
 
 if (profileForm) {
-	addEventListener('submit', async (event) => {
+	profileForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		document.getElementById('btn--save').textContent = 'Saving...';
 		document.getElementById('btn--save').disabled = true;
@@ -238,7 +240,7 @@ if (btnCompliment) {
 }
 
 if (feedbackForm) {
-	addEventListener('submit', async (event) => {
+	feedbackForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		document.getElementById('btn--send').textContent = 'Sending...';
 		document.getElementById('btn--send').disabled = true;
@@ -307,6 +309,34 @@ if (adminFeedbackTable) {
 			});
 		});
 	});
+}
+
+if (newAdminForm) {
+	newAdminForm.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		document.getElementById('btn--createAdmin').textContent = 'Creating...';
+		document.getElementById('btn--createAdmin').disabled = true;
+
+		const fullName = document.getElementById('fullName').value;
+		let userName = document.getElementById('userName').value;
+		const email = document.getElementById('email').value;
+		const password = document.getElementById('newPassword').value;
+		const confirmPassword = document.getElementById('confirmPassword').value;
+		const role = 'admin';
+
+		if (userName === '') userName = undefined;
+
+		//Check if email exists
+		if (checkEmail(email) === false) return;
+
+		const user_id = await createUser({ fullName, userName, email, password, confirmPassword, role }, 'signupOnly');
+		if (!user_id) return;
+
+		await newAdmin(user_id);
+
+		document.getElementById('btn--createAdmin').textContent = 'Create';
+		document.getElementById('btn--createAdmin').disabled = false;
+	})
 }
 
 if (trimValue) {

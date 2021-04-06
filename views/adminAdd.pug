@@ -1,0 +1,75 @@
+extends base_2 
+
+
+block header 
+  header.nav.navbar-expand-md.navbar-light
+    button.navbar-toggler.ms-auto.my-2.me-2.bg-light(type='button' data-toggle='collapse' data-target='#dash_nav')
+      span.navbar-toggler-icon
+    .navbar-collapse#dash_nav.collapse
+      .container-fluid
+        .row
+          //- sidebar
+          .col-xl-2.col-md-3.sidebar.fixed-to-top.box-shadow
+            a.navbar-brand.text-light.text-center.d-block.mx-auto.py-3.mb-4.bottom-border(href='/adminOverview')
+              | Competitor&apos;s
+              br
+              | Analysis
+            .text-center
+              img.rounded-circle(src=`${(currentUser.photo) ? `/images/users/${currentUser.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
+              p.text-light.pt-2= `${(currentUser.userName) ? currentUser.userName : currentUser.fullName}`
+            .text-center.bottom-border
+              .pb-3
+                a.btn.btn-sm.btn-outline-light(href='/adminProfile')
+                  i.text-danger.fal.fa-user.pe-1
+                  | View Profile
+              .pb-3
+                button.btn.btn-sm.btn-outline-light(data-toggle='modal' data-target='#logout_modal')
+                  i.text-danger.fal.fa-sign-out-alt.pe-1
+                  | Logout
+            ul.navbar-nav.flex-column.mt-3
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminOverview') Overview
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
+              li.nav-item.text-center
+                a.nav-link.current.text-light.p-3.mb-1(href='/adminAdd') Add Admin
+          //- end of sidebar
+    //- top-nav
+    nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
+      .row.align-items-center
+        .col.text-center
+          h4.text-light.text-uppercase.mb-0 Add New Admin
+    //- end of top-nav
+
+
+block content 
+  section.overview-pad.container-fluid
+    .col-xl-10.col-md-9.ms-auto
+      .m-sm-4.m-3.mt-0
+        .card.card-bg.p-sm-4.card-common
+          .card-body.px-0.px-md-4.py-4
+            .col-12
+              // first row
+              .row.m-2.justify-content-around.card-no-bg(style='border: 1px solid #c5c5c5;')
+                h4.text-uppercase.mt-3.mb-2 Account Information
+                .row.py-5.px-0
+                  .col-4.offset-sm-1.ps-3.pe-1.px-sm-2
+                    p.mb-4.pt-2.pb-2 Full Name:
+                    p.mb-4.pt-1.pb-2 Username:
+                    p.mb-4.pt-2.pb-3.pb-md-2 Email:
+                    p.mb-4.pt-2.pt-md-1.pb-2 New Password:
+                    p.pt-2.pb-2 Confirm Password:
+                  form.form--newAdmin.col-7.align-self-around.pe-sm-5.pe-0.ps-3
+                    input#fullName.form-control.mb-4(type='text' placeholder='Full Name' required)
+                    input#userName.form-control.mb-4(type='text' placeholder='Admin Username')
+                    input#email.form-control.mb-sm-4.mb-5(type='text' placeholder='admin@email.com' required)
+                    input#newPassword.form-control.mb-sm-4.mb-5(type='text' placeholder='*****************' autocomplete='nope' required)
+                    input#confirmPassword.form-control.mb-4(type='text' placeholder='*****************' autocomplete='nope' required)
+                    button#btn--createAdmin.btn.btn-outline-secondary.mt-3.card-common(type='submit') Create
+              // end of first row
+          // end of card body
+        // end of card
+      // footer
+      include _footer_2
+      // end of footer
+    // end of col-xl-10 col-md-9 ms-auto

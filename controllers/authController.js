@@ -59,6 +59,31 @@ exports.signup = catchAsync(async (req, res, next) => {
   createAndSendToken(newUser, 201, res);
 })
 
+exports.signupOnly = catchAsync(async (req, res, next) => {
+  // const newUser = await User.create(req.body);
+  const newUser = await User.create({
+    fullName: req.body.fullName,
+    userName: req.body.userName,
+    email: req.body.email,
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword,
+    passwordChangedAt: req.body.passwordChangedAt,
+    role: req.body.role,
+    country: req.body.country,
+    domain_id: req.body.domain_id
+  })
+
+  const url = `${req.protocol}://${req.get('host')}/profile`;
+  await new Email(newUser, url).sendWelcome();
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: newUser
+    }
+  })
+})
+
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -84,7 +109,7 @@ exports.logout = (req, res) => {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true
   })
-  res.status(200).json({ status: 'success' })
+  res.status(200).json({ status: 'success' });
 }
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -182,7 +207,7 @@ exports.forgotPassword = catchAsync(async (req, res, next)  => {
     })    
   }
   catch (err) {
-    console.log(err);
+    // console.log(err);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     user.save({ validateBeforeSave: false });

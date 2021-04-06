@@ -1,5 +1,5 @@
 const express = require('express');
-const { getHomePage, getLoginPage, getRegisterPage, getLoadingPage, getOverviewPage, getProfilePage, getMetricsPage, getFeedbackPage, getKeywordsPage, getPasswordForgotPage, getPasswordResetPage, getAdminOverviewPage, getAdminProfilePage, getAdminFeedbackPage } = require('../controllers/viewController');
+const { getHomePage, getLoginPage, getRegisterPage, getLoadingPage, getOverviewPage, getProfilePage, getMetricsPage, getFeedbackPage, getKeywordsPage, getPasswordForgotPage, getPasswordResetPage, getAdminOverviewPage, getAdminProfilePage, getAdminFeedbackPage, getAdminAddPage } = require('../controllers/viewController');
 const { isLoggedIn, protect } = require('../controllers/authController');
 
 const router = express.Router();
@@ -14,6 +14,7 @@ router.get('/loading', getLoadingPage);
 // router.get('/loading/domain/:domainName/id/:user_id', getLoadingPage, getAllData)
 
 router.get('/profile', protect, getProfilePage);
+router.get('/adminAdd', protect, getAdminAddPage);
 
 // router.use();
 router.get('/overview', isLoggedIn, getOverviewPage);

@@ -17,7 +17,6 @@ export const register = async (regUser, user_id) => {
     //save domain to database and update domain_id''
 
   try {
-    console.log(regUser.domainName);
     const res = await axios({
       method: 'POST',
       url: 'http://127.0.0.1:3000/api/v1/domains/find',
@@ -34,7 +33,7 @@ export const register = async (regUser, user_id) => {
     }
   }
   catch(err) {
-    console.log(err);
+    // console.log(err);
     // get data from scraping and 3rd party api
     const result = await axios({
       method: 'POST',
@@ -136,7 +135,7 @@ export const register = async (regUser, user_id) => {
     }
   }
   catch(err) {
-    console.log(err);
+    // console.log(err);
     showAlert('error', 'Sorry, something went very wrong while saving your data. Please try again later.');
   }
 

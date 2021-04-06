@@ -34,12 +34,38 @@ body {
 	margin-top: 5rem;
 }
 
+@media only screen and (max-width: 300px) {
+	.navbar-brand {
+		font-size: 17px;
+	}
+	.footer-text {
+		font-size: 15px;
+	}
+}
 @media only screen and (max-width: 768px) {
 	.overview-pad {
 		padding-top: 2rem !important;
 	}
 	.error {
 		padding-top: 16rem;
+	}
+	#loader {
+		left: 58% !important;
+		top: 39% !important;
+	}
+	.heading-secondary {
+		font-size: 20px;
+		text-align: center;
+	}
+	.error__msg {
+		font-size: 16px !important;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+	#loader {
+		left: 53% !important;
+		top: 65% !important;
 	}
 }
 
@@ -474,6 +500,7 @@ input:checked ~ label {
 	height: 200%;
 	z-index: 1000;
 }
+
 #loader {
 	display: block;
 	position: relative;

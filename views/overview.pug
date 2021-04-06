@@ -61,7 +61,7 @@ block content
           .card-body.py-0.pe-0.ps-2
             nav.nav.nav-tabs#nav-tab(role='tablist')
               a#first-nav-tab.nav-item.nav-link.active.bg-custom(data-toggle='tab' href='#first-nav' role='tab' aria-controls='first-nav' aria-selected='true')= domain.name
-                i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
+                //- i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
 
               each site, i in competitors
                 -if(i==0) i='second';
@@ -70,14 +70,14 @@ block content
                 -if(i==3) i='fifth';
                 -if(i==4) i='sixth';
                 a.nav-item.nav-link.bg-custom(id=`${i}-nav-tab` data-toggle='tab' href=`#${i}-nav` role='tab' aria-controls=`${i}-nav` aria-selected='false')= site.name
-                  i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
+                  //- i.fal.fa-times.ms-3.cross(data-toggle='modal' data-target='#remove_site_modal')
                 -if(i=='second') i=0;
                 -if(i=='third') i=1;
                 -if(i=='fourth') i=2;
                 -if(i=='fifth') i=3;
                 -if(i=='sixth') i=4;
 
-              span.py-2.px-3
+              //- span.py-2.px-3
                 i.fal.fa-plus.fa-lg.cross(data-toggle='modal' data-target='#add_modal')
 
             #nav-tabContent.tab-content.p-4.custom-border

@@ -73,27 +73,29 @@ block content
                         th Rank
                         th Clicks
                     tbody
-                      each key, j in domain.keywords.allSeoClicks[i]
-                        tr
-                          td.trimValue.align-lt.ps-4.vertical-border-dark= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
-                            span(style='float: right;')
-                              i.text-muted.fal.fa-times.cross(onclick='')
-                          td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
-                          td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
-                          td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
-                          td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
-                    
-                    each site in competitors
-                      tbody
-                        each key, k in site.keywords.allSeoClicks[i]
+                      -if (domain.keywords.allSeoClicks[i].length !== 0)
+                        each key, j in domain.keywords.allSeoClicks[i]
                           tr
-                            td.trimValue.align-lt.ps-4.vertical-border-dark= `${site.keywords.allKeywords[i][k] ? site.keywords.allKeywords[i][k] : '-'}`
+                            td.trimValue.align-lt.ps-4.vertical-border-dark= `${domain.keywords.allKeywords[i][j] ? domain.keywords.allKeywords[i][j] : '-'}`
                               span(style='float: right;')
                                 i.text-muted.fal.fa-times.cross(onclick='')
-                            td.trimValue= `${site.keywords.allSearchVolumes[i][k] ? site.keywords.allSearchVolumes[i][k] : '-'}`
-                            td.trimValue= `${site.keywords.allSeoClicks[i][k] ? site.keywords.allSeoClicks[i][k] : '-'}`
-                            td.trimValue= `${site.keywords.allRanks[i][k] ? site.keywords.allRanks[i][k] : '-'}`
-                            td.trimValue= `${site.keywords.allMonthlyClicks[i][k] ? site.keywords.allMonthlyClicks[i][k] : '-'}`
+                            td.trimValue= `${domain.keywords.allSearchVolumes[i][j] ? domain.keywords.allSearchVolumes[i][j] : '-'}`
+                            td.trimValue= `${domain.keywords.allSeoClicks[i][j] ? domain.keywords.allSeoClicks[i][j] : '-'}`
+                            td.trimValue= `${domain.keywords.allRanks[i][j] ? domain.keywords.allRanks[i][j] : '-'}`
+                            td.trimValue= `${domain.keywords.allMonthlyClicks[i][j] ? domain.keywords.allMonthlyClicks[i][j] : '-'}`
+                    
+                    each site in competitors
+                      -if (site.keywords.allSeoClicks[i].length !== 0)
+                        tbody
+                          each key, k in site.keywords.allSeoClicks[i]
+                            tr
+                              td.trimValue.align-lt.ps-4.vertical-border-dark= `${site.keywords.allKeywords[i][k] ? site.keywords.allKeywords[i][k] : '-'}`
+                                span(style='float: right;')
+                                  i.text-muted.fal.fa-times.cross(onclick='')
+                              td.trimValue= `${site.keywords.allSearchVolumes[i][k] ? site.keywords.allSearchVolumes[i][k] : '-'}`
+                              td.trimValue= `${site.keywords.allSeoClicks[i][k] ? site.keywords.allSeoClicks[i][k] : '-'}`
+                              td.trimValue= `${site.keywords.allRanks[i][k] ? site.keywords.allRanks[i][k] : '-'}`
+                              td.trimValue= `${site.keywords.allMonthlyClicks[i][k] ? site.keywords.allMonthlyClicks[i][k] : '-'}`
 
           // end of first row
         // end of card body
@@ -102,3 +104,38 @@ block content
       include _footer_2
       // end of footer
     // end of col-xl-10 col-md-9 ms-auto
+
+  script.
+    function addRows(x) {
+      if (x.matches) { // If media query matches
+        document.querySelectorAll('.keyword-box').forEach(el => {
+          if (el.getAttribute('style') !== 'height: 164px;') el.style.height = '164px';
+        })
+
+        const tbodies = [...document.getElementsByTagName('tbody')];
+        tbodies.forEach(el => {
+          const rowCount = el.children.length;
+          if (rowCount < 5) {
+            if (rowCount == 1) {
+              el.insertAdjacentHTML('beforeend', '<tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr>');
+            }
+            if (rowCount == 2) {
+              el.insertAdjacentHTML('beforeend', '<tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr>');
+            }
+            if (rowCount == 3) {
+              el.insertAdjacentHTML('beforeend', '<tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr><tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr>');
+            }
+            if (rowCount == 4) {
+              el.insertAdjacentHTML('beforeend', '<tr role="row" style="height: 32.8px;"><td class="vertical-border-dark"></td><td></td><td></td><td></td><td></td></tr>');
+            }
+          }
+        })
+
+      } else {
+        //- document.body.style.backgroundColor = "pink";
+      }
+    }
+
+    var x = window.matchMedia("(max-width: 1200px)")
+    x.addListener(addRows) // Attach listener function on state changes
+    addRows(x) // Call listener function at run time

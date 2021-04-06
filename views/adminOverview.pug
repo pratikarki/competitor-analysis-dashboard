@@ -31,6 +31,8 @@ block header
                 a.nav-link.current.text-light.p-3.mb-1(href='/adminOverview') Overview
               li.nav-item.text-center
                 a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminFeedback') Feedback
+              li.nav-item.text-center
+                a.nav-link.sidebar-link.text-light.p-3.mb-1(href='/adminAdd') Add Admin
           //- end of sidebar
     //- top-nav
     nav.col-12.col-xl-10.col-md-9.ms-auto.fixed-to-top.top-navbar.border-bottom.dark-bg.py-3.box-shadow
@@ -80,7 +82,7 @@ block content
                         span Admins
 
                 // second row of card body
-                .row.pt-4.pb-3.pb-lg-5.justify-content-center.px-0
+                .row.pt-4.pb-3.pb-lg-4.justify-content-center.px-0
                   .col-12.p-0
                     h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') User Details:
                     .mt-3.table-responsive.card-common.p-0
@@ -118,39 +120,25 @@ block content
                 // end of second row of card body
 
                 // third row of card body
-                //.row.pt-4.pb-5.justify-content-center.px-2.px-sm-0
-                  .col-11
+                .row.pt-4.pb-4.pb-lg-5.justify-content-center.px-0
+                  .col-12.p-0
                     h3.text-muted.pt-4.ps-3.m-0(style='font-size: 1.5rem;') Admin Details:
-                    .pt-3.table-responsive
-                      table.table.table-hover.table-bordered.text-center.bg-light.card-common
+                    .mt-3.table-responsive.card-common.p-0
+                      table#adminOverview-table.table.table-hover.table-bordered.table-sortable.text-center.bg-light.m-0
                         thead
                           tr.text-muted
-                            th Full Name
+                            th(style='min-width: 150px;') Full Name
+                            th Username
                             th Email
-                            th Website
-                            th Competitors
-                            th Feedbacks
-                            th(style='min-width: 100px;') Action
+                            th(style='min-width: 130px;') Created At
                         tbody
                           each user in allUsers
-                            -if (user.role == 'user')
-                              tr
+                            -if (user.role == 'admin')
+                              tr(id=`${user._id}`)
                                 td= user.fullName
+                                td= (user.userName == '')? `-`: user.userName
                                 td= user.email
-                                td= (user.domain_id)? user.domain_id.name: `-`
-                                td
-                                  -if (user.competitorSites.length !== 0 ) 
-                                    each site, i in user.competitorSites
-                                      if (i == 3)
-                                        br
-                                      span(style='padding: 0px 7px;')= site.name
-                                  -else 
-                                    = `-`
-                                td= `${user.feedbacks.length}`
-                                td.pt-3
-                                  button.btn.btn-sm.btn-outline-danger(data-toggle='modal' data-target='#delete_user_modal')
-                                    i.fal.fa-trash-alt
-                                    |  Delete
+                                td= `${user.registeredDate.toString().substring(0, 10)}`
                 // end of third row of card body
 
           // end of card-body
