@@ -11,14 +11,14 @@ const signToken = id => jwt.sign({ id }, process.env.JWT_SECRET, {
   expiresIn: process.env.JWT_EXPIRES_IN
 })
 
-const createAndSendToken = (user, statusCode, res) => {
+const createAndSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
   const cookieOptions = {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //converting days to milliseconds
     httpOnly: true
   }
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; //use secure https only in production
+  if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -56,7 +56,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}/profile`;
   await new Email(newUser, url).sendWelcome();
 
-  createAndSendToken(newUser, 201, res);
+  createAndSendToken(newUser, 201, req, res);
 })
 
 exports.signupOnly = catchAsync(async (req, res, next) => {
@@ -101,7 +101,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   //3. Send token back to client
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 })
 
 exports.logout = (req, res) => {
@@ -236,7 +236,7 @@ exports.resetPassword = catchAsync(async (req, res, next)  => {
   //3. Update changedPasswordAt property using 'pre save' middleware in userModel.js
 
   //4. Log the user in i.e. send JWT
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 })
 
 exports.getInfo = (req, res, next) => {
@@ -274,7 +274,7 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
   }
 
   //4. Log user in i.e. send JWT
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 })
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
