@@ -18,7 +18,7 @@ const createAndSendToken = (user, statusCode, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //converting days to milliseconds
     httpOnly: true
   }
-  //if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; //use secure https only in production
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -207,7 +207,7 @@ exports.forgotPassword = catchAsync(async (req, res, next)  => {
     })    
   }
   catch (err) {
-    // console.log(err);
+    console.log(err);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     user.save({ validateBeforeSave: false });

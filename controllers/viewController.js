@@ -131,7 +131,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// api/v1/domains
 	let response = await axios({
 		method: 'GET',
-		url: 'http://127.0.0.1:3000/api/v1/domains',
+		url: '/api/v1/domains',
 	});
 	if (response.data.status === 'success') {
 		domainCount = response.data.results;
@@ -141,7 +141,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// api/v1/feedbacks
 	response = await axios({
 		method: 'GET',
-		url: 'http://127.0.0.1:3000/api/v1/feedbacks',
+		url: '/api/v1/feedbacks',
 	});
 	if (response.data.status === 'success') {
 		feedbackCount = response.data.results;
@@ -152,7 +152,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// get all user's username*, email*, domainName*, competitorsName*, feedbackCount*
 	response = await axios({
 		method: 'GET',
-		url: 'http://127.0.0.1:3000/api/v1/users',
+		url: '/api/v1/users',
 	});
 	if (response.data.status === 'success') {
 		allUsers = response.data.data.data;
@@ -189,7 +189,7 @@ exports.getAdminFeedbackPage = catchAsync(async (req, res, next) => {
 	// api/v1/feedbacks
 	response = await axios({
 		method: 'GET',
-		url: 'http://127.0.0.1:3000/api/v1/feedbacks',
+		url: '/api/v1/feedbacks',
 	});
 	if (response.data.status === 'success') {
 		allFeedbacks = response.data.data.data;

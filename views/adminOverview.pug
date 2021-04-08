@@ -106,7 +106,7 @@ block content
                                 td
                                   -if (user.competitorSites.length !== 0 ) 
                                     each site, i in user.competitorSites
-                                      if (i == 3)
+                                      if (i == 2 || i== 4)
                                         br
                                       span(style='padding: 0px 7px;')= site.name
                                   -else 

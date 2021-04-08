@@ -114,11 +114,16 @@ if (registerForm) {
 }
 
 if (forgotForm) {
-	forgotForm.addEventListener('submit', (event) => {
+	forgotForm.addEventListener('submit', async(event) => {
 		event.preventDefault();
+		document.getElementById('btnForgotSubmit').textContent = 'Processing...';
+		document.getElementById('btnForgotSubmit').disabled = true;
+
 		const email = document.getElementById('forgotEmail').value;
 
-		forgotPass(email);
+		await forgotPass(email);
+		document.getElementById('btnForgotSubmit').textContent = 'Submit';
+		document.getElementById('btnForgotSubmit').disabled = false;
 	});
 }
 
