@@ -26,8 +26,12 @@ module.exports = class Email {
 
     // 2. Define email options
     const emailOptions = {
-      from: this.from,
       to: this.to,
+      // from: this.from,
+      from: {
+        name: 'Pratik Karki',
+        email: this.from
+      },
       subject: subject,
       html: html,
       text: htmlToText(html)

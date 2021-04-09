@@ -18,6 +18,7 @@ html(lang='en')
     title Competitor Analysis | #{title}
 
   body(style="font-family: 'Montserrat', sans-serif")
+  
     //MODALS
     .modal.fade#logout_modal
       .modal-dialog
@@ -29,7 +30,7 @@ html(lang='en')
               i.far.fa-times.cross
           .modal-footer
             a.btn.btn-white(type='button' data-dismiss='modal') Cancel
-            a.btn.btn-outline-danger(type='button')#logout_Btn Yes, logout
+            a.btn.btn-outline-danger(type='button' data-dismiss='modal')#logout_Btn Yes, logout
 
     .modal.fade#add_modal
       .modal-dialog

@@ -46,7 +46,7 @@ body {
 	}
 }
 
-@media only screen and (min-width: 300px) and (max-width: 768px) {
+@media only screen and (min-width: 325px) and (max-width: 768px) {
 	.star-widget label {
 		padding: 3px !important;
 	}
