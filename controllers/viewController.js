@@ -2,7 +2,6 @@ const crypto = require('crypto');
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
-// import axios from 'axios';
 const axios = require('axios');
 
 exports.getHomePage = (req, res) => {
@@ -131,7 +130,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// api/v1/domains
 	let response = await axios({
 		method: 'GET',
-		url: '/api/v1/domains',
+		url: 'https://cdfyp.herokuapp.com/api/v1/domains',
 	});
 	if (response.data.status === 'success') {
 		domainCount = response.data.results;
@@ -141,7 +140,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// api/v1/feedbacks
 	response = await axios({
 		method: 'GET',
-		url: '/api/v1/feedbacks',
+		url: 'https://cdfyp.herokuapp.com/api/v1/feedbacks',
 	});
 	if (response.data.status === 'success') {
 		feedbackCount = response.data.results;
@@ -152,7 +151,7 @@ exports.getAdminOverviewPage = catchAsync(async (req, res, next) => {
 	// get all user's username*, email*, domainName*, competitorsName*, feedbackCount*
 	response = await axios({
 		method: 'GET',
-		url: '/api/v1/users',
+		url: 'https://cdfyp.herokuapp.com/api/v1/users',
 	});
 	if (response.data.status === 'success') {
 		allUsers = response.data.data.data;
@@ -189,7 +188,7 @@ exports.getAdminFeedbackPage = catchAsync(async (req, res, next) => {
 	// api/v1/feedbacks
 	response = await axios({
 		method: 'GET',
-		url: '/api/v1/feedbacks',
+		url: 'https://cdfyp.herokuapp.com/api/v1/feedbacks',
 	});
 	if (response.data.status === 'success') {
 		allFeedbacks = response.data.data.data;
