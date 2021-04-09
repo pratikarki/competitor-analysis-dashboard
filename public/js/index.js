@@ -107,7 +107,14 @@ if (registerForm) {
 		document.getElementById('headerSection').style.display = 'none';
 		document.getElementById('footerSection').style.display = 'none';
 
-		await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id); //domain_id, competitorSites
+		const out = await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id); //domain_id, competitorSites
+
+		if (out === false) {
+			document.querySelector('.loading-message').classList.remove('loading-message--show');
+			document.getElementById('headerSection').style.display = 'block';
+			document.getElementById('footerSection').style.display = 'block';
+			await deleteUser(user_id);
+		}
 		document.getElementById('btn--register').innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up';
 		document.getElementById('btn--register').disabled = false;
 	});

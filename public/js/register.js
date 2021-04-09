@@ -35,14 +35,20 @@ export const register = async (regUser, user_id) => {
   catch(err) {
     // console.log(err);
     // get data from scraping and 3rd party api
-    const result = await axios({
-      method: 'POST',
-      url: '/api/v1/domains/search',
-      data: {
-        domain: regUser.domainName
-      }
-    })
-    domainData = result.data.data;
+    try {
+      const result = await axios({
+        method: 'POST',
+        url: '/api/v1/domains/search',
+        data: {
+          domain: regUser.domainName
+        }
+      })
+      domainData = result.data.data;
+    }
+    catch(err) {
+      showAlert('error', 'Sorry, something went wrong while fetching your website data. Please try again..');
+      return false;
+    }
 
     //saving domainData to database and updating domain_id''
     try {
@@ -59,6 +65,7 @@ export const register = async (regUser, user_id) => {
     }
     catch {
       showAlert('error', 'Sorry, something went wrong while saving your data. Please try again..');
+      return false;
     }
   }
 

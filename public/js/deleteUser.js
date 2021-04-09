@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (id, alert=true) => {
   try {
     const res = await axios({
       method: 'DELETE',
@@ -9,7 +9,7 @@ export const deleteUser = async (id) => {
     })
 
     if (res.statusText === 'No Content') {
-      showAlert('success', 'User successfully deleted!');
+      if(alert === true) showAlert('success', 'User successfully deleted!');
       return 'success';
     }
   }
