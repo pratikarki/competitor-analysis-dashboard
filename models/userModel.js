@@ -55,10 +55,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'defaultUser.jpg'
     },
-    accountActive: {
-        type: Boolean,
-        default: true,
-        select: false
+    accountActive: { 
+        type: Boolean, 
+        default: true, 
+        // select: false
     },
     role: {
         type: String,
@@ -122,7 +122,8 @@ userSchema.pre('save', function(next) {
 //QUERY MIDDLEWARE
 //SELECT ACTIVE USERS ONLY AND 
 userSchema.pre(/^find/, function(next) {
-    this.find({ accountActive: { $ne: false } });
+    // this.find({ accountActive: { $ne: false } });
+    this.find();
     next();
 })
 

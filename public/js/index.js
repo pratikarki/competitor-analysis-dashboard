@@ -12,6 +12,7 @@ import { createUser } from './createUser';
 import { deleteUser } from './deleteUser';
 import { deleteFeedback } from './deleteFeedback';
 import { newAdmin } from './newAdmin';
+import { toggleUserStatus } from './toggleStatus';
 
 // DOM ELEMENTS
 const year = document.getElementById('year');
@@ -301,6 +302,19 @@ if (adminOverviewTable) {
 			});
 		});
 	});
+
+	document.querySelectorAll('.slider').forEach((btn) => {
+		btn.addEventListener('click', async (event) => {
+			let user_id = event.target.parentNode.parentNode.parentNode.getAttribute('id');
+
+			const status = await toggleUserStatus(user_id);
+
+			if (status === false) {
+				event.target.parentNode.click();
+				return;
+			}
+		})
+	})
 }
 
 if (adminFeedbackTable) {

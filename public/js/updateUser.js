@@ -5,7 +5,7 @@ export const updateProfile = async (data) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: '/api/v1/users/updateMyInfo',
+      url: 'http://127.0.0.1:3000/api/v1/users/updateMyInfo',
       data: data
     })
 

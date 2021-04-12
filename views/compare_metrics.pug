@@ -47,152 +47,164 @@ block header
 block content 
   section.overview-pad.container-fluid
     .col-xl-10.col-md-9.ms-auto
-      .card.card-bg.m-2.m-md-5.mt-md-4.mt-3
-        .card-body.p-0
-          // first row
-          .row.mx-0.mb-4.justify-content-around
-            .col-12.table-responsive.mb-3.mb-md-5.p-0
-              table.table.table-striped.table-hover.bg-light.text-center.m-0
-                thead
-                  tr.text-muted
-                    th(style='min-width: 270px;').col-4.align-lt.vertical-border #
-                    each site in competitors
-                      th(style='min-width: 140px;').vertical-border= site.name
 
-                tbody
-                  tr
-                    td.align-lt
-                      | Rank
-                    each site, i in competitors
-                      td= `${site.overallRank? site.overallRank: '-'}`
-                  tr
-                    td.align-lt
-                      | Bounce Rate
-                    each site, i in competitors
-                      td= `${site.bounceRate? site.bounceRate: '-'}`
-                  tr
-                    td.align-lt
-                      | Search Traffic
-                    each site, i in competitors
-                      td= `${site.searchTrafficPercent? site.searchTrafficPercent: '-'}`
-                  tr
-                    td.align-lt
-                      | Visit Duration
-                    each site, i in competitors
-                      td= `${site.avgTimeOnSite? site.avgTimeOnSite: '-'}`
-                  tr
-                    td.align-lt
-                      | Average Page View
-                    each site, i in competitors
-                      td= `${site.avgPageView? site.avgPageView: '-'}`
-                  tr
-                    td.align-lt
-                      | Search Keywords
-                    each site, i in competitors
-                      td.trimValue= `${site.noOrganicSearchKeyword? site.noOrganicSearchKeyword: '-'}`
-                  tr
-                    td.align-lt
-                      | Est Monthly Seo Clicks
-                    each site, i in competitors
-                      td.trimValue= `${site.estMonthlySeoClick? site.estMonthlySeoClick: '-'}`
-                  tr
-                    td.align-lt
-                      | Est Monthly Seo Clicks Value
-                    each site, i in competitors
-                      td.trimValue= `${site.estMonthlySeoClickValue? site.estMonthlySeoClickValue: '-'}`
+      -if(user.accountActive === true)
+        .card.card-bg.m-2.m-md-5.mt-md-4.mt-3
+          .card-body.p-0
+            // first row
+            .row.mx-0.mb-4.justify-content-around
+              .col-12.table-responsive.mb-3.mb-md-5.p-0
+                table.table.table-striped.table-hover.bg-light.text-center.m-0
+                  thead
+                    tr.text-muted
+                      th(style='min-width: 270px;').col-4.align-lt.vertical-border #
+                      each site in competitors
+                        th(style='min-width: 140px;').vertical-border= site.name
 
-          // end of first row
-          // second row
-          h4.text-uppercase.p-4.pb-3 Organic Clicks Graph
-          .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
-            //- .row.px-3.border-bottom
-              //- .dropdown
-              //-   a.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
-              //-     | Add Site
-              //-   .dropdown-menu
-              //-     a.dropdown-item(href='#') Site 1
-              //-     a.dropdown-item(href='#') Site 2
-              //-     a.dropdown-item(href='#') Site 3
-              //-     a.dropdown-item(href='#') Site 4
-              //-     a.dropdown-item(href='#') Site 5
-              //-   button.ms-3.btn.btn-outline-dark(onclick='') Add
-            .row.p-0.justify-content-around
-              .col-lg-3.col-23.vertical-border
-                .row.border-bottom.graph-box-one
-                  p.m-0.p-3= domain.name
-                
-                each site, i in competitors
-                  -if(i==0) i='two';
-                  -if(i==1) i='three';
-                  -if(i==2) i='four';
-                  -if(i==3) i='five';
-                  -if(i==4) i='six';
-                  .row.border-bottom(class=`graph-box-${i}`)
-                    p.m-0.p-3= site.name
-                  -if(i=='two') i=0;
-                  -if(i=='three') i=1;
-                  -if(i=='four') i=2;
-                  -if(i=='five') i=3;
-                  -if(i=='six') i=4;
+                  tbody
+                    tr
+                      td.align-lt
+                        | Rank
+                      each site, i in competitors
+                        td= `${site.overallRank? site.overallRank: '-'}`
+                    tr
+                      td.align-lt
+                        | Bounce Rate
+                      each site, i in competitors
+                        td= `${site.bounceRate? site.bounceRate: '-'}`
+                    tr
+                      td.align-lt
+                        | Search Traffic
+                      each site, i in competitors
+                        td= `${site.searchTrafficPercent? site.searchTrafficPercent: '-'}`
+                    tr
+                      td.align-lt
+                        | Visit Duration
+                      each site, i in competitors
+                        td= `${site.avgTimeOnSite? site.avgTimeOnSite: '-'}`
+                    tr
+                      td.align-lt
+                        | Average Page View
+                      each site, i in competitors
+                        td= `${site.avgPageView? site.avgPageView: '-'}`
+                    tr
+                      td.align-lt
+                        | Search Keywords
+                      each site, i in competitors
+                        td.trimValue= `${site.noOrganicSearchKeyword? site.noOrganicSearchKeyword: '-'}`
+                    tr
+                      td.align-lt
+                        | Est Monthly Seo Clicks
+                      each site, i in competitors
+                        td.trimValue= `${site.estMonthlySeoClick? site.estMonthlySeoClick: '-'}`
+                    tr
+                      td.align-lt
+                        | Est Monthly Seo Clicks Value
+                      each site, i in competitors
+                        td.trimValue= `${site.estMonthlySeoClickValue? site.estMonthlySeoClickValue: '-'}`
+
+            // end of first row
+            // second row
+            h4.text-uppercase.p-4.pb-3 Organic Clicks Graph
+            .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
+              //- .row.px-3.border-bottom
+                //- .dropdown
+                //-   a.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
+                //-     | Add Site
+                //-   .dropdown-menu
+                //-     a.dropdown-item(href='#') Site 1
+                //-     a.dropdown-item(href='#') Site 2
+                //-     a.dropdown-item(href='#') Site 3
+                //-     a.dropdown-item(href='#') Site 4
+                //-     a.dropdown-item(href='#') Site 5
+                //-   button.ms-3.btn.btn-outline-dark(onclick='') Add
+              .row.p-0.justify-content-around
+                .col-lg-3.col-23.vertical-border
+                  .row.border-bottom.graph-box-one
+                    p.m-0.p-3= domain.name
                   
-              .col-lg-9.col-23
-                -let dataArray = [];
-                -let domainName = { name: domain.name }
-                -dataArray.push({...domainName, ...domain.clicks})
-                each site in competitors 
-                  -let siteName = { name: site.name }
-                  -dataArray.push({...siteName, ...site.clicks})
-                canvas#organicComparison(data-graphs = `${JSON.stringify(dataArray)}` style='width: 350px; height: 210px;')
-          // end of second row
-          // third row
-          h4.text-uppercase.p-4.pb-3 Search Traffic
-          .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
-            .row.p-0.justify-content-around
-              .col-lg-3.vertical-border
-                .row.border-bottom.searchTraffic-box-one
-                  p.m-0.p-3= domain.name
+                  each site, i in competitors
+                    -if(i==0) i='two';
+                    -if(i==1) i='three';
+                    -if(i==2) i='four';
+                    -if(i==3) i='five';
+                    -if(i==4) i='six';
+                    .row.border-bottom(class=`graph-box-${i}`)
+                      p.m-0.p-3= site.name
+                    -if(i=='two') i=0;
+                    -if(i=='three') i=1;
+                    -if(i=='four') i=2;
+                    -if(i=='five') i=3;
+                    -if(i=='six') i=4;
+                    
+                .col-lg-9.col-23
+                  -let dataArray = [];
+                  -let domainName = { name: domain.name }
+                  -dataArray.push({...domainName, ...domain.clicks})
+                  each site in competitors 
+                    -let siteName = { name: site.name }
+                    -dataArray.push({...siteName, ...site.clicks})
+                  canvas#organicComparison(data-graphs = `${JSON.stringify(dataArray)}` style='width: 350px; height: 210px;')
+            // end of second row
+            // third row
+            h4.text-uppercase.p-4.pb-3 Search Traffic
+            .row.mx-2.mb-5.justify-content-around.card-common.card-no-bg
+              .row.p-0.justify-content-around
+                .col-lg-3.vertical-border
+                  .row.border-bottom.searchTraffic-box-one
+                    p.m-0.p-3= domain.name
 
-                each site, i in competitors 
-                  -if(i==0) i='two';
-                  -if(i==1) i='three';
-                  -if(i==2) i='four';
-                  -if(i==3) i='five';
-                  -if(i==4) i='six';
-                  .row.border-bottom(class=`searchTraffic-box-${i}`)
-                    p.m-0.p-3= site.name
-                  -if(i=='two') i=0;
-                  -if(i=='three') i=1;
-                  -if(i=='four') i=2;
-                  -if(i=='five') i=3;
-                  -if(i=='six') i=4;
+                  each site, i in competitors 
+                    -if(i==0) i='two';
+                    -if(i==1) i='three';
+                    -if(i==2) i='four';
+                    -if(i==3) i='five';
+                    -if(i==4) i='six';
+                    .row.border-bottom(class=`searchTraffic-box-${i}`)
+                      p.m-0.p-3= site.name
+                    -if(i=='two') i=0;
+                    -if(i=='three') i=1;
+                    -if(i=='four') i=2;
+                    -if(i=='five') i=3;
+                    -if(i=='six') i=4;
 
-              .col-lg-9.text-center
-                .row
-                  .col-2.pe-0.ps-1
-                    p.m-0.py-3= domain.searchTrafficPercent
-                  div(style='width: 78%').col-10.pe-0.align-self-center
-                    .progress
-                      .progress-bar.bg-primary(style=`width: ${(domain.searchTrafficPercent) ? domain.searchTrafficPercent : '100%'};`)= domain.searchTrafficPercent
-                each site, i in competitors 
-                  -if(i==0) i='danger';
-                  -if(i==1) i='info';
-                  -if(i==2) i='warning';
-                  -if(i==3) i='secondary';
-                  -if(i==4) i='success';
+                .col-lg-9.text-center
                   .row
                     .col-2.pe-0.ps-1
-                      p.m-0.py-3= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
+                      p.m-0.py-3= domain.searchTrafficPercent
                     div(style='width: 78%').col-10.pe-0.align-self-center
                       .progress
-                        .progress-bar(class=`bg-${i}` style=`width: ${(site.searchTrafficPercent) ? site.searchTrafficPercent : '100%; color: black; background-color: #E9ECEF !important'};`)= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
-                  -if(i=='danger') i=0;
-                  -if(i=='info') i=1;
-                  -if(i=='warning') i=2;
-                  -if(i=='secondary') i=3;
-                  -if(i=='success') i=4;
-          // end of third row
-        // end of card body
-      // end of card
+                        .progress-bar.bg-primary(style=`width: ${(domain.searchTrafficPercent) ? domain.searchTrafficPercent : '100%'};`)= domain.searchTrafficPercent
+                  each site, i in competitors 
+                    -if(i==0) i='danger';
+                    -if(i==1) i='info';
+                    -if(i==2) i='warning';
+                    -if(i==3) i='secondary';
+                    -if(i==4) i='success';
+                    .row
+                      .col-2.pe-0.ps-1
+                        p.m-0.py-3= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
+                      div(style='width: 78%').col-10.pe-0.align-self-center
+                        .progress
+                          .progress-bar(class=`bg-${i}` style=`width: ${(site.searchTrafficPercent) ? site.searchTrafficPercent : '100%; color: black; background-color: #E9ECEF !important'};`)= `${(site.searchTrafficPercent) ? site.searchTrafficPercent : 'No Data'}`
+                    -if(i=='danger') i=0;
+                    -if(i=='info') i=1;
+                    -if(i=='warning') i=2;
+                    -if(i=='secondary') i=3;
+                    -if(i=='success') i=4;
+            // end of third row
+          // end of card body
+        // end of card
+      -else
+        .card.card-body.py-0.pe-0.ps-2(style='min-height: 37.1rem;')
+          .row.my-3.justify-content-around
+            .col-12.p-2
+              .error(style='padding-top: 135px; margin-bottom: 40px')
+                .error__title
+                  h2.heading-secondary.heading-secondary--error
+                    | Sorry, you do not have permission to view this dashboard.
+                .error__msg Please contact admin via email or feedback for more details
+
       // footer
       include _footer_2
       // end of footer

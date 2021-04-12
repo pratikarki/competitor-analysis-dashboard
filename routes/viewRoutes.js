@@ -1,6 +1,6 @@
 const express = require('express');
 const { getHomePage, getLoginPage, getRegisterPage, getLoadingPage, getOverviewPage, getProfilePage, getMetricsPage, getFeedbackPage, getKeywordsPage, getPasswordForgotPage, getPasswordResetPage, getAdminOverviewPage, getAdminProfilePage, getAdminFeedbackPage, getAdminAddPage } = require('../controllers/viewController');
-const { isLoggedIn, protect } = require('../controllers/authController');
+const { isLoggedIn, protect, restrictTo } = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -9,23 +9,20 @@ router.get('/login', getLoginPage);
 router.get('/register', getRegisterPage);
 router.get('/forgotPassword', getPasswordForgotPage);
 router.get('/resetPassword/:token', getPasswordResetPage);
-
 router.get('/loading', getLoadingPage);
-// router.get('/loading/domain/:domainName/id/:user_id', getLoadingPage, getAllData)
 
 router.get('/profile', protect, getProfilePage);
-router.get('/adminAdd', protect, getAdminAddPage);
 
 // router.use();
-router.get('/overview', isLoggedIn, getOverviewPage);
-router.get('/metrics', isLoggedIn, getMetricsPage);
-router.get('/keywords', isLoggedIn, getKeywordsPage);
-router.get('/feedback', isLoggedIn, getFeedbackPage);
+router.get('/overview', protect, restrictTo('user'), getOverviewPage);
+router.get('/metrics', protect, restrictTo('user'), getMetricsPage);
+router.get('/keywords', protect, restrictTo('user'), getKeywordsPage);
+router.get('/feedback', protect, restrictTo('user'), getFeedbackPage);
 
-
-router.get('/adminOverview', protect, getAdminOverviewPage);
-router.get('/adminFeedback', protect, getAdminFeedbackPage);
-router.get('/adminProfile', protect, getAdminProfilePage);
+router.get('/adminOverview', protect, restrictTo('admin'), getAdminOverviewPage);
+router.get('/adminFeedback', protect, restrictTo('admin'), getAdminFeedbackPage);
+router.get('/adminAdd', protect, restrictTo('admin'), getAdminAddPage);
+router.get('/adminProfile', protect, restrictTo('admin'), getAdminProfilePage);
 
 
 

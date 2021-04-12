@@ -18,7 +18,7 @@ const createAndSendToken = (user, statusCode, req, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //converting days to milliseconds
     httpOnly: true
   }
-  if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
+  //if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -279,6 +279,18 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { accountActive: false })
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+})
+
+exports.toggleUserStatus = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  //console.log(user);
+  const status = user.accountActive; //true or false
+  await User.findByIdAndUpdate(req.params.id, { accountActive: !status });
 
   res.status(204).json({
     status: 'success',

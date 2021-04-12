@@ -29,7 +29,7 @@ module.exports = class Email {
       to: this.to,
       // from: this.from,
       from: {
-        name: 'Pratik Karki',
+        name: 'Competitor Analysis Dashboard',
         email: this.from
       },
       subject: subject,

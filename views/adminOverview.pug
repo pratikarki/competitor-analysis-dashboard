@@ -95,6 +95,7 @@ block content
                             th Competitors
                             th Feedbacks
                             th(style='min-width: 130px;') Created At
+                            th Account Status
                             th(style='min-width: 100px; pointer-events: none;') Action
                         tbody
                           each user in allUsers
@@ -113,6 +114,15 @@ block content
                                     = `-`
                                 td= `${user.feedbacks.length}`
                                 td= `${user.registeredDate.toString().substring(0, 10)}`
+                                td
+                                  -if (user.accountActive === true)
+                                    label.switch
+                                      input(type='checkbox' checked)
+                                      span.slider.round
+                                  -else
+                                    label.switch
+                                      input(type='checkbox')
+                                      span.slider.round
                                 td.pt-2
                                   button.btn.btn-sm.btn-outline-danger.btn-delete(data-toggle='modal' data-target='#delete_user_modal')
                                     i.fal.fa-trash-alt
