@@ -24,22 +24,24 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 //1. GLOBAL MIDDLEWARES //these apply for all the routes
-app.use(express.static(path.join(__dirname, 'public'))) //for serving static files inside public folder
+app.use(express.static(path.join(__dirname, 'public'))); //for serving static files inside public folder
 
 //Set security HTTP headers
 // app.use(helmet());
 
 //View request information in console using 3rd party middleware 'morgan'
-if(process.env.NODE_ENV === 'development') { //only if environment is development
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+	//only if environment is development
+	app.use(morgan('dev'));
 }
 
 //Limit requests from same IP
-const limiter = rateLimit({ //it allows upto 150 requests in 1 hour from the same IP 
-  max: 150,
-  windowMs: 60 * 60 * 1000, //converting to milliseconds
-  message: 'Too many requests from this IP, please try again in an hour.'
-})
+const limiter = rateLimit({
+	//it allows upto 150 requests in 1 hour from the same IP
+	max: 150,
+	windowMs: 60 * 60 * 1000, //converting to milliseconds
+	message: 'Too many requests from this IP, please try again in an hour.',
+});
 app.use('/api', limiter);
 
 // Body parser, reading data from the body into req.body
@@ -52,16 +54,15 @@ app.use(mongoSanitize());
 //Data sanitization against XSS (Cross Side Scripting)
 app.use(xss());
 
-//Compress all text responses 
+//Compress all text responses
 app.use(compression());
 
 //Test middleware
 app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
-  next();
-})
-
+	req.requestTime = new Date().toISOString();
+	// console.log(req.cookies);
+	next();
+});
 
 //2. ROUTES
 //mounting routers on the specific routes.
@@ -74,13 +75,12 @@ app.use('/api/v1/feedbacks', feedbackRouter);
 //if none of the routes match, following middlewares are run to handle 404 error
 
 app.all('*', (req, res, next) => {
-  const err = new AppError(`Can not find ${req.originalUrl} on this server!`, 404);
-  next(err);
-})
+	const err = new AppError(`Can not find ${req.originalUrl} on this server!`, 404);
+	next(err);
+});
 
 //Global Error Handling Middleware
 app.use(globalErrorHandler);
-
 
 module.exports = app;
 
@@ -93,14 +93,11 @@ module.exports = app;
 //6. Then,
 //7. When the function is called, it finally sends the response and finishes the request-response cycle.
 
-
-
 //APPENDIX
 //get method is sent to the server in '/' URL and then res.... response is sent back for that URL
 // app.get('/', (req, res) => { //get is just http method for request
 //   res.status(200).json({ app: 'natours', message: 'Hello from the server!' }); //this is sending response
 // });
-
 
 // app.get('/api/v1/users', getAllUsers);
 // app.post('/api/v1/users', createNewUser);

@@ -69,20 +69,33 @@ if (document.getElementById('organicComparison')) {
 }
 
 if (loginForm) {
-	loginForm.addEventListener('submit', (event) => {
+	loginForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
+		let firstChild = document.getElementById('btn--login').firstChild;
+		document.getElementById('btn--login').removeChild(firstChild);
+		document.getElementById('btn--login').disabled = true;
+		document.querySelector('.fa-circle-notch').style.display = 'inline-block';
+
 		const email = document.getElementById('email').value;
 		const password = document.getElementById('password').value;
 
-		login(email, password);
+		const retun = await login(email, password);
+		if (retun === false) {
+			document.getElementById('btn--login').insertAdjacentHTML('afterbegin', `<i class="far fa-sign-in-alt me-2"></i>`);
+			document.getElementById('btn--login').disabled = false;
+			document.querySelector('.fa-circle-notch').style.display = 'none';
+		}
 	});
 }
 
 if (registerForm) {
 	registerForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
-		document.getElementById('btn--register').textContent = 'Processing...';
+		
+		document.getElementById('btn--register').textContent = 'Processing';
 		document.getElementById('btn--register').disabled = true;
+		document.getElementById('btn--register').insertAdjacentHTML('afterbegin', `<i class="fas fa-circle-notch fa-spin me-2" style="display: inline-block"></i>`);
+
 
 		const fullName = document.getElementById('fullName').value;
 		let userName = document.getElementById('userName').value;
@@ -108,9 +121,9 @@ if (registerForm) {
 		document.getElementById('headerSection').style.display = 'none';
 		document.getElementById('footerSection').style.display = 'none';
 
-		const out = await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id); //domain_id, competitorSites
+		const retun = await register({ fullName, userName, email, password, confirmPassword, domainName }, user_id);
 
-		if (out === false) {
+		if (retun === false) {
 			document.querySelector('.loading-message').classList.remove('loading-message--show');
 			document.getElementById('headerSection').style.display = 'block';
 			document.getElementById('footerSection').style.display = 'block';

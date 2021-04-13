@@ -214,6 +214,6 @@ exports.getAdminAddPage = (req, res) => {
 	const user = req.user;
 	res.status(200).render('adminAdd', {
 		title: 'New Admin',
-		currentUser: user
+		currentUser: user,
 	});
 };
