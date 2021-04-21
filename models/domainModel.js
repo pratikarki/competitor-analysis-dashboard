@@ -71,12 +71,6 @@ const domainSchema = mongoose.Schema({
         required: [true, 'A domain must have a url'],
         unique: [true, 'Url cannot be duplicate']
     },
-    // user_id: [
-    //     {
-    //       type: mongoose.Schema.ObjectId,
-    //       ref: 'User'
-    //     }
-    // ],
     overallRank: { type: String },
     bounceRate: { type: String, required: true },
     searchTrafficPercent: { type: String },
@@ -91,7 +85,6 @@ const domainSchema = mongoose.Schema({
     topPages: topPageSchema,
     backlinks: backlinkSchema,
     keywords: keywordsSchema
-    // User_id: { type: Object }
 });
 
 

@@ -24,9 +24,6 @@ const logoutBtn = document.getElementById('logout_Btn');
 const profileForm = document.querySelector('.form--profile');
 const pwToggle = document.querySelector('.pwToggle');
 const pwToggleConfirm = document.querySelector('.pwToggleConfirm');
-const btnSuggestion = document.getElementById('suggestion');
-const btnSomethingWrong = document.getElementById('somethingWrong');
-const btnCompliment = document.getElementById('compliment');
 const feedbackForm = document.querySelector('.form--feedback');
 const adminFeedbackTable = document.getElementById('adminFeedback-table');
 const adminOverviewTable = document.getElementById('adminOverview-table');
@@ -96,7 +93,6 @@ if (registerForm) {
 		document.getElementById('btn--register').disabled = true;
 		document.getElementById('btn--register').insertAdjacentHTML('afterbegin', `<i class="fas fa-circle-notch fa-spin me-2" style="display: inline-block"></i>`);
 
-
 		const fullName = document.getElementById('fullName').value;
 		let userName = document.getElementById('userName').value;
 		const email = document.getElementById('email').value;
@@ -115,8 +111,6 @@ if (registerForm) {
 		const user_id = await createUser({ fullName, userName, email, password, confirmPassword, domainName }, 'signup');
 		if (!user_id) return;
 
-		//window.location.replace('/loading');
-		//window.location.assign(`/loading/domain/${domainName}/id/${user_id}`);
 		document.querySelector('.loading-message').classList.add('loading-message--show');
 		document.getElementById('headerSection').style.display = 'none';
 		document.getElementById('footerSection').style.display = 'none';
@@ -231,41 +225,20 @@ if (pwToggleConfirm) {
 	});
 }
 
-if (btnSuggestion) {
-	btnSuggestion.addEventListener('click', function (event) {
-		event.preventDefault();
-		btnSuggestion.parentElement.childNodes.forEach((el) => {
-			if (el.classList.contains('select-btn')) {
-				el.classList.remove('select-btn');
-			}
-		});
-		btnSuggestion.classList.add('select-btn');
-	});
-}
-if (btnSomethingWrong) {
-	btnSomethingWrong.addEventListener('click', function (event) {
-		event.preventDefault();
-		btnSomethingWrong.parentElement.childNodes.forEach((el) => {
-			if (el.classList.contains('select-btn')) {
-				el.classList.remove('select-btn');
-			}
-		});
-		btnSomethingWrong.classList.add('select-btn');
-	});
-}
-if (btnCompliment) {
-	btnCompliment.addEventListener('click', function (event) {
-		event.preventDefault();
-		btnCompliment.parentElement.childNodes.forEach((el) => {
-			if (el.classList.contains('select-btn')) {
-				el.classList.remove('select-btn');
-			}
-		});
-		btnCompliment.classList.add('select-btn');
-	});
-}
 
 if (feedbackForm) {
+	document.querySelectorAll('.category-btn').forEach((btn) => {
+		btn.addEventListener('click', function (event) {
+			event.preventDefault();
+			btn.parentElement.childNodes.forEach((el) => {
+				if (el.classList.contains('select-btn')) {
+					el.classList.remove('select-btn');
+				}
+			});
+			btn.classList.add('select-btn');
+		});
+	})
+
 	feedbackForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		document.getElementById('btn--send').textContent = 'Sending...';

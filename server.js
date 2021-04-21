@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 //TO HANDLE UNCAUGHT EXCEPTION
 process.on('uncaughtException', err => {
   console.log('Uncaught Exception, Exiting the application..');
-  console.log(err.name, err.message);
+  // console.log(err, err.name, err.message);
   process.exit(1);
 })
 
@@ -25,7 +25,7 @@ const server = app.listen(port, () => {
 //TO HANDLE UNHANDLED REJECTION
 process.on('unhandledRejection', err => {
   console.log('Unhandled Rejection, Exiting the application..');
-  console.log(err.name, err.message);
+  // console.log(err, err.name, err.message);
   server.close(() => {
     process.exit(1);
   })

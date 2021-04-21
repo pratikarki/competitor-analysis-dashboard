@@ -15,10 +15,10 @@ const createAndSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
   const cookieOptions = {
-    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //converting days to milliseconds
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //1 day to milliseconds
     httpOnly: true
   }
-  if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
+  //if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -49,7 +49,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
-    country: req.body.country,
     domain_id: req.body.domain_id
   })
 
@@ -69,7 +68,6 @@ exports.signupOnly = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
-    country: req.body.country,
     domain_id: req.body.domain_id
   })
 
@@ -277,14 +275,6 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
   createAndSendToken(user, 200, req, res);
 })
 
-exports.deleteMe = catchAsync(async (req, res, next) => {
-  await User.findByIdAndUpdate(req.user.id, { accountActive: false })
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  })
-})
 
 exports.toggleUserStatus = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);

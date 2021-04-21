@@ -51,7 +51,6 @@ block header
           h4.text-light.text-uppercase.mb-0 Overview
     //- end of top-nav
 
-
 block content 
   section.overview-pad.container-fluid
     .card
@@ -169,7 +168,6 @@ block content
                     .col-lg-6.col-sm-10.p-0
                       .card-common.card-no-bg
                         //- CHART GRAPH
-                        //- include _chartJS
                         canvas#organicVsPaid(data-graphs = `${JSON.stringify(domain.clicks)}` style='height: 160px; width: 250px;')
                   //- end of third row of 1st tab
                   //- fourth row of 1st tab
@@ -452,6 +450,5 @@ block content
           // footer
           include _footer_2
           // end of footer
-
         // end of col-xl-10 col-md-9 ms-auto
       // end of row

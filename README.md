@@ -1,4 +1,1 @@
-This is an ongoing project where you can view public information of several websites and compare them in a dashboard.
-Designed especially for online businesses/ websites to analyse their competition.
-
-UI templates have been developed and API calls/ Scraping have been set-up.
+Competitor Analysis Dashboard is a web application that provides detailed information about different websites to its user. The insight information that are publicly available through different sources are gathered, stored and displayed accordingly. It integrates web scraping and API calls as its main source of data which allows the application to collect and store data in MongoDB database. Information includes bounce rates, search traffic, visit duration, organic searches and clicks, website’s ranks, related keywords, backlinks, visitors by country, top pages and much more. The user gets to analyse and compare this information to their benefit. It is designed especially for online businesses/ websites to analyse and compare their data with their competition.

@@ -17,7 +17,7 @@ const handleDuplicateFieldsDB = err => {
     message = `Duplicate Domain Name: '${err.keyValue.name}'. Domain cannot be duplicate in database`;
   }
   else if (err.keyValue.url) {
-    message = `Duplicate Url: '${err.keyValue.url}'. Url cannot be duplicate in database`;
+    message = `Duplicate Url: '${err.keyValue.url}'. URL cannot be duplicate in database`;
   }
   else if (err.keyValue.message) {
     message = 'Seems like we already have that exact same message, Please send us something new';

@@ -14,17 +14,14 @@ const userSchema = mongoose.Schema({
     },
     userName: { 
         type: String,
-        // required: [true, 'A user must have a username'],
-        // unique: [true, 'Username cannot be duplicate'],
         trim: true,
-        maxlength: [10, 'Username must have less than 10 characters'],
+        maxlength: [15, 'Username must be less than 15 characters'],
         default: ''
-        // minlength: [5, 'Username must have more than 5 characters']
     },
     email: {
         type: String,
         required: [true, 'A user must have an email'],
-        unique: [true, 'Email cannot be duplicate'],
+        unique: true,
         trim: true,
         maxlength: [50, 'An email must have less than 50 characters'],
         minlength: [10, 'An email must have more than 10 characters'],
@@ -57,17 +54,12 @@ const userSchema = mongoose.Schema({
     },
     accountActive: { 
         type: Boolean, 
-        default: true, 
-        // select: false
+        default: true
     },
     role: {
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
-    },
-    country: {
-        type: String
-        // required: [true, 'A user must have a country name']
     },
     registeredDate: {
         type: Date,
@@ -75,8 +67,7 @@ const userSchema = mongoose.Schema({
     },
     domain_id: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Domain',
-        // required: [true, 'A user must have a domain id reference']
+        ref: 'Domain'
     },
     competitorSites: [
         {

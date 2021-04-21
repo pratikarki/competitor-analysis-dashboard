@@ -5,7 +5,7 @@ export const resetPass = async (password, confirmPassword, path) => {
 	try {
 		const res = await axios({
 			method: 'PATCH',
-			url: `/api/v1/users/${path}`,
+			url: `http://127.0.0.1:3000/api/v1/users/${path}`,
 			data: {
 				password: password,
 				confirmPassword: confirmPassword,
@@ -17,7 +17,12 @@ export const resetPass = async (password, confirmPassword, path) => {
 			document.getElementById('password').value = '';
 			document.getElementById('confirmPassword').value = '';
 
-			location.assign('/overview');
+			if (res.data.data.user.role == 'admin') {
+				location.assign('/adminOverview');
+			}
+			else {
+				location.assign('/overview');
+			}
 		}
 	} catch (err) {
 		showAlert('error', err.response.data.message);

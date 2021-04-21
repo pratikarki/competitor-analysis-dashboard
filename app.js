@@ -3,7 +3,6 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser');
@@ -26,8 +25,6 @@ app.set('views', path.join(__dirname, 'views'));
 //1. GLOBAL MIDDLEWARES //these apply for all the routes
 app.use(express.static(path.join(__dirname, 'public'))); //for serving static files inside public folder
 
-//Set security HTTP headers
-// app.use(helmet());
 
 //View request information in console using 3rd party middleware 'morgan'
 if (process.env.NODE_ENV === 'development') {

@@ -28,12 +28,11 @@ exports.resizePhoto = async (req, res, next) => {
   if (!req.file) return next();
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  req.file.buffer = await sharp(req.file.buffer)
+  sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
-    .toBuffer()
-    // .toFile(`public/images/users/${req.file.filename}`)
+    .toFile(`public/images/users/${req.file.filename}`)
   
   // console.log(req.file);
   next();

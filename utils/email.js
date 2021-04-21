@@ -27,11 +27,7 @@ module.exports = class Email {
     // 2. Define email options
     const emailOptions = {
       to: this.to,
-      // from: this.from,
-      from: {
-        name: 'Competitor Analysis Dashboard',
-        email: this.from
-      },
+      from: this.from,
       subject: subject,
       html: html,
       text: htmlToText(html)

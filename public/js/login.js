@@ -5,7 +5,7 @@ export const login = async (email, password) => {
 	try {
 		const res = await axios({
 			method: 'POST',
-			url: '/api/v1/users/login',
+			url: 'http://127.0.0.1:3000/api/v1/users/login',
 			data: {
 				email: email,
 				password: password,
@@ -16,13 +16,9 @@ export const login = async (email, password) => {
 			showAlert('success', 'Logged in successfully!');
 
 			if (res.data.data.user.role == 'user') {
-				window.setTimeout(() => {
-					location.assign('/overview');
-				}, 500);
+				location.assign('/overview');
 			} else if (res.data.data.user.role == 'admin') {
-				window.setTimeout(() => {
-					location.assign('/adminOverview');
-				}, 500);
+				location.assign('/adminOverview');
 			}
 		}
 	} catch (err) {
@@ -35,14 +31,12 @@ export const logout = async () => {
 	try {
 		const res = await axios({
 			method: 'GET',
-			url: '/api/v1/users/logout',
+			url: 'http://127.0.0.1:3000/api/v1/users/logout',
 		});
 
 		if (res.data.status === 'success') {
 			showAlert('success', 'Logging you out please wait..');
-			window.setTimeout(() => {
-				location.assign('/');
-			}, 500);
+			location.assign('/');
 		}
 	} catch (err) {
 		showAlert('error', 'Error logging out. Please try again in a moment.');
