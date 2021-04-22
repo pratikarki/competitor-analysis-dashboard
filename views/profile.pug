@@ -64,12 +64,12 @@ block content
               .row.mx-2.mb-5.justify-content-around.card-no-bg.profile-row
                 h4.text-uppercase.mt-3.mb-2 Account Information
                 .row.my-5.p-0
-                  .col-4.offset-1
+                  .col-4.offset-1.p-0
                     p.mb-4.pt-2.pb-2 Full Name:
                     p.mb-4.pt-1.pb-2 Username:
                     p.mb-4.pt-2.pb-2 Email:
                     p.pt-2 Domain:
-                  .col-7.align-self-around.pe-5
+                  .col-7.align-self-around.pe-4.pe-md-5
                     input#fullName.form-control.mb-4(type='text' value=`${user.fullName}`)
                     input#userName.form-control.mb-4(type='text' value=`${(user.userName) ? user.userName : ''}`)
                     input#email.form-control.mb-4.text-muted(type='text' value=`${user.email}` readonly='')
@@ -79,11 +79,11 @@ block content
               .row.mx-2.justify-content-around.card-no-bg.profile-row
                 h4.text-uppercase.mt-3.mb-2 Change Password
                 .row.mt-5.mb-4.p-0
-                  .col-4.offset-1
+                  .col-4.offset-1.p-0
                     p.mb-4.pt-2.pb-2 Current Password:
                     p.mb-4.pt-1.pb-2 New Password:
                     p.pt-2.pb-2 Confirm Password:
-                  .col-7.align-self-around.pe-5
+                  .col-7.align-self-around.pe-4.pe-md-5
                     input#currentpassword.form-control.mt-lg-0.mt-3.mb-lg-4.mb-5(type='password' placeholder='***********')
                     input#newpassword.form-control.mb-lg-4.mb-5(type='password' placeholder='***********')
                     input#confirmpassword.form-control.mb-4.text-muted(type='password' placeholder='***********')
