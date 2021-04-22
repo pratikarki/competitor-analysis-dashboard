@@ -5,7 +5,7 @@ export const sendFeedback = async (data) => {
 	try {
 		const res = await axios({
 			method: 'POST',
-			url: 'http://127.0.0.1:3000/api/v1/feedbacks',
+			url: '/api/v1/feedbacks',
 			data: data,
 		});
 

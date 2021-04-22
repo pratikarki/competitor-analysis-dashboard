@@ -17,7 +17,7 @@ export const register = async (regUser, user_id) => {
 	try {
 		const res = await axios({
 			method: 'POST',
-			url: 'http://127.0.0.1:3000/api/v1/domains/find',
+			url: '/api/v1/domains/find',
 			data: {
 				name: regUser.domainName,
 			},
@@ -35,7 +35,7 @@ export const register = async (regUser, user_id) => {
 		try {
 			const result = await axios({
 				method: 'POST',
-				url: 'http://127.0.0.1:3000/api/v1/domains/search',
+				url: '/api/v1/domains/search',
 				data: {
 					domain: regUser.domainName,
 				},
@@ -50,7 +50,7 @@ export const register = async (regUser, user_id) => {
 		try {
 			const res = await axios({
 				method: 'POST',
-				url: 'http://127.0.0.1:3000/api/v1/domains/save',
+				url: '/api/v1/domains/save',
 				data: domainData,
 			});
 
@@ -75,7 +75,7 @@ export const register = async (regUser, user_id) => {
 			try {
 				const res = await axios({
 					method: 'POST',
-					url: 'http://127.0.0.1:3000/api/v1/domains/find',
+					url: '/api/v1/domains/find',
 					data: {
 						name: site,
 					},
@@ -89,7 +89,7 @@ export const register = async (regUser, user_id) => {
 				// get each site data from scraping and 3rd party api
 				const result = await axios({
 					method: 'POST',
-					url: 'http://127.0.0.1:3000/api/v1/domains/search',
+					url: '/api/v1/domains/search',
 					data: {
 						domain: site,
 					},
@@ -100,7 +100,7 @@ export const register = async (regUser, user_id) => {
 				try {
 					const res = await axios({
 						method: 'POST',
-						url: 'http://127.0.0.1:3000/api/v1/domains/save',
+						url: '/api/v1/domains/save',
 						data: domainData,
 					});
 
@@ -121,7 +121,7 @@ export const register = async (regUser, user_id) => {
 	try {
 		const res = await axios({
 			method: 'POST',
-			url: `http://127.0.0.1:3000/api/v1/users/update/${user_id}`,
+			url: `/api/v1/users/update/${user_id}`,
 			data: {
 				domain_id: domain_id,
 				competitorSites: competitorSites,
