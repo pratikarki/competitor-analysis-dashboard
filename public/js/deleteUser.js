@@ -5,7 +5,7 @@ export const deleteUser = async (id, alert = true) => {
 	try {
 		const res = await axios({
 			method: 'DELETE',
-			url: `/api/v1/users/${id}`,
+			url: `http://127.0.0.1:3000/api/v1/users/${id}`,
 		});
 
 		if (res.statusText === 'No Content') {
