@@ -14,7 +14,7 @@ block header
               br
               | Analysis
             .text-center
-              img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='80px' width='80px' alt='User Image')
+              img.rounded-circle(src=`${(user.photo == 'defaultUser.jpg') ? `/images/users/defaultUser.jpg` : `${user.photo}`}` height='80px' width='80px' alt='User Image')
               p.text-light.pt-2= `${(user.userName) ? user.userName : user.fullName}`
             .text-center.bottom-border
               .pb-3
@@ -51,7 +51,7 @@ block content
                 h4.text-uppercase.mt-3.mb-2 Edit Information
                 .row.my-5.p-0
                   .col-xl-5.text-center
-                    img.rounded-circle(src=`${(user.photo) ? `/images/users/${user.photo}`: `/images/users/defaultUser.jpg`}` height='230px' width='230px' alt='User Image')
+                    img.rounded-circle(src=`${(user.photo == 'defaultUser.jpg') ? `/images/users/defaultUser.jpg` : `${user.photo}`}` height='230px' width='230px' alt='User Image')
                   .col-xl-7.align-self-center(style='padding-right: 22px')
                     label.mb-2(for='photo') Upload an Image
                     input#photo.form-control.mb-2(type='file', name='photo', accept='image/*')

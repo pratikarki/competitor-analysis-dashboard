@@ -248,7 +248,7 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
   if (req.body.fullName || req.body.userName) {
     //1. Filter only the fields to be updated ie 'fullName' and 'userName'
     const filteredBody = filterObj(req.body, 'fullName', 'userName');
-    if (req.file) filteredBody.photo = req.file.filename;
+    if (req.file) filteredBody.photo = req.file.transforms[0].location;
     
     //2. Update user document
     user = await User.findByIdAndUpdate(req.user.id, filteredBody, { new: true, runValidators: true });

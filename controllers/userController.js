@@ -1,11 +1,17 @@
-const multer = require('multer');
-const sharp = require('sharp');
 const User = require('../models/userModel');
 const factory = require('./factoryHandler');
 const AppError = require('../utils/appError');
+
+const aws = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3-transform');
+const sharp = require('sharp');
 // const catchAsync = require('../utils/catchAsync');
 
-const bufferStorage = multer.memoryStorage();
+const s3 = new aws.S3({
+  accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY
+});
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -17,26 +23,51 @@ const multerFilter = (req, file, cb) => {
   }
 }
 
-const buffer = multer({
-  storage: bufferStorage,
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.AWS_BUCKET,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: 'public-read',
+    shouldTransform: function (req, file, cb) {
+      cb(null, /^image/i.test(file.mimetype))
+    },
+    transforms: [{
+      key: function(req, file, cb) {
+        cb(null, `user-${req.user.id}-${Date.now()}`)
+      },
+      transform: function (req, file, cb) {
+        cb(null, sharp().resize(500, 500))
+      }
+    }]
+  }),
   fileFilter: multerFilter
 });
 
-exports.bufferPhoto = buffer.single('photo');
+exports.uploadPhoto = upload.single('photo');
 
-exports.resizePhoto = async (req, res, next) => {
-  if (!req.file) return next();
+// const bufferStorage = multer.memoryStorage();
 
-  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  sharp(req.file.buffer)
-    .resize(500, 500)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/images/users/${req.file.filename}`)
+// const buffer = multer({
+//   storage: bufferStorage,
+//   fileFilter: multerFilter
+// });
+
+// exports.bufferPhoto = buffer.single('photo');
+
+// exports.resizePhoto = async (req, res, next) => {
+//   if (!req.file) return next();
+
+//   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+//   sharp(req.file.buffer)
+//     .resize(500, 500)
+//     .toFormat('jpeg')
+//     .jpeg({ quality: 90 })
+//     .toFile(`public/images/users/${req.file.filename}`)
   
-  // console.log(req.file);
-  next();
-}
+//   // console.log(req.file);
+//   next();
+// }
 
 exports.getAllUsers = factory.getAll(User, { path: 'domain_id competitorSites feedbacks', select: 'name' });
 
