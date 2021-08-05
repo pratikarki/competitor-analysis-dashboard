@@ -112,11 +112,11 @@ userSchema.pre('save', function(next) {
 
 //QUERY MIDDLEWARE
 //SELECT ACTIVE USERS ONLY AND 
-userSchema.pre(/^find/, function(next) {
-    // this.find({ accountActive: { $ne: false } });
-    this.find();
-    next();
-})
+// userSchema.pre(/^find/, function(next) {
+//     // this.find({ accountActive: { $ne: false } });
+//     this.find();
+//     next();
+// })
 
 //INSTANCE METHODS: available on all documents of a collection
 userSchema.methods.checkPassword = async function (candidatePW, userPW) {
