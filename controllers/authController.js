@@ -18,7 +18,7 @@ const createAndSendToken = (user, statusCode, req, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //1 day to milliseconds
     httpOnly: true
   }
-  //if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
+  if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined; //removing password from output
 
@@ -90,7 +90,7 @@ exports.login = catchAsync(async (req, res, next) => {
     const err = new AppError('Please provide email and password', 400);
     return next(err);
   }
-  
+
   //2. Check if user exist and password is correct
   const user = await User.findOne({ email }).select('+password');
   if (!user || !(await user.checkPassword(password, user.password))) { //checkPassword returns true or false
@@ -129,7 +129,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   //3. Check if user still exist
   const currentUser = await User.findById(decoded.id).populate({ path: 'domain_id competitorSites' });
-  if(!currentUser) {
+  if (!currentUser) {
     const err = new AppError('Sorry, the user with this token no longer exist :(', 401);
     return next(err);
   }
@@ -153,7 +153,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
       //3. Check if user still exist
       const currentUser = await User.findById(decoded.id).populate({ path: 'domain_id competitorSites' });
-      if(!currentUser) {
+      if (!currentUser) {
         return next();
       }
 
@@ -182,7 +182,7 @@ exports.restrictTo = (...roles) => (req, res, next) => {
   next();
 }
 
-exports.forgotPassword = catchAsync(async (req, res, next)  => {
+exports.forgotPassword = catchAsync(async (req, res, next) => {
   //1. Get user based on provided email
   const user = await User.findOne({ email: req.body.email })
   if (!user) {
@@ -202,7 +202,7 @@ exports.forgotPassword = catchAsync(async (req, res, next)  => {
     res.status(200).json({
       status: 'success',
       message: 'Token sent to email.'
-    })    
+    })
   }
   catch (err) {
     console.log(err);
@@ -215,7 +215,7 @@ exports.forgotPassword = catchAsync(async (req, res, next)  => {
   }
 })
 
-exports.resetPassword = catchAsync(async (req, res, next)  => {
+exports.resetPassword = catchAsync(async (req, res, next) => {
   //1. Get user based on the token
   const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
   const user = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } });
@@ -249,7 +249,7 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
     //1. Filter only the fields to be updated ie 'fullName' and 'userName'
     const filteredBody = filterObj(req.body, 'fullName', 'userName');
     if (req.file) filteredBody.photo = req.file.transforms[0].location;
-    
+
     //2. Update user document
     user = await User.findByIdAndUpdate(req.user.id, filteredBody, { new: true, runValidators: true });
   }
@@ -267,7 +267,7 @@ exports.updateInfo = catchAsync(async (req, res, next) => {
     //3. If so, update user password
     user.password = req.body.newPassword;
     user.confirmPassword = req.body.confirmPassword;
-    await user.save(); 
+    await user.save();
     //User.findByIDAndUpdate will not work for updating password because we need 'pre save' middleware to run   
   }
 
