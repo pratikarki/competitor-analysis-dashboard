@@ -2,16 +2,16 @@ const User = require('../models/userModel');
 const factory = require('./factoryHandler');
 const AppError = require('../utils/appError');
 
-const aws = require('aws-sdk');
+// const aws = require('aws-sdk');
 // const multer = require('multer');
 // const multerS3 = require('multer-s3-transform');
 // const sharp = require('sharp');
 // const catchAsync = require('../utils/catchAsync');
 
-const s3 = new aws.S3({
-  accessKeyId:process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY
-});
+// const s3 = new aws.S3({
+//   accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY
+// });
 
 // const multerFilter = (req, file, cb) => {
 //   if (file.mimetype.startsWith('image')) {

@@ -9,3 +9,5 @@ config.env
 
 #Ignore .vscode folder
 .vscode
+.vercel
+.parcel-cache
