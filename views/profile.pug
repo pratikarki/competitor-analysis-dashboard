@@ -54,9 +54,10 @@ block content
                     img.rounded-circle(src=`${(user.photo == 'defaultUser.jpg') ? `/images/users/defaultUser.jpg` : `${user.photo}`}` height='230px' width='230px' alt='User Image')
                   .col-xl-7.align-self-center(style='padding-right: 22px')
                     label.mb-2(for='photo') Upload an Image
-                    input#photo.form-control.mb-2(type='file', name='photo', accept='image/*')
+                    input#photo.form-control.mb-2(type='file', name='photo', accept='image/*', disabled='true')
                     small#fileHelp.form-text.text-muted
-                      | Any image format is acceptable.
+                      //- | Any image format is acceptable.
+                      | Unfortunately image upload no longer works :(
                       //- br
                       //- | Max file size 1024kb.
               // end of first row

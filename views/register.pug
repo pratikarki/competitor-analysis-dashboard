@@ -10,6 +10,11 @@ block content
           p.text-monospace.text-muted.my-3 Designed for your Online Competition.
           hr
           p.lead.my-4 Where you can analyze your website's metrics with your competitors, perform research on keywords and find valuable insights, all in one place.
+          p.font-weight-bolder.my-4
+            span(style='font-weight: 500;') Important Note: 
+            | Registering new users no longer works because the data sources are closed. However, you can login using the credentials provided 
+            a(href='https://github.com/pratikarki/competitor-analysis-dashboard#readme' target='_blank') here
+            | .
 
         .col-lg-5.px-3.d-flex.justify-content-center(style='margin-bottom: 6rem;')
           .card.p-2.p-sm-3.card-border
@@ -17,7 +22,8 @@ block content
 
               .text-center 
                 h3.display-5(style='font-size: 2.6rem') Create an Account
-                small Enter your details below to get started.
+                //- small Enter your details below to get started.
+                small Oops, please read the note below.
               
               form.form.form--register.p-2.p-md-4.pb-2
 
@@ -26,21 +32,21 @@ block content
                   .input-group
                     .input-group-prepend
                       i.input-group-text.far.fa-user
-                    input(type='text' class='form-control' id='fullName' placeholder='Full Name' required)
+                    input(type='text' class='form-control' id='fullName' placeholder='Full Name' required disabled='true')
 
                 .form-group.pt-4
                   label(for='username') Username
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-at
-                    input(type='text' class='form-control' id='userName' placeholder='Username' onChange='userNameIsValid();')
+                    input(type='text' class='form-control' id='userName' placeholder='Username' onChange='userNameIsValid();' disabled='true')
 
                 .form-group.pt-4
                   label(for='email') Email Address *
                   .input-group
                     .input-group-prepend
                       i.input-group-text.far.fa-envelope
-                    input(type='email' class='form-control' id='email' placeholder='Email' required onChange='emailIsValid();')
+                    input(type='email' class='form-control' id='email' placeholder='Email' required onChange='emailIsValid();' disabled='true')
                   small.form-text.text-dark Your email will not be shared with anyone.
 
                 .form-group.pt-4
@@ -48,7 +54,7 @@ block content
                   .input-group
                     .input-group-prepend
                       i.input-group-text.fas.fa-key
-                    input(type='password' class='form-control' id='password' placeholder='Password' required onChange="checkPass();" pattern='(?=.*\\d).{8,}')
+                    input(type='password' class='form-control' id='password' placeholder='Password' required onChange="checkPass();" pattern='(?=.*\\d).{8,}' disabled='true')
                     button(style='width: 45px;').input-group-text.pwToggle 
                       i.far.fa-eye-slash.mx-auto
                   small.form-text.text-dark Password must be atleast 8 characters including numbers.
@@ -58,7 +64,7 @@ block content
                 .input-group
                   .input-group-prepend
                     i.input-group-text.fas.fa-key
-                  input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required onChange="checkPass();")
+                  input(type='password' class='form-control' id='confirmPassword' placeholder='Confirm Password' required onChange="checkPass();" disabled='true')
                   button(style='width: 45px;').input-group-text.pwToggleConfirm
                     i.far.fa-eye-slash.mx-auto
 
@@ -67,10 +73,14 @@ block content
                   .input-group
                     .input-group-prepend
                       span.input-group-text https://www.
-                    input(type='text' class='form-control' id='domainName' placeholder='Domain Name' required)
+                    input#domainName.form-control(type='text' placeholder='Domain Name' required='' disabled='true')
+                  small.form-text.text-dark
+                    | Unfortunately, you can no longer register but, you can check this application with credentials provided 
+                    a(href='https://github.com/pratikarki/competitor-analysis-dashboard#readme', target='_blank') here
+                    | .
                 
                 .mt-4.pt-1.pt-sm-2
-                  button#btn--register.btn.btn-dark
+                  button#btn--register.btn.btn-dark(disabled='true')
                     i.fas.fa-user-plus.me-2
                     i.fas.fa-circle-notch.fa-spin.me-2(style='display: none;')
                     | Sign Up
