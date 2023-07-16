@@ -19,4 +19,4 @@ To login, use these credentials: (please note that these are just dummy email ad
 - sumankhadka004@gmail.com (sanimabank.com)
 - shresthasunil859@gmail.com (onlinekhabar.com)
 
-Password for all these accounts: (pass1234)
+Password for all these accounts: pass1234
