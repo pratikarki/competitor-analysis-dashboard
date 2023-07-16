@@ -14,12 +14,11 @@ const signToken = id => jwt.sign({ id }, process.env.JWT_SECRET, {
 const createAndSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
-  const cookieOptions = {
+  res.cookie('jwt', token, {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), //1 day to milliseconds
-    httpOnly: true
-  }
-  //if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true; //use secure https only in production
-  res.cookie('jwt', token, cookieOptions);
+    httpOnly: true,
+    secure: req.secure || req.headers('x-forwarded-proto') === 'https',
+  });
   user.password = undefined; //removing password from output
 
   res.status(statusCode).json({
