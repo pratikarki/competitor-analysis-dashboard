@@ -35,12 +35,10 @@
 		"nodemon": "^2.0.7",
 		"pug": "^3.0.0",
 		"validator": "^13.5.2",
-		"xss-clean": "^0.1.1"
-	},
-	"devDependencies": {
+		"xss-clean": "^0.1.1",
 		"parcel": "^2.9.3"
 	},
 	"engines": {
-		"node": ">=18.0.0"
+		"node": "14.x"
 	}
 }
