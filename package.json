@@ -33,8 +33,5 @@
 		"pug": "^3.0.0",
 		"validator": "^13.5.2",
 		"xss-clean": "^0.1.1"
-	},
-	"engines": {
-		"node": "14.x"
 	}
 }
