@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- fontawesome CDN -->
+  <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!-- bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- google font CDN -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>Competitor Analysis Dashboard | Overview</title>
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif;">
+
+  <!-- modals -->
+  <div class="modal fade" id="logout_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><small>Are your sure you want to logout?</small></h4>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-outline-danger" type="button" onclick="window.location.href='login.html'">Yes, logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="add_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><small>Add a website.</small></h4>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-body form-group mb-4">
+          <label for="email">Domain</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">https://www.</span>
+            </div>
+            <input class="form-control" type="text" id="domainname" placeholder="Domain Name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-outline-danger" type="button" onclick="">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="remove_site_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><small>Are your sure you want to remove this site?</small></h4>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-outline-danger" type="button" onclick="">Yes, remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="remove_table_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><small>Are your sure you want to remove this table?</small></h4>
+          <div class="p-2" data-dismiss="modal"><i class="far fa-times cross"></i></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-white" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-outline-danger" type="button" onclick="">Yes, remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of modal -->
+
+  <!-- navbar -->
+  <header class="nav navbar-expand-md navbar-light">
+    <button class="navbar-toggler ms-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#dash_nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="dash_nav">
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- sidebar -->
+          <div class="col-xl-2 col-md-3 sidebar fixed-to-top">
+            <a href="overview.html" class="navbar-brand text-light text-center d-block mx-auto py-3 mb-4 bottom-border">Competitor's<br>Analysis</a>
+
+            <div class="text-center">
+              <img src="/public/images/dummyUser.jpg" class="rounded-circle" height="80px" width="80px" alt="User Image">
+              <p href="#" class="text-light pt-2">@UserName</p>
+            </div>
+
+            <div class="text-center bottom-border">
+              <div class="pb-3">
+                <button class="btn btn-sm btn-outline-light" onclick="window.location.href='profile.html'">
+                  <i class="text-danger fal fa-user pe-1"></i>View Profile
+                </button>
+              </div>
+              <div class="pb-3">
+                <button class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#logout_modal">
+                  <i class="text-danger fal fa-sign-out-alt pe-1"></i>Logout
+                </button>
+              </div>
+            </div>
+            
+            <ul class="navbar-nav flex-column mt-3"><!-- <i class="fas fa-home fa-lg pe-2 text-light"></i> -->
+              <li class="nav-item text-center">
+                <a href="overview.html" class="nav-link current text-light p-3 mb-1">Overview</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="compare_metrics.html" class="nav-link sidebar-link text-light p-3 mb-1">Compare Metrics</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="compare_keywords.html" class="nav-link sidebar-link text-light p-3 mb-1">Compare Keyword</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="#" class="nav-link sidebar-link text-light p-3 mb-1">Notes</a>
+              </li>
+              <li class="nav-item text-center">
+                <a href="feedback.html" class="nav-link sidebar-link text-light p-3 mb-1">Feedback</a>
+              </li>
+            </ul>
+          </div>
+          <!-- end of sidebar -->
+
+          <!-- top-nav -->
+          <nav class="col-xl-10 col-md-9 ms-auto bg-white fixed-to-top top-navbar border-bottom py-4"><!-- py-4 -->
+            <div class="row align-items-center">
+              <div class="col text-center">
+                <h4 class="text-dark text-uppercase mb-0">Overview</h4>
+              </div>
+            </div>
+          </nav>
+          <!-- end of top-nav -->
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- end of navbar -->
+
+  <!-- main card -->
+  <section class="overview-pad container-fluid">
+    <div class="card">
+      <div class="row">
+        <div class="col-xl-10 col-md-9 ms-auto ps-0">
+          <!--tabs -->
+          <div class="card-body card-bg py-0 ps-2 pe-0">
+            <nav class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active bg-custom" id="first-nav-tab" data-toggle="tab" href="#first-nav" role="tab" aria-controls="first-nav" aria-selected="true">Your Site
+                <i class="fal fa-times ms-3 cross" data-toggle="modal" data-target="#remove_site_modal"></i>
+              </a>
+              <a class="nav-item nav-link bg-custom" id="second-nav-tab" data-toggle="tab" href="#second-nav" role="tab" aria-controls="second-nav" aria-selected="false">Competitor Site 1
+                <i class="fal fa-times ms-3 cross" data-toggle="modal" data-target="#remove_site_modal"></i>
+              </a>
+              <a class="nav-item nav-link bg-custom" id="third-nav-tab" data-toggle="tab" href="#third-nav" role="tab" aria-controls="third-nav" aria-selected="false">Competitor Site 2
+                <i class="fal fa-times ms-3 cross" data-toggle="modal" data-target="#remove_site_modal"></i>
+              </a>
+              <a class="nav-item nav-link bg-custom" id="fourth-nav-tab" data-toggle="tab" href="#fourth-nav" role="tab" aria-controls="fourth-nav" aria-selected="false">Competitor Site 3
+                <i class="fal fa-times ms-3 cross" data-toggle="modal" data-target="#remove_site_modal"></i>
+              </a>
+              <a class="nav-item nav-link bg-custom" id="fifth-nav-tab" data-toggle="tab" href="#fifth-nav" role="tab" aria-controls="fifth-nav" aria-selected="false">Competitor Site 4
+                <i class="fal fa-times ms-3 cross" data-toggle="modal" data-target="#remove_site_modal"></i>
+              </a>
+              <span class="p-2 ms-2">
+                <i class="fal fa-plus fa-lg cross" data-toggle="modal" data-target="#add_modal"></i>
+              </span>
+            </nav>
+
+            <div class="tab-content p-4 custom-border" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="first-nav" role="tabpanel" aria-labelledby="first-nav-tab">
+                <!-- first row of card body -->
+                <div class="row my-3 justify-content-around">
+                  <div class="col-xl-2 col-sm-4 col-6 p-2">
+                    <div class="card card-common">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <h2>#96,480</h2>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-secondary">
+                        <span>Overall Alexa Rank</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-sm-4 col-6 p-2">
+                    <div class="card card-common">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <h2>28%</h2>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-secondary">
+                        <span>Bounce Rate</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-sm-4 col-6 p-2">
+                    <div class="card card-common">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <h2>17%</h2>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-secondary">
+                        <span>Search Traffic</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-sm-4 col-6 p-2">
+                    <div class="card card-common">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <h2>5:07</h2>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-secondary">
+                        <span>Avg Visit Duration</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-sm-4 col-6 p-2">
+                    <div class="card card-common">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <h2>Feb 2012</h2>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-secondary">
+                        <span>First Recorded</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of first row of card body -->
+
+                <!-- second row of card body -->
+                <div class="row py-5 justify-content-around px-2 px-sm-0"> 
+                  <div class= "col-lg-5 col-sm-9 card-common align-self-center mb-lg-0 mb-4 card-no-bg" style="height: auto;">
+                    <div class="row py-4 text-center border-bottom">
+                      <h4 class="m-0">Organic Search</h4>
+                    </div>
+                    <div class="row justify-content-around border-bottom">
+                      <div class="col text-center py-4 card-common-sm vertical-border">
+                        <p>Search Keywords</p>
+                        <h4><strong>130</strong></h4>
+                      </div>
+                      <div class="col text-center py-4 card-common-sm">
+                        <p>Est Monthly Seo Clicks</p>
+                        <h4><strong>4.7k</strong></h4>
+                      </div>
+                    </div>
+                    <div class="row py-4 text-center">
+                        <h5 class="m-0">Est Monthly Seo Clicks Value: <strong>18.6k</strong></h5>
+                    </div>
+                  </div>
+
+                  <div class= "col-lg-6 col-sm-9 p-0">
+                    <table class="table table-bordered text-center m-0 card-common card-no-bg">
+                      <thead>
+                        <tr>
+                          <th class="py-3"><h4 class="m-0">Similar Sites by Visitors</h4></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="p-0">
+                            <table class="table table-striped table-hover bg-light text-center m-0">
+                              <thead>
+                                <tr class="text-muted">
+                                  <th class="col-6 ps-5 align-lt">#</th>
+                                  <th class="col-3">Overlap Score</th>
+                                  <th class="col-3">Rank</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="ps-5 align-lt">Your Site</td>
+                                  <td>52.2</td>
+                                  <td>#25,480</td>
+                                </tr>
+                                <tr>
+                                  <td class="ps-5 align-lt">SimilarSite 1</td>
+                                  <td>49.2</td>
+                                  <td>#125,480</td>
+                                </tr>
+                                <tr>
+                                  <td class="ps-5 align-lt">SimilarSite 2</td>
+                                  <td>32.2</td>
+                                  <td>#257,480</td>
+                                </tr>
+                                <tr>
+                                  <td class="ps-5 align-lt">SimilarSite 3</td>
+                                  <td>27.6</td>
+                                  <td>#56,480</td>
+                                </tr>
+                                <tr>
+                                  <td class="ps-5 align-lt">SimilarSite 4</td>
+                                  <td>15.4</td>
+                                  <td>#548,480</td>
+                                </tr>                          
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <!-- end of second row of card body -->
+
+                <!-- third row of card body -->
+                <div class="row py-4 justify-content-around px-2 px-sm-0"> 
+                  <div class= "col-lg-5 col-sm-9 align-self-center mb-lg-0 mb-4 p-0 card-no-bg">
+                    <table class="table table-bordered text-center m-0 card-common">
+                      <thead>
+                        <tr>
+                          <th class="py-3"><h5 class="m-0">Visitors by Country</h5></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="p-0">
+                            <table class="table table-striped table-hover bg-light text-center m-0">
+                              <thead>
+                                <tr class="text-muted">
+                                  <th></th>
+                                  <th class="align-lt"></th>
+                                  <th>Site's Rank</th>
+                                  <th>Visitor's Percent</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><small>NP</small></td>
+                                  <td class="align-lt">Nepal</td>
+                                  <td>#25,480</td>
+                                  <td>52.7%</td>
+                                </tr>
+                                <tr>
+                                  <td><small>US</small></td>
+                                  <td class="align-lt">United States</td>
+                                  <td>#125,480</td>
+                                  <td>47.5%</td>
+                                </tr>
+                                <tr>
+                                  <td><small>IN</small></td>
+                                  <td class="align-lt">India</td>
+                                  <td>#57,480</td>
+                                  <td>32.2%</td>
+                                </tr>                    
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class= "col-lg-6 col-sm-10 p-0">
+                    <div class="card-common card-no-bg">
+                      <canvas id="organicVsPaid" style="height: 160px; width: 250px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of third row of card body -->
+
+                <!-- fourth row of card body -->
+                <div class="row py-4 justify-content-center px-2 px-sm-0"> 
+                  <div class="col-11">
+                    <h3 class="text-muted pt-4 m-0">Keywords</h3>
+
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Top Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">New Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Clicks Gaining Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Clicks Losing Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">First Page Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Other Related Keywords</th>
+                            <th>Search Volume</th>
+                            <th>SEO Clicks</th>
+                            <th>Rank</th>
+                            <th>Clicks</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">abc</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of fourth row of card body -->
+
+                <!-- fifth row of card body -->
+                <div class="row py-4 justify-content-center px-2 px-sm-0"> 
+                  <div class="col-11">
+                    <h3 class="text-muted pt-4 m-0">Top Pages</h3>
+
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Page</th>
+                            <th class="col-3">Keyword</th>
+                            <th>Est Monthly SEO Clicks</th>
+                            <th>Keyword Count</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">123</td>
+                            <td>abc</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">123</td>
+                            <td>abc</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">123</td>
+                            <td>abc</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">123</td>
+                            <td>abc</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">123</td>
+                            <td>abc</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of fifth row of card body -->
+
+                <!-- sixth row of card body -->
+                <div class="row pt-4 pb-5 justify-content-center px-2 px-sm-0"> 
+                  <div class="col-11">
+                    <h3 class="text-muted pt-4 m-0">Backlinks (Imbound Links)</h3>
+
+                    <div class="pt-4 table-responsive">
+                      <table class="table table-hover text-center bg-light card-common">
+                        <thead>
+                          <tr class="text-muted">
+                            <th class="col-4 ps-5 align-lt">Link</th>
+                            <th>Domain Monthly<br>Organic Clicks</th>
+                            <th>Page Monthly<br>Organic Clicks</th>
+                            <th>Domain Strength</th>
+                            <th>Outbound Links</th>
+                            <th><i class="far fa-times fa-lg cross" data-toggle="modal" data-target="#remove_table_modal"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-5 align-lt">link.com/123</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">link.com/123</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">link.com/123</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">link.com/123</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                          <tr>
+                            <td class="ps-5 align-lt">link.com/123</td>
+                            <td>123</td>
+                            <td>456</td>
+                            <td>789</td>
+                            <td>012</td>
+                            <td class="text-muted"><i class="fal fa-times cross" onclick=""></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of sixth row of card body -->
+              </div>
+              <div class="tab-pane fade" id="second-nav" role="tabpanel" aria-labelledby="second-nav-tab">
+                def
+              </div>
+              <div class="tab-pane fade" id="third-nav" role="tabpanel" aria-labelledby="third-nav-tab">
+                ghi
+              </div>
+              <div class="tab-pane fade" id="fourth-nav" role="tabpanel" aria-labelledby="fourth-nav-tab">
+                jkl
+              </div>
+              <div class="tab-pane fade" id="fifth-nav" role="tabpanel" aria-labelledby="fifth-nav-tab">
+                mno
+              </div>
+            </div>
+
+
+            
+          </div> 
+          <!--end of card-body -->
+
+          <!-- footer -->
+          <footer class="row py-0 px-sm-0 px-2">
+            <div class="row border-top align-items-center py-2 card-no-bg">
+              <div class="col-md-5 col-4 offset-1">
+                <p class="text-monospace m-0"><i class="far fa-copyright"></i>
+                  <span id="year"></span> By Pratik Karki</p> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6 ms-auto">
+                <blockquote class="blockquote m-0">
+                  <p class="text-secondary ps-4"><small>Powered By:</small></p>
+                  <div class="blockquote-footer">
+                    <cite title="Source Title"><small>Spyfu, Inc.</small></cite>
+                  </div>
+                  <div class="blockquote-footer">
+                    <cite title="Source Title"><small>Alexa Internet, Inc.</small></cite>
+                  </div>
+                </blockquote>
+              </div>
+            </div>
+          </footer>
+          <!-- end of footer -->
+        </div>
+        <!-- end of col-xl-10 col-md-9 ms-auto -->
+      </div >
+      <!-- end of row -->
+    </div> 
+    <!-- end of card -->
+  </section>
+  <!-- end of main card -->
+
+  <!-- chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+  <!-- jquery CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!-- popper.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+  <!-- bootstrap JS CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  
+  <script>
+    // Get current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
+
+  <script src="../public/js/charts.js"></script>
+
+</body>
+
+</html>
